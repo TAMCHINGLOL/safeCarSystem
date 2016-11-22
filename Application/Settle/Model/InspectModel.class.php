@@ -19,8 +19,23 @@ class InspectModel extends Model
      */
     protected $tableName = 'settle_inspect';
 
+
     /**
-     * 根据状态获取理赔登记记录列表
+     * 修改审核通过状态(财务的初级审核/主管的二级审核)
+     * @param $inspectSn
+     * @param $status
+     * @param $remark
+     * @return bool
+     */
+    public function changePassStatus($inspectSn, $status, $remark){
+        $where['inspect_sn'] = $inspectSn;
+        $data['status'] = $status;
+        $data['remark'] = $remark;
+        return $this->where($where)->save($data);
+    }
+
+    /**
+     * 财务人员根据状态获取理赔登记记录列表
      * @param $status
      * @return mixed
      */
@@ -59,7 +74,7 @@ class InspectModel extends Model
     }
 
     /**
-     * 改变理赔登记表状态和接单时间
+     * 改变理赔登记表状态和接单时间(勘察人员专属)
      * @param $uid
      * @param $inspectSn
      * @param $status

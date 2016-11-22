@@ -39,34 +39,46 @@ class PayModel extends Model
      * @param $payCode
      * @param $price
      * @param $createTime
-     * @param $status
      * @param $remark
      * @return mixed
      */
-    public function addNewRow($carUid, $dealUid, $financeUid, $recordSn, $payCode, $price, $createTime, $status, $remark){
+    public function addNewRow($carUid, $dealUid, $financeUid, $recordSn, $payType, $price, $createTime, $remark){
         $data = array(
             'uid' => $carUid,
             'dealer_uid' => $dealUid,
             'finance_uid' => $financeUid,
             'record_sn' => $recordSn,
-            'pay_code' => $payCode,
+            'pay_type' => $payType,
             'price' => $price,
             'create_time' => $createTime,
-            'is_pay' => $status,
             'remark' => $remark,
         );
         return $this->add($data);
     }
 
     /**
-     * 修改支付状态
+     * 修改支付状态和支付方式
      * @param $paySn
      * @param $status
+     * @param $payType
      * @return bool
      */
-    public function changeStatusByPaySn($paySn, $status){
+    public function changeStatusByPaySn($paySn, $status, $payType){
         $where['pay_sn'] = $paySn;
         $data['is_pay'] = $status;
+        $data['pay_type'] = $payType;
         return $this->where($where)->save($data);
+    }
+
+    /**
+     * 财务人员根据状态获取对应列表
+     * @param $uid
+     * @param $status
+     * @return mixed
+     */
+    public function getListByFinanceUid($uid, $status){
+        $where['finance_uid'] = $uid;
+        $where['is_pay'] = $status;
+        return $this->where($where)->select();
     }
 }

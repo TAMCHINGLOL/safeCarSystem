@@ -16,6 +16,29 @@ class RecordModel extends Model
     protected $tableName = 'settle_record';
 
     /**
+     * 二级审核不通过删除原先的理赔报价单
+     * @param $inspectSn
+     * @return mixed
+     */
+    public function deleteOldRecordByInspectSnRecordSn($inspectSn,$recordSn){
+        $where['record_sn'] = $inspectSn;
+        $where['record_sn'] = $inspectSn;
+        return $this->where($where)->delete();
+    }
+
+    /**
+     * 根据财务uid和订单状态获取理赔记录列表
+     * @param $financeUid
+     * @param $status
+     * @return mixed
+     */
+    public function getListByStatus($financeUid, $status){
+        $where['finance_uid'] = $financeUid;
+        $where['is_pass'] = $status;
+        return $this->where($where)->select();
+    }
+
+    /**
      * 拒绝理赔
      * @param $recordSn
      * @param $isPass
@@ -38,24 +61,13 @@ class RecordModel extends Model
      * @param $remark
      * @return bool
      */
-    public function changePassByRecordSn($recordSn, $status, $remark)
+    public function changePassByRecordSn($recordSn, $status, $remark = '')
     {
+        if(!empty($remark)){
+            $data['remark'] = $remark;
+        }
         $where['record_sn'] = $recordSn;
         $data['is_pass'] = $status;
-        $data['remark'] = $remark;
-        return $this->where($where)->save($data);
-    }
-
-    /**
-     * 修改理赔记录状态
-     * @param $recordSn
-     * @param $status
-     * @return bool
-     */
-    public function changeStatusByRecordSn($recordSn, $status)
-    {
-        $where['record_sn'] = $recordSn;
-        $data['is_indemnity'] = $status;
         return $this->where($where)->save($data);
     }
 

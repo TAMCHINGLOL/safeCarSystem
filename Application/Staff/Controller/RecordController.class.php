@@ -35,54 +35,43 @@ class RecordController extends CommonController
         $this->bankPayModel = D('Pay/BankPay');
     }
 
+
+
     /**
-     *完成支付密码
+     *根据财务人员和状态获取对应的理赔记录列表(财务人员)
      */
-    public function surePay()
-    {
-        $recordSn = I('post.recordSn');
-        $paySn = I('post.paySn');
-        $carUid = I('post.uid');        //车主uid
+    public function getRecordList(){
+        $status = I('post.status');
         $uid = session('uid');
-        $payPwd = I('post.Pwd');
-        $password = md5(md5($payPwd));  //共三次加密,前端加密一次
-        $surePwd = $this->bankPayModel->findPassword($uid);
-        if ($surePwd == $password) {
-            $userInfo = $this->userModel->getRowByUid($carUid);
-            $content = '尊敬的' . $userInfo['username'] . '车主,你好!理赔金额预计1-3个工作日到账,如有疑问,请拨打客服电话：123123';
-            $data = array($content, 60);
-            $tempId = '1';
-            sendTemplateSMS($userInfo['phone'], $data, $tempId);
-            $this->recordModel->changeStatusByRecordSn($recordSn, 2);    //改变理赔登记表状态
-            $this->payModel->changeStatusByPaySn($paySn, 2);             //改变支付表状态
-            $this->success('支付成功,预计1-3个工作日完成转账');
-            exit;
-        } else {
-            $this->error('支付密码错误');
-            exit;
-        }
+        $result = $this->recordModel->getListByStatus($uid,$status);
+        $this->assign('recordList',$result);
+
     }
 
     /**
-     * 获取对应理赔的在线帮助文档
-     * @param $typeSn
-     * @return string
+     *初级审核不通过(根据情况修改对应状态：4审核不通过(客服需确认)，5审核不通过(勘察人员需确认)，7审核不通过，客服联系车主填写完整资料)
      */
-    protected function getSettleHelp($typeSn)
-    {
-        if (empty($typeSn)) {
-            return '';
+    public function refusePass(){
+        $status = I('post.status');
+        $remark = I('post.remark');
+        $inspectSn = I('post.inspectSn');
+        $rs = $this->inspectModel->changePassStatus($inspectSn,$status,$remark);
+        if($rs){
+            $this->success('操作成功,系统正在发聩');
+            exit;
+        }else{
+            $this->error('操作失败');
+            exit;
         }
-        return $this->policyTypeModel->getRowByTypeSn($typeSn);
     }
 
     /**
-     *完成初级审核,新增理赔记录信息
+     *通过初级审核[生成理赔报价单(理赔记录表)]
      */
     public function surePass()
     {
         $financeUid = session('uid');
-        $carUid = I('post.uid');                   //车主Uid
+        $carUid = I('post.uid');                //车主Uid
         $car_sn = I('post.car_sn');             //车辆编号
         $policy_sn = I('post.policy_sn');       //基本保单编号
         $type_sn = I('post.type_sn');           //保险种类编号
@@ -93,10 +82,10 @@ class RecordController extends CommonController
         $remark = I('post.remark');             //财务备注
         $create_time = date('Y-m-d H:i:s');     //理赔记录创建时间
         $id = $this->recordModel->addNewRow($carUid, $financeUid, $inspect_sn, $car_sn, $policy_sn, $type_sn, $add_time, $address, $create_time, $amount, $remark);
-
         $record_sn = makeEveryNumber('RS', $id);
         $rs = $this->recordModel->addRecordSnById($id, $record_sn);
-        if ($rs) {
+        $result = $this->inspectModel->changePassStatus($inspect_sn,6); //初级审核通过,修改状态
+        if ($rs && $result) {
             $this->success('成功录入系统,等待审核');
             exit;
         } else {
@@ -106,7 +95,7 @@ class RecordController extends CommonController
     }
 
     /**
-     *获取某一理赔登记详情
+     *获取某一理赔登记详情(区分财务/主管获取对应的信息)
      */
     public function getOneInspect()
     {
@@ -145,11 +134,11 @@ class RecordController extends CommonController
     }
 
     /**
-     *获取待审核理赔登记列表分页
+     *根据状态获取理赔登记列表分页(财务部根据登记信息初级审核，并不需传uid),状态：1待审核，
      */
     public function getInspectList()
     {
-        $status = 3;
+        $status = I('post.status');
         $inspectList = $this->inspectModel->findInspectList($status);
         $inspectInfo = array();
         foreach ($inspectList as $k => $v) {
@@ -163,5 +152,18 @@ class RecordController extends CommonController
         }
         $this->assign('inspectList', $inspectInfo);
         $this->display();
+    }
+
+    /**
+     * 获取对应理赔的在线帮助文档
+     * @param $typeSn
+     * @return string
+     */
+    protected function getSettleHelp($typeSn)
+    {
+        if (empty($typeSn)) {
+            return '';
+        }
+        return $this->policyTypeModel->getRowByTypeSn($typeSn);
     }
 }

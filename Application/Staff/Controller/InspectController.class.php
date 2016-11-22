@@ -4,7 +4,7 @@
  * @Company:
  * @Author: zml
  * @Since: 2016/11/20 13:46
- * @Description: 描述
+ * @Description: 描述用于理赔登记表的操作(同一对象面向客服系统/勘察系统)
  */
 
 namespace Staff\Controller;
@@ -28,7 +28,7 @@ class InspectController extends CommonController
     }
 
     /**
-     *完善勘察信息(勘察回来填写信息)
+     *入勤填写勘察信息[完善理赔登记信息]
      */
     public function updateInspect(){
         $carUid = I('post.carUid');        //车主Uid
@@ -58,7 +58,31 @@ class InspectController extends CommonController
     }
 
     /**
-     *获取获取某一个理赔登记详情
+     *勘察人员接单出勤
+     */
+    public function changeStatus(){
+        $uid = session('uid');
+        $inspectSn = I('post.inspectSn');
+        $status = 2;
+        $date = date('Y-m-d H:i:s');
+        $rs = $this->inspectModel->changeStatus($uid,$inspectSn,$status,$date);
+        if($rs){
+            $carUid = I('post.carUid');
+            $carUserInfo = $this->userModel->getRowByUid($carUid);
+            $content = '尊敬的'.$carUserInfo['real_name'].'客户,员工编号:'.$uid.'正在插眼传送中,预计15分钟内到达地点';
+            $data = array($content,15);
+            $tempId = '1';
+            sendTemplateSMS($carUserInfo['phone'],$data,$tempId);
+            $this->success('接单成功,正在短信通知车主');
+            exit;
+        }else{
+            $this->error('接单失败');
+            exit;
+        }
+    }
+
+    /**
+     *获取获取某一个理赔登记详情(区别客服/勘察获取对应的信息)
      */
     public function oneInspect()
     {
@@ -91,30 +115,6 @@ class InspectController extends CommonController
         $this->assign('userInfo',$userInfo);
         $this->assign('carInfo',$carInfo);
         $this->assign('inspectInfo',$inspectArray);
-    }
-
-    /**
-     *勘察登记表状态(接单触发)
-     */
-    public function changeStatus(){
-        $uid = session('uid');
-        $inspectSn = I('post.inspectSn');
-        $status = 2;
-        $date = date('Y-m-d H:i:s');
-        $rs = $this->inspectModel->changeStatus($uid,$inspectSn,$status,$date);
-        if($rs){
-            $carUid = I('post.carUid');
-            $carUserInfo = $this->userModel->getRowByUid($carUid);
-            $content = '尊敬的'.$carUserInfo['real_name'].'客户,员工编号:'.$uid.'正在插眼传送中,预计15分钟内到达地点';
-            $data = array($content,15);
-            $tempId = '1';
-            sendTemplateSMS($carUserInfo['phone'],$data,$tempId);
-            $this->success('接单成功,正在短信通知车主');
-            exit;
-        }else{
-            $this->error('接单失败');
-            exit;
-        }
     }
 
     /**
@@ -185,7 +185,7 @@ class InspectController extends CommonController
     }
 
     /**
-     *新增勘察信息(客服人员)
+     *调度勘察人员[生成基本理赔登记信息]
      */
     public function addInspect(){
         $carUid = I('post.uid');
@@ -202,7 +202,7 @@ class InspectController extends CommonController
             session('newInspectSn',$inspectSn);
             session('carUid',$carUid);
             $this->inspectModel->addInspectSnById($rs,$inspectSn);
-            $this->success('信息调度信息成功');
+            $this->success('新增调度信息成功');
             exit;
         }else{
             $this->error('新增调度信息失败');

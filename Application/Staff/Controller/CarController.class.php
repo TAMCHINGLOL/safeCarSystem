@@ -24,7 +24,7 @@ class CarController extends CommonController
     }
 
     /**
-     *短信通知未参保/参保过期的车主
+     *短信通知未参保/参保过期的车主(客服挖掘潜在客户/服务已存在客户)
      */
     public function sendNotice(){
         $carSn = I('post.carSn');
@@ -55,7 +55,7 @@ class CarController extends CommonController
     }
 
     /**
-     *获取某一车辆详情
+     *获取某一车辆详情(合法车主的保险信息)
      */
     public function oneCar()
     {
@@ -73,7 +73,7 @@ class CarController extends CommonController
     }
 
     /**
-     *获取车辆列表分页显示
+     *获取车辆列表分页显示(查询车主合法性)
      */
     public function carList()
     {
