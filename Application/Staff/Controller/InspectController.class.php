@@ -118,7 +118,8 @@ class InspectController extends CommonController
     }
 
     /**
-     *根据不同状态和勘察人的uid获取勘察登记列表分页
+     *根据不同状态和工作人员的uid获取勘察登记列表分页
+     * 客服待确定/客服待通知/勘察待处理/勘察处理中/财务待审核(可不传uid方法在Record控制器中)/勘察待确定/已处理
      */
     public function inspectList()
     {
@@ -131,6 +132,7 @@ class InspectController extends CommonController
         $this->assign('inspectList',$inspectList);
         $this->display();
     }
+
 
     /**
      *客服点击立即调度(短信通知调度人员/报案车主)
@@ -175,17 +177,7 @@ class InspectController extends CommonController
     }
 
     /**
-     *获取在线可调度人员列表
-     */
-    public function getYardList(){
-        $address =  I('post.address');
-        $userList = $this->subUserModel->getUserListBy(1,2,1,$address);
-        $this->assign('userList',$userList);
-        $this->display();
-    }
-
-    /**
-     *调度勘察人员[生成基本理赔登记信息]
+     *生成基本理赔登记信息
      */
     public function addInspect(){
         $carUid = I('post.uid');
@@ -208,6 +200,16 @@ class InspectController extends CommonController
             $this->error('新增调度信息失败');
             exit;
         }
+    }
+
+    /**
+     *获取在线可调度人员列表
+     */
+    public function getYardList(){
+        $address =  I('post.address');
+        $userList = $this->subUserModel->getUserListBy(1,2,1,$address);
+        $this->assign('userList',$userList);
+        $this->display();
     }
 
 }

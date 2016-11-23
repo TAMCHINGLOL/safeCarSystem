@@ -84,7 +84,8 @@ class PayController extends CommonController
     }
 
     /**
-     *财务人员根据状态回去对应列表(状态)
+     *财务人员根据状态获取对应列表(状态)
+     * 待支付/正在支付/支付成功
      */
     public function payList(){
         $status = I('post.status');

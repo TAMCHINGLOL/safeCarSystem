@@ -17,6 +17,14 @@ class PolicyBaseModel extends Model
     protected  $tableName = 'policy_base';
 
     /**
+     * 获取所有基本保单
+     * @return mixed
+     */
+    public function getRows(){
+        return $this->select();
+    }
+
+    /**
      * 根据uid/car_sn获取基本保单记录
      * @param $uid
      * @param $carSn

@@ -15,14 +15,37 @@ class RecordModel extends Model
 {
     protected $tableName = 'settle_record';
 
+
+    /**
+     * 获取等待审核的理赔报价单列表
+     * @return mixed
+     */
+    public function getRowsWaiting(){
+        $where['is_pass'] = 1;
+        return $this->where($where)->select();
+    }
+
+    /**
+     * 根据主管uid获取审核不通过/审核通过的记录
+     * @param $uid
+     * @param $status
+     * @return mixed
+     */
+    public function getRowsByDealerUid($uid, $status){
+        $where['dealer_uid'] = $uid;
+        $where['is_pass'] = $status;
+        return $this->where($where)->select();
+    }
+
     /**
      * 二级审核不通过删除原先的理赔报价单
      * @param $inspectSn
+     * @param $recordSn
      * @return mixed
      */
     public function deleteOldRecordByInspectSnRecordSn($inspectSn,$recordSn){
-        $where['record_sn'] = $inspectSn;
-        $where['record_sn'] = $inspectSn;
+        $where['inspect_sn'] = $inspectSn;
+        $where['record_sn'] = $recordSn;
         return $this->where($where)->delete();
     }
 
@@ -41,15 +64,17 @@ class RecordModel extends Model
     /**
      * 拒绝理赔
      * @param $recordSn
+     * @param $dealerUid
      * @param $isPass
      * @param $remark
      * @return bool
      */
-    public function refusePassByRecordSn($recordSn, $isPass, $remark){
+    public function refusePassByRecordSn($recordSn, $dealerUid, $isPass, $remark){
         $where['record_sn'] = $recordSn;
         $data = array(
             'is_pass' => $isPass,
             'remark' => $remark,
+            'dealer_uid' => $dealerUid
         );
         return $this->where($where)->save($data);
     }

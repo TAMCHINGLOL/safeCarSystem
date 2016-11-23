@@ -19,6 +19,18 @@ class PayModel extends Model
     protected $tableName = 'settle_pay';
 
     /**
+     * 主管根据状态获取对应列表
+     * @param $uid
+     * @param $status
+     * @return mixed
+     */
+    public function getListByDealerUid($uid, $status){
+        $where['dealer_uid'] = $uid;
+        $where['is_pay'] = $status;
+        return $this->where($where)->select();
+    }
+
+    /**
      * 根据id添加paySn支付编号
      * @param $id
      * @param $paySn
@@ -36,7 +48,7 @@ class PayModel extends Model
      * @param $dealUid
      * @param $financeUid
      * @param $recordSn
-     * @param $payCode
+     * @param $payType
      * @param $price
      * @param $createTime
      * @param $remark

@@ -78,7 +78,7 @@ class CarController extends CommonController
     public function carList()
     {
         date_default_timezone_set("Asia/Chongqing");
-        $start = I('get.start');                     //页码
+        $start = I('get.start');                    //页码
         $limit = I('get.length');                   //每页数量
         $filter = I('get.searchValue');             //过滤数组
         $filters = array();

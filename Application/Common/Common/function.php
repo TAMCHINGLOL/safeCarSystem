@@ -8,7 +8,98 @@
  */
 //include_once('./Plugin/SMSPHP_v2.6r/SendTemplateSMS.php');
 include_once("./Plugin/SMSPHP_v2.6r/CCPRestSmsSDK.php");
+require_once("./Plugin/PHPExcel/PHPExcel.php");
+require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5");
+require_once("./Plugin/PHPExcel/PHPExcel/IOFactory.php");
+//import("./Plugin/PHPExcel/PHPExcel.php");
+//import("./Plugin/PHPExcel/PHPExcel.Writer.Excel5");
+//import("./Plugin/PHPExcel/PHPExcel.IOFactory.php");
 
+
+/**
+ * Excel导出数据
+ * @param array $headerArr
+ * @param array $dataArr(暂只支持一维数组格式)
+ * @param string $filename
+ * @param boolean $isDate(非必填 默认文件加日期)
+ * @param int $sheetIndex(非必填 默认页码为0)
+ * @return string
+ */
+function exportExcel($headerArr = array(), $dataArr = array(), $filename = '',$isDate = true, $sheetIndex = 0){
+    if(empty($fileName)){
+        return 'filename is empty';
+    }
+    if(empty($dataArr)){
+        return 'excel data is empty';
+    }
+    if(empty($headerArr)){
+        return 'excel header is empty';
+    }
+    $date = '';
+    if($isDate){
+        $date = date('Y_m_d');
+    }
+    $newFilename = $filename.$date;
+    $newFilename = iconv("utf-8", "gb2312", $newFilename);
+
+    $phpExcelObj = new \PHPExcel();
+
+    // Set properties  设置文件属性(对应右键文件查看属性)
+    $phpExcelObj->getProperties()
+        ->setCreator("TAMCHINGLOL")
+        ->setLastModifiedBy("TAMCHINGLOL")
+        ->setTitle("TAMCHINGLOL PHPExcel Document")
+        ->setSubject("TAMCHINGLOL PHPExcel Document")
+        ->setDescription("TAMCHINGLOL PHPExcel Document")
+        ->setKeywords("TAMCHINGLOL PHPExcel Document")
+        ->setCategory("TAMCHINGLOL PHPExcel Document");
+
+    $phpExcelObj->setActiveSheetIndex($sheetIndex);     //设置存在表的页数/位置
+    $phpExcelSheet = $phpExcelObj->getActiveSheet();    //获取设置的表的页数/位置
+    $col = ord('A');                                    //列号(excel列是从A开始)
+    //设置列宽
+    foreach($headerArr as $k => $v){
+        $col = chr($col);
+        $phpExcelSheet->getColumnDimension($col)->setWidth(15);
+        $col += 1;
+    }
+    
+    //设置表头
+    foreach($headerArr as $k => $v){
+        $col = chr($col);
+        $phpExcelSheet->setCellValue($col.$k,$v);
+        $col += 1;
+    }
+
+    //设置表内容
+    $dataRow = count($headerArr) + 1;
+    foreach($dataArr as $k => $v){
+        $col = chr($col);
+        $phpExcelSheet->setCellValue($col.($k + $dataRow),$v);
+        $col++;
+    }
+
+    //设置Excel默认打开是第一张表
+    $phpExcelObj->setActiveSheetIndex(0);
+    ob_end_clean();         //清除缓冲区
+    header("Content-type:application/octet-stream");
+    header("Accept-Ranges:bytes");
+    header("Content-type:application/vnd.ms-excel");
+    header("Content-Disposition:attachment;filename=".$newFilename.".xls");
+    header('Cache-Control: max-age=0');
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $objWriter = PHPExcel_IOFactory::createWriter($phpExcelObj, 'Excel5');
+    $objWriter->save('php://output');   //浏览器下载
+    exit;
+}
+
+/**
+ *Excel导入数据
+ */
+function importExcel(){
+
+}
 
 /**
  *生成图片验证码

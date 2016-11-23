@@ -21,16 +21,46 @@ class InspectModel extends Model
 
 
     /**
-     * 修改审核通过状态(财务的初级审核/主管的二级审核)
+     * 根据主管uid和状态获取对应的理赔记录列表
+     * @param $uid
+     * @param $status
+     * @return mixed
+     */
+    public function getRowsByDealerUid($uid, $status){
+        $where['dealer_uid'] = $uid;
+        $where['status'] = $status;
+        return $this->where($where)->select();
+    }
+
+    /**
+     * 修改审核通过状态(用于主管的二级审核不通过)
      * @param $inspectSn
+     * @param $dealerUid
      * @param $status
      * @param $remark
      * @return bool
      */
-    public function changePassStatus($inspectSn, $status, $remark){
+    public function changeStatusByDealer($inspectSn, $dealerUid, $status, $remark){
         $where['inspect_sn'] = $inspectSn;
         $data['status'] = $status;
         $data['remark'] = $remark;
+        $data['dealer_uid'] = $dealerUid;
+        return $this->where($where)->save($data);
+    }
+
+    /**
+     * 修改审核通过状态(用于财务的初级审核)
+     * @param $inspectSn
+     * @param $status
+     * @param $remark
+     * @param $financeUid
+     * @return bool
+     */
+    public function changePassStatus($inspectSn, $status, $remark = '', $financeUid){
+        $where['inspect_sn'] = $inspectSn;
+        $data['status'] = $status;
+        $data['remark'] = $remark;
+        $data['finance_uid'] = $financeUid;
         return $this->where($where)->save($data);
     }
 

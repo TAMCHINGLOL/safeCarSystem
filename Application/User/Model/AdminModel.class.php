@@ -10,7 +10,19 @@
 namespace User\Model;
 
 
-class AdminModel
-{
+use Think\Model;
 
+class AdminModel extends Model
+{
+    protected $tableName = 'admin';
+
+    /**
+     * 根据uid获取真实姓名
+     * @param $uid
+     * @return mixed
+     */
+    public function getNameByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->getField('real_name');
+    }
 }

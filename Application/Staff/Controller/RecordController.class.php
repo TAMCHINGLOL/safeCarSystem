@@ -4,7 +4,7 @@
  * @Company:
  * @Author: zml
  * @Since: 2016/11/21 11:09
- * @Description: 描述
+ * @Description: 描述用于理赔报价
  */
 
 namespace Staff\Controller;
@@ -35,10 +35,9 @@ class RecordController extends CommonController
         $this->bankPayModel = D('Pay/BankPay');
     }
 
-
-
     /**
-     *根据财务人员和状态获取对应的理赔记录列表(财务人员)
+     *根据财务人员和状态获取对应的理赔记录列表
+     * 待审核/审核不通过/审核通过
      */
     public function getRecordList(){
         $status = I('post.status');
@@ -52,10 +51,11 @@ class RecordController extends CommonController
      *初级审核不通过(根据情况修改对应状态：4审核不通过(客服需确认)，5审核不通过(勘察人员需确认)，7审核不通过，客服联系车主填写完整资料)
      */
     public function refusePass(){
+        $financeUid = session('uid');
         $status = I('post.status');
         $remark = I('post.remark');
         $inspectSn = I('post.inspectSn');
-        $rs = $this->inspectModel->changePassStatus($inspectSn,$status,$remark);
+        $rs = $this->inspectModel->changePassStatus($inspectSn,$status,$remark,$financeUid);
         if($rs){
             $this->success('操作成功,系统正在发聩');
             exit;
@@ -84,7 +84,7 @@ class RecordController extends CommonController
         $id = $this->recordModel->addNewRow($carUid, $financeUid, $inspect_sn, $car_sn, $policy_sn, $type_sn, $add_time, $address, $create_time, $amount, $remark);
         $record_sn = makeEveryNumber('RS', $id);
         $rs = $this->recordModel->addRecordSnById($id, $record_sn);
-        $result = $this->inspectModel->changePassStatus($inspect_sn,6); //初级审核通过,修改状态
+        $result = $this->inspectModel->changePassStatus($inspect_sn,6,'',$financeUid); //初级审核通过,修改状态
         if ($rs && $result) {
             $this->success('成功录入系统,等待审核');
             exit;
