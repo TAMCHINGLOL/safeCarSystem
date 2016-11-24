@@ -63,7 +63,7 @@ function exportExcel($headerArr = array(), $dataArr = array(), $filename = '',$i
         $phpExcelSheet->getColumnDimension($col)->setWidth(15);
         $col += 1;
     }
-    
+
     //设置表头
     foreach($headerArr as $k => $v){
         $col = chr($col);
