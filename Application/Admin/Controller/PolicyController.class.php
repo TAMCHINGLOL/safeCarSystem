@@ -4,7 +4,7 @@
  * @Company:
  * @Author: zml
  * @Since: 2016/11/23 20:49
- * @Description: 描述用于保险管理
+ * @Description: 描述用于保险管理（暂不考虑新增/修改业务，此属于保险系统非理赔系统业务）
  */
 
 namespace Admin\Controller;
@@ -33,6 +33,20 @@ class PolicyController extends CommonController
     }
 
     /**
+     *批量导出保单类型生成excel表
+     */
+    public function exportTypeList(){
+
+    }
+
+    /**
+     *excel批量导入(添加)保单类型
+     */
+    public function importTypeList(){
+
+    }
+
+    /**
      *添加新的保单类型
      */
     public function addTypePolicy(){
@@ -47,23 +61,9 @@ class PolicyController extends CommonController
     }
 
     /**
-     *删除保单种类
+     *删除保单种类(并不建议删除)
      */
     public function delTypePolicy(){
-
-    }
-
-    /**
-     *批量导出生成excel表
-     */
-    public function makePolicyList(){
-
-    }
-
-    /**
-     *excel批量导入(添加)数据
-     */
-    public function addAllPolicy(){
 
     }
 
@@ -74,6 +74,20 @@ class PolicyController extends CommonController
         $baseList = $this->policyBaseModel->getRows();
         $this->assign('baseList',$baseList);
         $this->display();
+    }
+
+    /**
+     *批量导出基本保单生成excel表
+     */
+    public function exportBaseList(){
+
+    }
+
+    /**
+     *excel批量导入(添加)基本保单
+     */
+    public function importBaseList(){
+
     }
 
     /**

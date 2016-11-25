@@ -17,6 +17,16 @@ class AdminModel extends Model
     protected $tableName = 'admin';
 
     /**
+     * 根据uid获取自增id
+     * @param $uid
+     * @return mixed
+     */
+    public function getIdByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->getField('id');
+    }
+
+    /**
      * 根据uid获取真实姓名
      * @param $uid
      * @return mixed
