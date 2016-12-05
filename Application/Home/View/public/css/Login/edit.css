@@ -1,0 +1,59 @@
+input:-webkit-autofill, 
+ textarea:-webkit-autofill, 
+ select:-webkit-autofill { 
+       -webkit-box-shadow: 0 0 0 1000px white inset; 
+}
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+
+}
+.form-control:focus{
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.select, select{
+	line-height: 10px;
+}
+ input[type=text]:focus, input[type=password]:focus, textarea:focus {
+      -webkit-box-shadow: 0 0 0 1000px white inset; 
+}
+label {
+    font-weight: 500;
+}
+.edit-box{
+	background-color: #F0F0EE;
+	border-radius: 10px;
+	width: 100%;
+	padding: 20px;
+}
+.edit-thesis{
+	text-align: left;
+    color: #999999;
+    font-size: 14px;
+}
+.edit-number{
+	margin: 10px 0;
+}
+.edit-form {
+    margin: 30px 0;
+}
+.edit-form .form-control{
+    width: 200px;
+    height: 25px;
+    margin: 0 10px 0 0;
+    padding: 1px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding:  0 5px;
+    font-size: 14px;
+        border-radius: 0;
+}
