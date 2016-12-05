@@ -19,7 +19,7 @@ class CommonController extends Controller
         if($_SESSION['uid'] == null || !isset($_SESSION['uid'])){
             session(null);
 //             $this->error('登录已过期,正在跳转...','index.php/Home/Login/index.html',2);
-            $this->redirect('/Home/Login/index');
+           // $this->redirect('/admin/Login/login');
             exit();
         }
     }
