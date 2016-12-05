@@ -9,7 +9,6 @@
 
 namespace Admin\Controller;
 
-
 use Common\Controller\CommonController;
 
 class IndexController extends CommonController
@@ -19,13 +18,15 @@ class IndexController extends CommonController
     protected $adminModel;
     public function __construct()
     {
-        $this->subUserModel = D('User/SubUser');
+    	parent::__construct();
+        /* $this->subUserModel = D('User/SubUser');
         $this->roleModel = D('Common/Role');
-        $this->adminModel = D('User/Admin');
+        $this->adminModel = D('User/Admin'); */
     }
-
+   
     public function index()
     {
-    	$this -> display(':index');
+    	layout(true);
+    	$this -> display('index');
     }
 }

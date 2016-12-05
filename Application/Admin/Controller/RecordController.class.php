@@ -22,6 +22,7 @@ class RecordController extends CommonController
 
     public function __construct()
     {
+        parent::__construct();
         $this->recordModel = D('Settle/Record');
         $this->payModel = D('Pay/Pay');
         $this->inspectModel = D('Settle/Inspect');
@@ -64,7 +65,8 @@ class RecordController extends CommonController
                 $carUid = I('post.Uid');
                 $dealUid = session('dealUid');
                 $financeUid = I('post.financeUid');
-                $payType = empty(I('post.payCode')) ? '银联支付' : I('post.payCode');
+                $payCode = I('post.payCode');
+                $payType = empty($payCode) ? '银联支付' : I('post.payCode');
                 $price = I('post.price');
                 $createTime = date('Y-m-d H:i:s');
                 $remark = I('post.remark');

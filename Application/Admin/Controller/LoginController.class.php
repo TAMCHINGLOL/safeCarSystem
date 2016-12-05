@@ -19,6 +19,7 @@ class LoginController extends CommonController
     protected $adminModel;
     public function __construct()
     {
+    	parent::__construct();
         $this->subUserModel = D('User/SubUser');
         $this->roleModel = D('Common/Role');
         $this->adminModel = D('User/Admin');
