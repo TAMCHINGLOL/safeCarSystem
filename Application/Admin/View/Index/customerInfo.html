@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="../css/zui.css">
+		<link rel="stylesheet" href="../css/jquery.dataTables.css">
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<style>
+			.ul_second{
+				/*display: none;*/
+			}
+			
+		</style>
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="../img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">曾曼丽 <img src="../img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="home.html">角色管理</a></li>
+					<li class="dropdown-submenu active"><a data-toggle="dropdown">保单管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="policyManage.html">保单信息</a></li>
+							<li><a href="carInfo.html">车辆信息</a></li>
+							<li class="active"><a href="customerInfo.html">客户信息</a></li>
+							<li><a href="paymentInfo.html">保费缴纳信息</a></li>
+						</ul>
+					</li>
+					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="claimingManage.html">待审核</a></li>
+							<li><a href="claimedManage.html">已审核</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+			
+			<div class="nav-right">
+			      <table id="customerInfo" class="table table-striped table-bordered"></table>
+			</div>
+		</div>
+	
+		
+		
+		
+		<script type='text/javascript' src='../js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="../js/jquery.dataTables.js"></script> 
+		<script type='text/javascript' src='../js/datatable.js' charset='utf-8'></script>
+  <script type="text/javascript">
+
+  </script>
+	</body>
+</html>

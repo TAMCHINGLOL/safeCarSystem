@@ -29,4 +29,10 @@ class IndexController extends CommonController
     	layout(true);
     	$this -> display('index');
     }
+    
+   /*  public function policyManage()
+    {
+    	layout(true);
+    	$this -> display('policyManage');
+    } */
 }

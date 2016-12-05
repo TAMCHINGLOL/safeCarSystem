@@ -149,8 +149,56 @@ class RecordController extends CommonController
         if(empty($recordList)){
             $content = '暂无理赔报价记录';
         }
-        $this->assign('recordList',$recordList);
+        else{
+            foreach($recordList as $k=>$v){
+                switch($v['is_pass']){
+                    case 1:
+                        $recordList[$k]['type'] = "未审核";
+                        break;
+                    case 2:
+                        $recordList[$k]['type'] = "审核不通过";
+                        break;
+                    case 3:
+                        $recordList[$k]['type'] = "审核通过";
+                        break;
+                }
+            }
+        }
+        $this->assign('recordList',  json_encode($recordList));
         $this->assign('content',$content);
+        $this->display("claimingManage");
+    }
+    /**
+     *	审批理赔单
+     */    
+    public function lookVerifyClaims()
+    {
+        if($_POST){
+            $result = array('error'=>1,"content"=>"");
+            $info['id'] = I('post.id');
+            $info['is_pass'] = I("post.value");
+            $res = $this->recordModel->save($info);
+            if($res){
+                $result['error'] = 0;
+                $result['content'] = "修改成功";
+            }
+            print_r(json_encode($result));exit;
+            
+            
+        }
+        else{
+            $id = I("get.id");
+            $this->assign("id",$id);
+        }
+        $this->display();
+    }
+    /**
+     * 勘察报告
+     */
+    public function lookSurveyReporter()
+    {
+        $id = I("get.id");
+        
         $this->display();
     }
 }

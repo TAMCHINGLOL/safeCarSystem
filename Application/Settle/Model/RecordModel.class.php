@@ -24,6 +24,13 @@ class RecordModel extends Model
         $where['is_pass'] = 1;
         return $this->where($where)->select();
     }
+    /**
+     * 获取单条理赔
+     */
+    public function getRows($id)
+    {
+        return $this->find($id);
+    }
 
     /**
      * 根据主管uid获取审核不通过/审核通过的记录

@@ -1,0 +1,149 @@
+
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="home.html">角色管理</a></li>
+					<li class="dropdown-submenu active"><a data-toggle="dropdown">保单管理</a>
+						<ul class="dropdown-menu">
+							<li  class="active"><a href="policyManage.html" >保单信息</a></li>
+							<li><a>车辆信息</a></li>
+							<li><a>客户信息</a></li>
+							<li><a>保费缴纳信息</a></li>
+						</ul>
+					</li>
+					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="claimingManage.html">待处理</a></li>
+							<li><a href="claimedManage.html">已处理</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      	<a class="save" href="JavaScript:history.go(-1);"><<返回</a>
+				    <div class="insurance_register">
+			      	<table class="table-bordered">
+			      		<tbody>
+			      		<tr><td colspan="4" style="text-align: center;"><strong>保单管理</strong> </td></tr>
+			      		<tr>
+			      			<td>保单号码</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>会员号</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>保单发票号</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>登记日期</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>备注</td>
+			      			<td colspan="3"><textarea onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      		</tr>
+			      	</tbody>
+			      	</table>
+			      	<table style="margin-top: 20px;" class="table-bordered">
+			      		<tbody>
+			      		<tr><td colspan="8" style="text-align: center;"><strong>用户信息</strong> </td></tr>
+			      		<tr>
+			      			<td>被保险人</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>身份证号码</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>手机号</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>邮箱</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>性别</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>年龄</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      	</tbody>
+			      	</table>
+			      	<table style="margin-top: 20px;" class="table-bordered">
+			      		<tbody>
+			      		<tr><td colspan="8" style="text-align: center;"><strong>车辆信息</strong> </td></tr>
+			      		<tr>
+			      			<td>被保险人</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>号牌</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>厂牌型号</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>发动机号</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>作为人数</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>核定载重</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>车辆颜色</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>购买地址</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      	</tbody>
+			      	</table>
+			      	<table style="margin-top: 20px;" class="table-bordered">
+			      		<tbody>
+			      		<tr><td colspan="8" style="text-align: center;"><strong>保费缴纳信息</strong> </td></tr>
+			      		<tr>
+			      			<td>投保项目</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>保单号</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>保费</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>保险起始日期</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      		<tr>
+			      			<td>保险截止日期</td>
+			      			<td style="width: 250px;"><input></td>
+			      			<td>登记日期</td>
+			      			<td style="width: 250px;"><input></td>
+			      		</tr>
+			      	</tbody>
+			      	</table>
+			      	<div class="register_btn">
+			      		<a class="save" href="policyManage.html">保存</a>
+			      	</div>
+			      </div>
+		      </div>
+			</div>
+		</div>
+	
+  <script type="text/javascript">
+function add_policy(){
+	
+}
+  
+  	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>

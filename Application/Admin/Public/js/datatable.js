@@ -91,9 +91,20 @@ $(document).ready(function() {
         "lengthChange": false,//关闭显示数据数量选项
         "order": [[ 3, "desc" ]],//默认第三列排序
         "ordering":false//关闭排序按钮控件
-    } );
+   } );
 	
 } );
+
+
+$(document).ready(function(){
+    var table = $('#example').DataTable();
+    $('#example tbody').on('click', '.del-row', function () {
+    	table.row('.selected').remove().draw( false );
+	} );
+});
+
+
+/*    var table = $('#example').DataTable();*/
 
 /*function detile(d){
 	var table = $('#example').DataTable();
@@ -626,37 +637,115 @@ $(document).ready(function() {
 //财务人员操作表格
 //查看审核理赔单
 var Flook_claimsSet=[
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","审核不通过"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","审核不通过"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
-    [ "S0001","18819446135","2016-12-01 12:30","","未审核"]
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","审核不通过"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","审核不通过"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"],
+   [ "S0001","18819446135","2016-12-01 12:30","","未审核"]
 ]
 $(document).ready(function() {
     $('#Flook_claim').DataTable( {
+        data: Flook_claimsSet,
+        columns: [
+            { title: "理赔单号" },
+            { title: "保险单号" },
+            { title: "查看" },
+            { title: "操作" },
+            { title: "状态" }
+        ],
+        "pagingType":   "full_numbers",
+        "language": {
+            "lengthMenu": "每页 _MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch":"搜索",
+		    "paginate": {  
+		        "first":      "«",  
+		        "last":       "»",  
+		        "next":       ">",  
+		        "previous":   "<"  
+		    }    
+        },
+        "columnDefs": [
+            {
+                "render": function ( data, type, row ) {
+                    return row['record_sn'] ;
+                },
+                "targets":0
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return row['policy_sn'];
+                },
+                "targets":1
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return '<a class="cursor" href="lookSurveyReporter.html?id='+row['id']+'">查看勘察报告</a>';
+                },
+                "targets":2
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return '<a class="cursor" href="lookVerifyClaims.html?id='+row['id']+'">审批理赔单</a>';
+                },
+                "targets":3
+            },
+            {
+                "render": function ( data, type, row ) {
+                    return row['type'] ;
+                },
+                "targets":4
+            }
+/*           {
+                "render": function ( data, type, row ) {
+                    return '<a class="cursor del-row">删除</a>';
+                },
+                "targets":6
+            }*/
+        ],
+        "filter":true,
+        "info":true,
+        /*手机端手机滚动条
+        "scrollY": "200px",
+	    "scrollCollapse": true,*/
+	    /*分页设置*/
+	    "paging":true,
+        //"iDisplayLength" : 4,//默认显示数据数量
+        "lengthChange": false,//关闭显示数据数量选项
+        "order": [[ 3, "desc" ]],//默认第三列排序
+        "ordering":false//关闭排序按钮控件
+    } );
+	
+} );
+//审核理赔单
+$(document).ready(function() {
+    $('#Fverify_claim').DataTable( {
         data: Flook_claimsSet,
         columns: [
             { title: "理赔单号" },
@@ -689,7 +778,7 @@ $(document).ready(function() {
             },
             {
                 "render": function ( data, type, row ) {
-                    return '<a class="cursor" href="looknoVerifyClaims.html">查看理赔单</a>';
+                    return '<a class="cursor" href="lookVerifyClaims.html">审核理赔单</a>';
                 },
                 "targets":3
             }
@@ -723,7 +812,6 @@ $(document).ready(function() {
         columns: [
             { title: "理赔单号" },
             { title: "保险单号" },
-            { title: "手机"},
             { title: "查看" },
             { title: "操作" },
             { title: "支付" }
@@ -748,19 +836,19 @@ $(document).ready(function() {
                 "render": function ( data, type, row ) {
                     return '<a class="cursor" href="lookSurveyReporter.html">查看勘察报告</a>';
                 },
-                "targets":3
+                "targets":2
             },
             {
                 "render": function ( data, type, row ) {
                     return '<a class="cursor"  href="lookVerifyClaims.html">查看理赔单</a>';
                 },
-                "targets":4
+                "targets":3
             },
             {
                 "render": function ( data, type, row ) {
                     return '未支付';
                 },
-                "targets":5
+                "targets":4
             }
 /*           {
                 "render": function ( data, type, row ) {
@@ -1018,7 +1106,75 @@ $(document).ready(function() {
 	
 } );
 
-
-
-
-
+//角色权限
+var roleManageSet='';
+$(document).ready(function() {
+    $('#roleManage').DataTable( {
+    	searching: true;
+        data: roleManageSet,
+        columns: [
+            { title: "角色名称" },
+            { title: "角色描述" },
+            { title: "操作" }
+        ],
+        "pagingType":   "full_numbers",
+        "language": {
+            "lengthMenu": "每页 _MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch":"搜索",
+		    "paginate": {  
+		        "first":      "«",  
+		        "last":       "»",  
+		        "next":       ">",  
+		        "previous":   "<"  
+		    }    
+        },
+        "columnDefs": [
+            {
+                "render": function ( data, type, row ) {
+                    return '<a class="cursor">权限设置</a> | <a class="cursor review-row">修改</a> | <a class="cursor del-row">删除</a>';
+                },
+                "targets":2
+            }
+        ],
+        "filter":true,
+        "info":true,
+        /*手机端手机滚动条
+        "scrollY": "200px",
+	    "scrollCollapse": true,*/
+	    /*分页设置*/
+	    "paging":true,
+        //"iDisplayLength" : 4,//默认显示数据数量
+        "lengthChange": false,//关闭显示数据数量选项
+        "order": [[ 0, "desc" ]],//默认第三列排序
+        "ordering":false//关闭排序按钮控件
+    } );
+	
+} );
+/*function delRow(d){
+	alert("123");
+	var table = $('#roleManage').DataTable();
+	$('#roleManage').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+	table.row(d).remove().draw( false );
+}*/
+$(document).ready(function(){
+    var table = $('#roleManage').DataTable();
+    $('#roleManage').on('click', '.del-row', function () {
+    	table.row(this.closest("tr")).remove().draw( false );
+	} );
+	$('#roleManage').on('click', '.review-row', function () {
+		alert(table.row(this.closest("tr")).data[1]);
+    	
+	} );
+} );

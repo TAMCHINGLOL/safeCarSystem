@@ -2,15 +2,15 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">角色管理</a></li>
-					<li class="dropdown-submenu active"><a data-toggle="dropdown">保单管理</a>
+					<li><a href="{:U('admin/Role/findRole')}">角色管理</a></li>
+					<!--<li class="dropdown-submenu active"><a data-toggle="dropdown">保单管理</a>
 						<ul class="dropdown-menu">
-							<li><a href="policyManage.html">保单信息</a></li>
+							<li><a href="{:U('admin/index/policyManage')}">保单信息</a></li>
 							<li><a>车辆信息</a></li>
 							<li><a>客户信息</a></li>
 							<li><a>保费缴纳信息</a></li>
 						</ul>
-					</li>
+					</li> -->
 					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
 						<ul class="dropdown-menu">
 							<li><a href="claimingManage.html">待审核</a></li>
@@ -22,11 +22,14 @@
 			</div>
 			
 			<div class="nav-right">
-				<h2>系统信息</h2>
-					服务器：Apache
-					数据库：mysql
-					php版本: 5.3
-					作者：曾曼丽			
+				<h2>系统信息</h2><br><br><br>
+				<div style='position:absolute'>
+					<h4>服务器：Apache</h4><br>
+					<h4>数据库：mysql</h4><br>
+					<h4>php版本: 5.3</h4><br>
+					<h4>作者：曾曼丽</h4>	
+				</div>
+							
 			</div>
 		</div>
 	

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__PUBLIC__/css/zui.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/common.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="__PUBLIC__/img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">曾曼丽 <img src="__PUBLIC__/img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="home.html">角色管理</a></li>
+					<li class="dropdown-submenu"><a data-toggle="dropdown">保单管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="policyManage.html">保单信息</a></li>
+							<li><a href="carInfo.html">车辆信息</a></li>
+							<li><a href="customerInfo.html">客户信息</a></li>
+							<li><a href="paymentInfo.html">保费缴纳信息</a></li>
+						</ul>
+					</li>
+					<li class="active"><a  href="claimingManage.html">理赔管理</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      	<a class="save"  href="JavaScript:history.go(-1);"><<返回</a>
+			      <div class="insurance_register">
+			      	<table class="table-bordered">
+			      		<tr><td colspan="8"style="text-align: center;"><strong>机动车辆勘察报告</strong> </td></tr>
+			      		<tr>
+			      			<td>被保险人</td>
+			      			<td style="width: 250px;"><input /></td>
+			      			<td>厂牌车型</td>
+			      			<td style="width: 250px;" colspan="3"><input /></td>
+			      			<td>车牌号码</td>
+			      			<td style="width: 250px;"><input /></td>
+			      		</tr>
+			      		<tr>
+			      			<td>出险地点</td>
+			      			<td colspan="2"><input /></td>
+			      			<td>出险时间</td>
+			      			<td colspan="2">
+								<div class=" form-control input-append date form_date btn-date-icons" data-date="2016-12-21T15:25:00Z" style="    width: 160px;">
+									<input style="width: 120px;" id="dateChoose" class="" size="16" type="text" value="2016-12-21 15:25" readonly>
+									<span class="add-on"><i class="icon-th"></i></span>
+								</div>
+			      			</td>
+			      			<td>实用性质</td>
+			      			<td >
+			      				<select class="form-control">
+								  <option value="">非运营</option>
+								  <option value="1">特殊案件</option>
+								  <option value="2">轻微事故</option>
+								  <option value="3">单方事故</option>
+								  <option value="4">双方事故</option>
+								</select>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td>行驶证有效期</td>
+			      			<td  colspan="4" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      			<td>出险类型</td>
+			      			<td colspan="2">
+			      				<select class="form-control">
+								  <option value="">非运营</option>
+								  <option value="1">特殊案件</option>
+								  <option value="2">轻微事故</option>
+								  <option value="3">单方事故</option>
+								  <option value="4">双方事故</option>
+								</select>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td>驾驶证号码</td>
+			      			<td  colspan="4" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      			<td>驾驶证有效期</td>
+			      			<td colspan="2"><input /></td>
+			      		</tr>
+			      		<tr>
+			      			<td>驾驶员姓名</td>
+			      			<td><input /></td>
+			      			<td>性别</td>
+			      			<td><input /></td>
+			      			<td>婚姻状况</td>
+			      			<td><input /></td>
+			      			<td>职业</td>
+			      			<td><input /></td>
+			      		</tr>
+			      		<tr>
+			      			<td>保单行驶区域</td>
+			      			<td colspan="7" ><input /></td>
+			      		</tr>
+			      		<tr>
+			      			<td>出险原因以及经过</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      		</tr>
+			      		<tr>
+			      			<td>损失范围</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      		</tr>
+			      		<tr>
+			      			<td>勘察意见</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      		</tr>
+			      		<tr>
+			      			<td>根据勘察情况初步断定，保险人在此事故中负：</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden"></textarea> </td>
+			      		</tr>
+			      		<tr>
+			      			<td>现场图片</td>
+			      			<td colspan="7" >
+			      				<ul class="survey_ul" id="survey_ul">
+			      					<li><a  href="../img/1.jpe" data-toggle="lightbox" data-group="image-group-1"><img src="../img/1.jpe" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      					<li><a  href="../img/back.png" data-toggle="lightbox" data-group="image-group-1"><img src="../img/back.png" class="img-rounded" /></a> </li>
+			      				</ul>
+			      			</td>
+			      		</tr>
+			      	</table>
+			      </div>
+			</div>
+		</div>
+	
+		
+		
+		
+		<script type='text/javascript' src='__PUBLIC__/js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__PUBLIC__/js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="__PUBLIC__/js/jquery.dataTables.js"></script> 
+		<script type='text/javascript' src='__PUBLIC__/js/datatable.js' charset='utf-8'></script>
+  <script type="text/javascript">
+  </script>
+	</body>
+</html>
