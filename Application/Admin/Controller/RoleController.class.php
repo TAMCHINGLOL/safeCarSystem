@@ -18,6 +18,8 @@ class RoleController extends CommonController
 
     public function __construct()
     {
+    	parent::__construct();
+    	layout(true);
         $this->roleModel = D('Common/Role');
     }
 

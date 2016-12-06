@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7c52a0e-1dae-48d4-b219-39c16ff5ebfe" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/img/1.jpe" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/img/back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/img/defualt-user.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/Index/registerInfo.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/Index/serviceIndex.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/css/bootstrap-datetimepicker.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/css/common.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/css/jquery.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/css/zui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/bootstrap-datetimepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/bootstrap-datetimepicker.zh-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/jquery.1.7.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/jquery.dataTables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/zui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Staff/View/Inspect/inspectList.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Staff/View/Person/inspectList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Car/Model/MessageModel.class.php" afterPath="$PROJECT_DIR$/Application/Car/Model/MessageModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Common/function.php" afterPath="$PROJECT_DIR$/Application/Common/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Login/index.html" afterPath="$PROJECT_DIR$/Application/Home/View/Login/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/PolicyBaseModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/PolicyBaseModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/PolicyTypeModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/PolicyTypeModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php" afterPath="$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/Controller/PersonController.class.php" afterPath="$PROJECT_DIR$/Application/Staff/Controller/PersonController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/User/Model/SubUserModel.class.php" afterPath="$PROJECT_DIR$/Application/User/Model/SubUserModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/User/Model/UserModel.class.php" afterPath="$PROJECT_DIR$/Application/User/Model/UserModel.class.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php.php" afterPath="$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php" />
-    </list>
+    <list default="true" id="a7c52a0e-1dae-48d4-b219-39c16ff5ebfe" name="默认的" comment="" />
     <ignored path="safeCarSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -85,6 +50,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.10968921">
+              <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="oneInspect.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InspectController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InspectController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75868374">
+            <state vertical-scroll-proportion="-13.387096">
               <caret line="212" column="80" selection-start-line="212" selection-start-column="80" selection-end-line="212" selection-end-column="80" />
               <folding>
                 <element signature="e#685#1783#0#PHP" expanded="false" />
@@ -1146,14 +1121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1297989">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/registerInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.580645">
@@ -1246,12 +1213,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75868374">
+        <state vertical-scroll-proportion="-13.387096">
           <caret line="212" column="80" selection-start-line="212" selection-start-column="80" selection-end-line="212" selection-end-column="80" />
           <folding>
             <element signature="e#685#1783#0#PHP" expanded="false" />
             <element signature="e#1820#2559#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10968921">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>

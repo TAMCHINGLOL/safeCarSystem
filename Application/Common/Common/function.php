@@ -9,7 +9,11 @@
 //include_once('./Plugin/SMSPHP_v2.6r/SendTemplateSMS.php');
 include_once("./Plugin/SMSPHP_v2.6r/CCPRestSmsSDK.php");
 require_once("./Plugin/PHPExcel/PHPExcel.php");
+<<<<<<< HEAD
 //require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5");
+=======
+/* require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5"); */
+>>>>>>> 9befabba062c17884d3977e7958b351c9f38d51b
 require_once("./Plugin/PHPExcel/PHPExcel/IOFactory.php");
 
 /*require_once(APP_PATH . '/Common/Common/extend.php');*/

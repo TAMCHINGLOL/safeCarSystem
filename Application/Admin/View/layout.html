@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="{$Think.ADMIN_PUB_PATH}css/zui.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_PUB_PATH}css/jquery.dataTables.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_PUB_PATH}css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_PUB_PATH}/css/common.css">
+		
+		
+		
+		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="{$Think.ADMIN_PUB_PATH}js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="{$Think.ADMIN_PUB_PATH}js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="{$Think.ADMIN_PUB_PATH}js/jquery.dataTables.js"></script> 
+		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}js/datatable.js' charset='utf-8'></script>
+		<style>
+			.ul_second{
+				/*display: none;*/
+			}
+			
+		</style>
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="{$Think.ADMIN_PUB_PATH}img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">{$user.real_name} <img src="{$Think.ADMIN_PUB_PATH}img/back.png" /></a>
+		</div>
+		 {__CONTENT__}
+	</body>
+</html>	 

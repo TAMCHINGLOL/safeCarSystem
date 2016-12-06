@@ -1,0 +1,71 @@
+
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="{:U('admin/Role/findRole')}">角色管理</a></li>
+					<!--<li class="dropdown-submenu active"><a data-toggle="dropdown">保单管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="{:U('admin/index/policyManage')}">保单信息</a></li>
+							<li><a>车辆信息</a></li>
+							<li><a>客户信息</a></li>
+							<li><a>保费缴纳信息</a></li>
+						</ul>
+					</li> -->
+					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="claimingManage.html">待审核</a></li>
+							<li><a href="claimedManage.html">已审核</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+			</div>
+			
+			<div class="nav-right">
+				<h2>系统信息</h2><br><br><br>
+				<div style='position:absolute'>
+					<h4>服务器：Apache</h4><br>
+					<h4>数据库：mysql</h4><br>
+					<h4>php版本: 5.3</h4><br>
+					<h4>作者：曾曼丽</h4>	
+				</div>
+							
+			</div>
+		</div>
+	
+		
+		
+  <script type="text/javascript">
+  function open_ul(o){
+  	$(o).find('ul').toggle();
+  }
+  //点击上传图片并且显示图片
+  function pictrue(){
+  	var li_add=$("#survey_ul li").last();
+  	var add_content='<li href="{$Think.ADMIN_PUB_PATH}img/back.png" data-toggle="lightbox" data-group="image-group-1">'+
+  					'<img src="{$Think.ADMIN_PUB_PATH}img/back.png" class="img-rounded" />'+
+  					'</li>';
+  	$(add_content).insertAfter(li_add);
+  }
+  //点击删除图片
+  function delImg(d){
+  	$(d).parent().remove();
+  }
+  
+  	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>
+	
