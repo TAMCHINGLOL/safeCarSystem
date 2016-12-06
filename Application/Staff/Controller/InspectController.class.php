@@ -30,6 +30,125 @@ class InspectController extends CommonController
     }
 
     /**
+     * 添加/修改勘察记录
+     * @Author: ludezh
+     */
+    public function doInspectRow(){
+        $carSn = I('post.carSn');
+        $inspectSn = I('post.inspectSn');
+        $flag = I('post.flag');
+        $remark1 = I('post.remark1');
+        $remark2 = I('post.remark2');
+        $remark3 = I('post.remark3');
+        $remark4 = I('post.remark4');
+        $endTime = date('Y-m-d H:i:s');
+        $headList = session('picStr');
+        $inspectModel = D('Settle/Inspect');
+        if($flag == 1 || $flag == 2){ //修改
+            $rs = $inspectModel->completeUpdate($inspectSn, 3, $headList, $remark1, $remark2, $remark4, '', $remark3, $endTime);
+            if($rs){
+                $this->success('操作成功');
+                exit();
+            }else{
+                $this->error('操作失败');
+                exit();
+            }
+        }else{
+            $this->error('非法操作');exit();
+        }
+    }
+    /**
+     * 图片上传
+     * @Author: ludezh
+     */
+    public function picUpload(){
+        $picStr = session('picStr');
+        $data = picUpload();
+        if(empty($picStr)){
+            $picUrlStr = $data['info'];
+        }else{
+            $picUrlStr = $picStr.','.$data['info'];
+        }
+        session('picStr',$picUrlStr);
+    }
+
+    /**
+     * @Author: ludezh
+     */
+    public function surveyReporter(){
+        $carSn = I('get.carSn');
+        $inspectUid = I('get.inspectUid');
+        $inspectSn = I('get.inspectSn');
+        $flag = I('get.flag');
+        $inspectModel = D('Settle/Inspect');
+        $inspectInfo = $inspectModel->getInspectInfoByInspectSn($inspectSn,$inspectUid);
+        $picArr = explode(',',$inspectInfo['header_img_list']);
+        $picUrlArr = array();
+        foreach($picArr as $k => $v){
+            $picUrlArr[$k]['pic'] = substr($v, strrpos($v, '../')+2);
+        }
+//        print_r($picUrlArr);exit();
+        $carModel = D('Car/Message');
+        $carInfo = $carModel->getRowByCarSn($carSn);
+        $this->assign('flag',$flag);
+        $this->assign('picArr',$picUrlArr);
+        $this->assign('inspectInfo',$inspectInfo);
+        $this->assign('carInfo',$carInfo);
+        $this->display();
+    }
+
+    /**
+     * 加载待处理记录
+     * @Author: ludezh
+     */
+    public function surveyList(){
+        $inspectModel = D('Settle/Inspect');
+        $carModel = D('Car/Message');
+        $uid = session('uid');
+        $status = array('neq',1);
+        $inspectList = $inspectModel->getListByInspectUid($uid,$status);
+        foreach($inspectList as $k => $v){
+            $carSn = $carModel->getRowByCarSn($v['car_sn']);
+            $inspectList[$k]['plate_num'] = $carSn['plate_num'];
+        }
+        $this->assign('inspectList',$inspectList);
+        $this->display();
+    }
+
+    /**
+     * 加载已结案记录
+     * @Author: ludezh
+     */
+    public function endSurvey(){
+        $status = 6;
+        $uid = session('uid');
+        $inspectList = $this->inspectModel->getInspectListByInspect($status,$uid);
+        $this->assign('inspectList',$inspectList);
+        $this->display();
+    }
+
+    /**
+     * 根据勘察id查找信息
+     * @Author: ludezh
+     */
+    public function getInspectInfo(){
+        $inspectSn = I('post.inspectSn');
+        if($inspectSn){
+            $inspectModel = D('Settle/Inspect');
+            $carModel = D('Car/Message');
+            $userModel = D('User/User');
+            $inspectInfo = $inspectModel->getRowByInspectSn($inspectSn);
+            $inspectInfo['carInfo'] = $carModel->getRowByUid($inspectInfo['uid']);
+            $inspectInfo['userInfo'] = $userModel->getRowByUid($inspectInfo['uid']);
+            $this->success($inspectInfo);
+            exit();
+        }else{
+            $this->error('非法操作');
+            exit();
+        }
+    }
+
+    /**
      *入勤填写勘察信息[完善理赔登记信息]
      */
     public function updateInspect(){

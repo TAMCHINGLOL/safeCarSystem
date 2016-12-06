@@ -56,7 +56,7 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
             "infoEmpty": "无记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
@@ -192,7 +192,7 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
             "infoEmpty": "无记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
@@ -289,7 +289,7 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
             "infoEmpty": "无记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
@@ -371,49 +371,22 @@ var scheduling_Look_register = [
 ];
 $(document).ready(function() {
 	    $('#SWrite_register').DataTable( {//调度人员的首页表格
-        data: scheduling_Look_register,
-        columns: [
-            { title: "出险登记编号" },
-            { title: "牌号"},
-            { title: "出险时间" },
-            { title: "出险地址" },
-            { title: "查看" },
-            { title: "操作" }
-        ],
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
+            "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
-		    "paginate": {  
-		        "first":      "«",  
-		        "last":       "»",  
-		        "next":       ">",  
-		        "previous":   "<"  
+		    "paginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
 		    }    
         },
         "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="SchedulingDetileRigster(this)">查看详情</a>';
-                },
-                "targets":4
-            },
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" href="surveyReporter.html">填写勘察报告</a>';
-                },
-                "targets":5
-            }
-/*           {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor del-row">删除</a>';
-                },
-                "targets":6
-            }*/
         ],
         "filter":true,
         "info":true,
@@ -428,124 +401,64 @@ $(document).ready(function() {
         "ordering":false//关闭排序按钮控件
     } );
     $('#Slook_survey').DataTable( {//调度人员的修改勘察表格
-        data: scheduling_Look_register,
-        columns: [
-            { title: "出险登记编号" },
-            { title: "牌号"},
-            { title: "出险时间" },
-            { title: "查看" },
-            { title: "操作" },
-            { title: "状态"}
-        ],
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
+            "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
-		    "paginate": {  
-		        "first":      "«",  
-		        "last":       "»",  
-		        "next":       ">",  
-		        "previous":   "<"  
-		    }    
+            "paginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            }
         },
         "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="SchedulingDetileRigster(this)">查看详情</a>';
-                },
-                "targets":3
-            },
-            {//onclick="SchedulingWrite(this) 
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" href="lookSurveyReporter.html">查看勘察报告</a>';
-                },
-                "targets":4
-            },
-            {//onclick="SchedulingWrite(this) 
-                "render": function ( data, type, row ) {
-                    return '已结案';
-                },
-                "targets":5
-            }
-/*           {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor del-row">删除</a>';
-                },
-                "targets":6
-            }*/
         ],
         "filter":true,
         "info":true,
         /*手机端手机滚动条
-        "scrollY": "200px",
-	    "scrollCollapse": true,*/
-	    /*分页设置*/
-	    "paging":true,
+         "scrollY": "200px",
+         "scrollCollapse": true,*/
+        /*分页设置*/
+        "paging":true,
         //"iDisplayLength" : 4,//默认显示数据数量
         "lengthChange": false,//关闭显示数据数量选项
         "order": [[ 3, "desc" ]],//默认第三列排序
         "ordering":false//关闭排序按钮控件
     } );
         $('#revised_survey').DataTable( {//调度人员的修改勘察表格
-        data: scheduling_Look_register,
-        columns: [
-            { title: "出险登记编号" },
-            { title: "牌号"},
-            { title: "出险时间" },
-            { title: "查看" },
-            { title: "操作" },
-            { title: "驳回备注"}
-        ],
-        "pagingType":   "full_numbers",
-        "language": {
-            "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "sSearch":"搜索",
-		    "paginate": {  
-		        "first":      "«",  
-		        "last":       "»",  
-		        "next":       ">",  
-		        "previous":   "<"  
-		    }    
-        },
-        "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="SchedulingDetileRigster(this)">查看详情</a>';
-                },
-                "targets":3
+            "pagingType":   "full_numbers",
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "暂无查询记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "暂无查询记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "sSearch":"搜索",
+                "paginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                }
             },
-            {//onclick="SchedulingWrite(this) 
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" href="surveyReporter.html">修改勘察报告</a>';
-                },
-                "targets":4
-            }
-/*           {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor del-row">删除</a>';
-                },
-                "targets":6
-            }*/
-        ],
-        "filter":true,
-        "info":true,
-        /*手机端手机滚动条
-        "scrollY": "200px",
-	    "scrollCollapse": true,*/
-	    /*分页设置*/
-	    "paging":true,
-        //"iDisplayLength" : 4,//默认显示数据数量
-        "lengthChange": false,//关闭显示数据数量选项
-        "order": [[ 3, "desc" ]],//默认第三列排序
-        "ordering":false//关闭排序按钮控件
+            "columnDefs": [
+            ],
+            "filter":true,
+            "info":true,
+            /*手机端手机滚动条
+             "scrollY": "200px",
+             "scrollCollapse": true,*/
+            /*分页设置*/
+            "paging":true,
+            //"iDisplayLength" : 4,//默认显示数据数量
+            "lengthChange": false,//关闭显示数据数量选项
+            "order": [[ 3, "desc" ]],//默认第三列排序
+            "ordering":false//关闭排序按钮控件
     } );
 
 } );
@@ -596,9 +509,9 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
+            "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
 		    "paginate": {  
@@ -705,9 +618,9 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
+            "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
 		    "paginate": {  
@@ -774,9 +687,9 @@ $(document).ready(function() {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
+            "zeroRecords": "暂无查询记录",
             "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
+            "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
 		    "paginate": {  
