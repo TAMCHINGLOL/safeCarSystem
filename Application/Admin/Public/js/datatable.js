@@ -1132,14 +1132,14 @@ $(document).ready(function() {
 		        "previous":   "<"  
 		    }    
         },
-        "columnDefs": [
+        /*"columnDefs": [
             {
                 "render": function ( data, type, row ) {
                     return '<a class="cursor">权限设置</a> | <a class="cursor review-row">修改</a> | <a class="cursor del-row">删除</a>';
                 },
                 "targets":2
             }
-        ],
+        ],*/
         "filter":true,
         "info":true,
         /*手机端手机滚动条
