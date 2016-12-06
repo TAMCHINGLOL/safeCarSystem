@@ -48,7 +48,7 @@ class IndexController extends CommonController {
         $this->assign('roleId',$roleId);
 //        echo $roleId;exit();
         $userModel = D('User/User');
-        if($roleId == 1){
+        if($roleId == 1){       //客服人员
             $carMessageModel = D('Car/Message');
             $carList = $carMessageModel->getCarList(0, 10000, array());
             foreach($carList as $k => $v){
@@ -64,8 +64,17 @@ class IndexController extends CommonController {
             }
             $this->assign('carList',$carList);
             $this->display('serviceIndex');
-        }else{
+        } else if($roleId == 2){    //勘察人员
+            $inspectModel = D('Settle/Inspect');
+            $uid = session('uid');
+            $inspectList = $inspectModel->getListByInspectUid($uid,1);
+            $this->assign('inspectList',$inspectList);
+            $this->display('inspectIndex');
+        } else if($roleId == 3){    //财务
             $this->display();
+        }else{
+            $this->error('非法操作');
+            exit();
         }
     }
 

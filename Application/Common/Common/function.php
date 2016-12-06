@@ -11,12 +11,158 @@ include_once("./Plugin/SMSPHP_v2.6r/CCPRestSmsSDK.php");
 require_once("./Plugin/PHPExcel/PHPExcel.php");
 
 /* require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5"); */
- 
+
 require_once("./Plugin/PHPExcel/PHPExcel/IOFactory.php");
 
 /*require_once(APP_PATH . '/Common/Common/extend.php');*/
 
+function picUpload($fileAddress = ''){
+    header('Content-type: text/html; charset=UTF-8');
+    $php_path = dirname(__FILE__) . '/';			//获取当前路径的目录部分http://localhost:8080/term/newSpaperSystem/index.php?s=/Plugin/UploadPHP/
+    $php_url = dirname($_SERVER['PHP_SELF']) . '/';	//当前执行脚本的文件名 eg:http://example.com/test.php/foo.bar 的脚本中使用 $_SERVER['PHP_SELF'] 将得到 /test.php/foo.bar
 
+//文件保存目录路径
+    $save_path = $php_path . '../../../upload/';	//指定路径(向上找) http://localhost:8080/term/newSpaperSystem/upload/
+//文件保存目录URL
+    $save_url = $php_url . '../../../upload/';		//指定路径(向上找) http://localhost:8080/term/newSpaperSystem/upload/
+//定义允许上传的文件扩展名
+    $ext_arr = array(
+        'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
+        'flash' => array('swf', 'flv'),
+        'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'asf', 'rm', 'rmvb'),
+        'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2'),
+    );
+//最大文件大小
+    $max_size = 1024*1024*5;
+
+    $save_path = realpath($save_path) . '/';	//返回规范化的绝对路径名 http://localhost:8080/term/newSpaperSystem/upload/
+
+//PHP上传失败
+    if (!empty($_FILES['file']['error'])) {
+        switch($_FILES['file']['error']){
+            case '1':
+                $error = '超过php.ini允许的大小。';
+                break;
+            case '2':
+                $error = '超过表单允许的大小。';
+                break;
+            case '3':
+                $error = '图片只有部分被上传。';
+                break;
+            case '4':
+                $error = '请选择图片。';
+                break;
+            case '6':
+                $error = '找不到临时目录。';
+                break;
+            case '7':
+                $error = '写文件到硬盘出错。';
+                break;
+            case '8':
+                $error = 'File upload stopped by extension。';
+                break;
+            case '999':
+            default:
+                $error = '未知错误。';
+        }
+        $data['status'] = 0;
+        $data['info'] = $error;
+        return $data;
+    }
+
+//有上传文件时
+    if (empty($_FILES) === false) {
+        //原文件名
+        $file_name = $_FILES['file']['name'];
+        //服务器上临时文件名
+        $tmp_name = $_FILES['file']['tmp_name'];
+        //文件大小
+        $file_size = $_FILES['file']['size'];
+        //检查文件名
+        if (!$file_name) {
+            $data['status'] = 0;
+            $data['info'] = "请选择文件";
+            return $data;
+        }
+        //检查目录
+        if (@is_dir($save_path) === false) {
+            $data['status'] = 0;
+            $data['info'] = "上传目录不存在。";
+            return $data;
+        }
+        //检查目录写权限
+        if (@is_writable($save_path) === false) {
+            $data['status'] = 0;
+            $data['info'] = "上传目录没有写权限。";
+            return $data;
+        }
+        //检查是否已上传
+        if (@is_uploaded_file($tmp_name) === false) {
+            $data['status'] = 0;
+            $data['info'] = "上传失败。";
+            return $data;
+        }
+        //检查文件大小
+        if ($file_size > $max_size) {
+            $data['status'] = 0;
+            $data['info'] = "上传文件大小超过限制。";
+            return $data;
+        }
+        //检查目录名
+        $dir_name = empty($_GET['dir']) ? 'image' : trim($_GET['dir']);
+        if (empty($ext_arr[$dir_name])) {
+            $data['status'] = 0;
+            $data['info'] = "目录名不正确。";
+            return $data;
+        }
+        //获得文件扩展名
+        $temp_arr = explode(".", $file_name);
+        $file_ext = array_pop($temp_arr);
+        $file_ext = trim($file_ext);
+        $file_ext = strtolower($file_ext);
+        //检查扩展名
+        if (in_array($file_ext, $ext_arr[$dir_name]) === false) {
+            $data['status'] = 0;
+            $data['info'] = "上传文件扩展名是不允许的扩展名。\n只允许" . implode(",", $ext_arr[$dir_name]) . "格式。";
+            return $data;
+        }
+
+        //创建文件夹
+        if ($dir_name !== '') {
+            $save_path .= $dir_name . "/";
+            $save_url .= $dir_name . "/";
+            if (!file_exists($save_path)) {
+                mkdir($save_path, 0077, true);
+            }
+        }
+
+        if ($fileAddress) {
+            $ymd = $fileAddress;
+        }else{
+            $ymd = date("Y-m-d");
+        }
+        $save_path .= $ymd . "/";
+        $save_url .= $ymd . "/";
+        if (!file_exists($save_path)) {
+            mkdir($save_path, 0077, true);
+        }
+        //新文件名
+        $new_file_name = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $file_ext;
+        //移动文件
+        $file_path = $save_path . $new_file_name;
+        if (move_uploaded_file($tmp_name, $file_path) === false) {
+            $data['status'] = 0;
+            $data['info'] = '上传文件失败';
+            return $data;
+        }
+        @chmod($file_path, 0644);
+        $file_url = $save_url . $new_file_name;
+
+        $data['status'] = 1;
+        $data['info'] = $file_url;
+        return $data;
+    }
+}
 /**
  * Excel导出数据(所有数组均为键名为数字序列号)
  * @param array $headerArr

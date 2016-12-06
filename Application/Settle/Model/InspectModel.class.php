@@ -19,6 +19,30 @@ class InspectModel extends Model
      */
     protected $tableName = 'settle_inspect';
 
+    /**
+     * @param $inspectSn
+     * @param $inspectUid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getInspectInfoByInspectSn($inspectSn, $inspectUid){
+        $where['inspect_sn'] = $inspectSn;
+        $where['inspect_uid'] = $inspectUid;
+        return $this->where($where)->find();
+    }
+    /**
+     * @param $uid
+     * @param int $status
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getListByInspectUid($uid, $status = 0){
+        if(!empty($status)){
+            $where['status'] = $status;
+        }
+        $where['inspect_uid'] = $uid;
+        return $this->where($where)->select();
+    }
 
     /**
      * @param $inspectSn
@@ -148,8 +172,22 @@ class InspectModel extends Model
      * @return mixed
      * @Author: ludezh
      */
+    public function getInspectListByInspect($status, $uid){
+        if(!empty($status)){
+            $where['status'] = $status;
+        }
+        $where['inspect_uid'] = $uid;
+        return $this->where($where)->select();
+    }
+
+    /**
+     * @param $status
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
     public function getInspectListByCustom($status, $uid){
-        if(empty($status)){
+        if(!empty($status)){
             $where['status'] = $status;
         }
         $where['custom_uid'] = $uid;

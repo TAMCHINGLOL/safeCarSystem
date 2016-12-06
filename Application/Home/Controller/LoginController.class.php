@@ -61,8 +61,10 @@ class LoginController extends Controller
             $this->error('密码错误');
             exit;
         } else {
+//            print_r($info);exit();
             session('sysTag','staff');
             sessionSave($info);
+//            echo session('uid');exit();
             session('password', null);
             $this->success('登录成功');
             exit;
