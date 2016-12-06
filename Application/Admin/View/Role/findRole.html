@@ -2,7 +2,7 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li class="active"><a href="home.html">角色管理</a></li>
+					<li class="active"><a href="#">角色管理</a></li>
 					<li class="action"><a  href="claimingManage.html">理赔管理</a></li>
 				</ul>
 				
@@ -10,17 +10,17 @@
 			
 			<div class="nav-right">
 				<table id="roleManage" class="table table-striped table-bordered">
-					<tr>
+					<!-- <tr>
 						<th>角色名称</th>
 						<th>角色描述</th>
 						<th>操作</th>						
-					</tr>
+					</tr> -->
 					<tbody>
 						<foreach name='roleList' item='rl'>
 							<tr class='text-c'>
 								<td>{$rl.role_name}</td>
 								<td>{$rl.remark}</td>
-								<td><a>编辑权限</a>|<a>修改</a>|<a>删除 </a></td>
+								<td><a href="{:U('/admin/Role/editRole', array('id'=>$rl['id']))}">编辑权限</a>|<a >修改</a>|<a>删除 </a></td>
 							</tr>						
 						</foreach>
 					</tbody>
