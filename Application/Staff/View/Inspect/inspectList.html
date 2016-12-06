@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/zui.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/common.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="__ROOT__/Application/Home/View/public/All/img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">{:session('real_name')} <img src="__ROOT__/Application/Home/View/public/All/img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="{:U('Home/Index/index','',false)}">车主信息查询</a> </li>
+					<li class="active"><a href="{:U('Staff/Inspect/inspectList','',false)}" >出险登记列表</a></li>
+					<li><a href="{:U('Staff/Person/inspectList','',false)}" >调度人员信息查询</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+   				<table id="register_list" class="table table-striped table-bordered">
+					<thead>
+					<tr class="" >
+						<th style="font-size: 14px;height: 25px">出险编号</th>
+						<th style="font-size: 14px;height: 25px">出险时间</th>
+						<th style="font-size: 14px;height: 25px">出险地址</th>
+						<th style="font-size: 14px;height: 25px">调度员工</th>
+						<th style="font-size: 14px;height: 25px">我的备注</th>
+						<th style="font-size: 14px;height: 25px">处理状态</th>
+						<th style="font-size: 14px;height: 25px">操 作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<foreach name="inspectList" item="v">
+						<tr class="text-c">
+							<td id="staUid">{$v.inspect_sn}</td>
+							<td>{$v.happen_time}</td>
+							<td id="staPhone">{$v.address}</td>
+							<td>{$v.inspect_uid}</td>
+							<td>{$v.custom_remark}</td>
+							<td>{$v.status}</td>
+							<td class="f-14">
+								<button onclick="ScheduleDetails('{$v['inspect_sn']}')" style="font-size:15px" class="btn btn-xs btn-primary">
+									<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 查 看 详 情
+								</button>
+
+								<input type="hidden" id="carUid" value="{$carUid}" />
+							</td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		
+		
+		<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="__ROOT__/Application/Home/View/public/All/js/jquery.dataTables.js"></script>
+		<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/datatable.js' charset='utf-8'></script>
+  <script type="text/javascript">
+	  var oneInspect_url = "{:U('Staff/Inspect/oneInspect','',false)}";
+	  function ScheduleDetails(id){
+		if(id){
+			window.location.href = oneInspect_url +'/inspectSn/'+id;
+		}
+	  }
+  	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>
+	</body>
+</html>

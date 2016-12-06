@@ -14,11 +14,19 @@ use Think\Controller;
 
 class LoginController extends Controller
 {
+    public function exitLogin(){
+        session(null);
+        $this->display('index');
+    }
     /**
      *加载登录模块
      */
     public function index()
     {
+//        echo getRandStr(10);exit();
+//        echo makeEveryNumber('UI',1);
+//        echo md5(md5(123456));
+//        exit();
         $this->display();
     }
 
@@ -35,7 +43,7 @@ class LoginController extends Controller
             $where['phone'] = $phone;
         }
         if (!empty($username)) {
-            $where['username'] = $username;
+            $where['uid'] = $username;
         }
 
         $subUserModel = D('User/SubUser');

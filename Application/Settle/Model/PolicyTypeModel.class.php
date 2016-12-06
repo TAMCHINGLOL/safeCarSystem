@@ -17,6 +17,15 @@ class PolicyTypeModel extends Model
     protected $tableName = 'policy_type';
 
     /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getRowByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->find();
+    }
+    /**
      * 根据种类编号获取该记录
      * @param $typeSn
      * @return mixed

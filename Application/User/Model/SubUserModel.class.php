@@ -17,6 +17,27 @@ class SubUserModel extends Model
     protected $tableName = 'sub_user';
 
     /**
+     * @param $uid
+     * @param $psw
+     * @return bool
+     * @Author: ludezh
+     */
+    public function update($uid, $psw){
+        $where['uid'] = $uid;
+        $data['password'] = $psw;
+        return $this->where($where)->save($data);
+    }
+    /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function findRowByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->find();
+    }
+
+    /**
      * 修改员工的禁用状态
      * @param $uid
      * @param $isValidated
@@ -195,7 +216,6 @@ class SubUserModel extends Model
      * @return mixed
      */
     public function login($where){
-        $filed = array('id','uid','password','username','role_id','is_validated','action_list');
-        return $this->field($filed)->where($where)->find();
+        return $this->where($where)->find();
     }
 }

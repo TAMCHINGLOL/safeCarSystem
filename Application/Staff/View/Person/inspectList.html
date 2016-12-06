@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/zui.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/common.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="__ROOT__/Application/Home/View/public/All/img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">{:session('real_name')} <img src="__ROOT__/Application/Home/View/public/All/img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="{:U('Home/Index/index','',false)}">车主信息查询</a> </li>
+					<li><a href="{:U('Staff/Inspect/inspectList','',false)}" >出险登记列表</a></li>
+					<li class="active"><a href="{:U('Staff/Person/inspectList','',false)}" >调度人员信息查询</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+   				<table id="schedulingPersonnel" class="table table-striped table-bordered">
+					<thead>
+					<tr class="">
+						<th>员 工 编 号</th>
+						<th>调度人员姓名</th>
+						<th>手 机 号</th>
+						<th> 地 址 </th>
+						<th>操 作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<foreach name="inspectList" item="v">
+						<tr class="text-c">
+							<td id="staUid">{$v.uid}</td>
+							<td>{$v.real_name}</td>
+							<td id="staPhone">{$v.phone}</td>
+							<td>{$v.address}</td>
+							<td class="f-14">
+								<if condition="$carUid eq ''">
+									<button onclick="ScheduleInfo()" style="font-size:15px" class="btn btn-xs">
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 立 即 调 度
+									</button>
+									<else />
+									<button onclick="ScheduleInfo('{$v['uid']}')" style="font-size:15px" class="btn btn-xs btn-primary">
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 立 即 调 度
+									</button>
+								</if>
+
+								<input type="hidden" id="carUid" value="{$carUid}" />
+								<input type="hidden" id="flag" value="{$flag}" />
+								<input type="hidden" id="inspectSn" value="{$inspectSn}" />
+							</td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	<!-- 对话框HTML -->
+	<div class="modal fade" id="phone">
+	  <div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+			<h4 class="modal-title">温馨提示</h4>
+		  </div>
+		  <div class="tip-content">
+			<p>调 度 成 功</p>
+			<p><label style="font-size: 12px;color: red">情况紧急时,请电话通知</label></p>
+			<a class="know" href="{:U('Staff/Inspect/inspectList','',false)}">知道了</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/jquery.js' charset='utf-8'></script>
+<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/zui.min.js' charset='utf-8'></script>
+<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.js"></script>
+<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="__ROOT__/Application/Home/View/public/All/js/jquery.dataTables.js"></script>
+<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/datatable.js' charset='utf-8'></script>
+<script type="text/javascript">
+	var sendInspect_url = "{:U('Staff/Inspect/sendInspect','',false)}";
+  	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+
+	//查看调派人员
+	function ScheduleInfo(uid){
+//		$('#phone').modal('show');
+//		return; false;
+		var flag = $('#flag').val();
+		var inspectSn = $('#inspectSn').val();
+		var carUid = $('#carUid').val();
+		var staPhone = $('#staPhone').text();
+		var staUid = $('#staUid').text();
+//		alert(inspectSn);
+		if(carUid == ''){
+			alert('未绑定任何报案,不可操作');
+			return false;
+		}else{
+			$.ajax({
+				url: sendInspect_url,
+				type: 'post',
+				dataType: 'json',
+				data: {uid: staUid,phone:staPhone,flag:flag,inspectSn:inspectSn},
+				success: function(result){
+					if(result.status == 1){
+						$('#phone').modal('show');
+					}else{
+						alert(result.info);
+						return false;
+					}
+				}
+			})
+		}
+	}
+  </script>
+	</body>
+</html>

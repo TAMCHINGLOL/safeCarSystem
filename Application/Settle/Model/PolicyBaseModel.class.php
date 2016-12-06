@@ -17,6 +17,15 @@ class PolicyBaseModel extends Model
     protected  $tableName = 'policy_base';
 
     /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getRowByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->find();
+    }
+    /**
      * 获取所有基本保单
      * @return mixed
      */

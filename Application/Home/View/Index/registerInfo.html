@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/zui.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/common.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="__ROOT__/Application/Home/View/public/All/img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">{:session('real_name')} <img src="__ROOT__/Application/Home/View/public/All/img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li class="active"><a href="{:U('Home/Index/index','',false)}">车主信息查询</a> </li>
+					<li><a href="{:U('Staff/Inspect/inspectList','',false)}" >出险登记列表</a></li>
+					<li><a href="{:U('Staff/Person/inspectList','',false)}" >调度人员信息查询</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      <a class="save" href="JavaScript:history.go(-1);"><<返回</a>
+			      <div class="insurance_register">
+			      	<table class="table-bordered" id="add_Scheduling">
+			      		<tr><td colspan="6"style="text-align: center;"><strong>出险登记表</strong> </td></tr>
+			      		<tr>
+			      			<td>车号</td>
+			      			<td style="width: 250px;">{$carInfo.plate_num}</td>
+			      			<td>车主</td>
+			      			<td style="width: 250px;">{$userInfo.real_name}</td>
+			      			<td>联系电话</td>
+			      			<td style="width: 250px;">
+								{$userInfo.phone}
+								<input type="hidden" id="uid" value="{$userInfo.uid}"/>
+								<input type="hidden" id="baseSn" value="{$policyInfo.base_sn}"/>
+								<input type="hidden" id="typeSn" value="{$policyInfo.type_sn}"/>
+								<input type="hidden" id="carSn" value="{$carInfo.car_sn}"/>
+							</td>
+			      		</tr>
+			      		<tr>
+			      			<!--<td colspan="2">出险类型（初步判断）</td>-->
+			      			<!--<td >-->
+			      				<!--<select class="form-control">-->
+								  <!--<option value="">出险类型</option>-->
+								  <!--<option value="1">特殊案件</option>-->
+								  <!--<option value="2">轻微事故</option>-->
+								  <!--<option value="3">单方事故</option>-->
+								  <!--<option value="4">双方事故</option>-->
+								<!--</select>-->
+			      			<!--</td>-->
+			      		</tr>
+			      		<tr>
+			      			<td>出险地点</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden" id="address"></textarea> </td>
+			      		</tr>
+			      		<tr>
+			      			<td>出险备注</td>
+			      			<td colspan="7" ><textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden" id="remark"></textarea> </td>
+			      		</tr>
+			      	</table>
+			      	<div class="register_btn">
+			      		<button class="save" type="button"  onclick="addScheduling()">添加调度人员</button>
+			      	</div>
+			      	<!--<div class="register_btn">-->
+			      		<!--<a class="save" href="register_list.html">保存</a>-->
+			      	<!--</div>-->
+			      </div>
+			</div>
+		</div>
+	
+	<!-- 对话框HTML -->
+	<div class="modal fade" id="tip_modal">
+	  <div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+			<h4 class="modal-title">温馨提示</h4>
+		  </div>
+		  <div class="tip-content">
+			<p >请选择调度人员</p>
+			<a class="know" href="{:U('Staff/Person/inspectList','',false)}" data-dismiss="modal" onclick="choose()">知道了</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+		
+		
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/jquery.js' charset='utf-8'></script>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/zui.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.js"></script>
+	<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__ROOT__/Application/Home/View/public/All/js/jquery.dataTables.js"></script>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/datatable.js' charset='utf-8'></script>
+	<!--<script type='text/javascript' src='__ROOT__/Application/Home/View/public/js/Login/jquery.1.7.2.min.js'></script>-->
+  	<script type="text/javascript">
+		var addInspect_url = "{:U('Staff/Inspect/addInspect','',false)}";
+		function addScheduling(){
+//			$('#tip_modal').modal('show');
+//			return false;
+//			alert(1);return false;
+			var uid = $('#uid').val();
+			var baseSn = $('#baseSn').val();
+			var typeSn = $('#typeSn').val();
+			var carSn = $('#carSn').val();
+			var address = $('#address').val();
+			var remark = $('#remark').val();
+			if(address == ''){
+				alert('请填写出险地址');
+				return false;
+			}
+			if(remark == ''){
+				alert('请填写出险备注');
+				return false;
+			}
+			$.ajax({
+				url: addInspect_url,
+				type: 'post',
+				dataType: 'json',
+				data: {uid: uid,baseSn: baseSn,typeSn: typeSn, carSn: carSn,address: address, remark:remark},
+				success: function(result){
+					if(result.status == 1){
+						$('#tip_modal').modal('show');
+					}else{
+						alert(result.info);
+						return false;
+					}
+				}
+			});
+		}
+  	
+		function choose(){
+			$('#tip_modal').modal('hide');
+			var url="surveyReporter.html";
+			location.href=url;
+		}
+		$('.form_date').datetimepicker({
+			language : 'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1,
+			format: "yyyy-mm-dd hh:ii",
+			initialDate : new Date()
+		});
+		function MaxMe(o) {
+		  o.style.height = o.scrollTop + o.scrollHeight + "px";
+		}
+  </script>
+	</body>
+</html>

@@ -23,7 +23,7 @@ class UserModel extends Model
      */
     public function getRowByUid($uid)
     {
-        $filed = array('uid','username','phone','header','sex');
+        $filed = array('uid','username','phone','header','sex','real_name');
         $where['uid'] = $uid;
         return $this->field($filed)->where($where)->find();
     }
