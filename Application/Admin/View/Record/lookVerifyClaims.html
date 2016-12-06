@@ -26,7 +26,12 @@
 							<li><a href="paymentInfo.html">保费缴纳信息</a></li>
 						</ul>
 					</li>
-					<li class="active"><a  href="claimingManage.html">理赔管理</a></li>
+										<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="/admin/record/getWaitingList?type=1">待审核</a></li>
+							<li><a href="/admin/record/getWaitingList?type=2">已审核</a></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 			<div class="nav-right">
@@ -52,12 +57,15 @@
 			      			<td  style="width: 900px;">
 			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">经理建议：</p>
 			      				<textarea  class="d_remark" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">{$info.remark}</textarea> 
-			      				<p style="text-align: right;">理赔总金额：<input value="{$info.amount}" class="pull-right" style="width: 80px;"/></p>
+<!--			      				<p style="text-align: right;">理赔总金额：<input value="{$info.amount}" class="pull-right" style="width: 80px;"/></p>-->
 			      			</td>
 			      		</tr>
 			      	</table>
 			      	<div class="register_btn">
                                         <input type="hidden" value="{$id}" name="id">
+                                        <input type="hidden" value="{$info.uid}" name="uid">
+                                        <input type="hidden" value="{$info.finance_uid}" name="finance_uid">
+                                        <input type="hidden" value="{$info.record_sn}" name="record_sn">
                                         <if condition="$info['is_pass'] eq 1">
 			      		<a class="save d_btn" data-value="3">审核通过</a>
 			      		<a class="save d_btn" data-value="2">审核不通过</a>
@@ -104,7 +112,16 @@
          console.log($(".d_remark").val());
          $.ajax({
             url : "/admin/record/lookVerifyClaims",
-            data : { id:id,value:value,amount:$(".d_amount").val(),remark:$(".d_remark").val() },
+            data : { 
+                id:id,
+                uid:$("input[name=uid]").val(),
+                finance_id: $("input[name=finance_id]").val(),
+                record_sn: $("input[name=record_sn]").val(),
+                value:value,
+                amount:$(".d_amount").val(),
+                remark:$(".d_remark").val(),
+                
+            },
             dataType : "json",
             type:"post",
             success : function(res){

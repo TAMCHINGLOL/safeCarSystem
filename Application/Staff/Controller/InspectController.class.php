@@ -22,6 +22,7 @@ class InspectController extends CommonController
     public function __construct()
     {
         parent::__construct();
+        
         $this->inspectModel = D('Settle/Inspect');
         $this->subUserModel = D('User/SubUser');
         $this->userModel = D('User/User');
