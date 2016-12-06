@@ -27,6 +27,6 @@ class LoginController extends CommonController
 
   	public function index()
   	{
-  		$this -> display(':login');
+  		$this -> display('login');
   	}
 }

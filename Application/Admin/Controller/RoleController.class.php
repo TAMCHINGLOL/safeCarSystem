@@ -15,12 +15,14 @@ use Common\Controller\CommonController;
 class RoleController extends CommonController
 {
     protected $roleModel;
+    protected $actionModel;
 
     public function __construct()
     {
     	parent::__construct();
     	layout(true);
         $this->roleModel = D('Common/Role');
+        $this->actionModel = D('Common/Action');
     }
 
     /**
@@ -31,7 +33,49 @@ class RoleController extends CommonController
         $this->assign('roleList',$roleList);
         $this->display();
     }
-
+    
+    /**
+     *编辑角色权限页面
+     */
+    public function editRole(){
+        $id = $_GET['id'];
+        $role = $this->roleModel-> where("id='".$id."'") -> find();
+        $actions = explode(',', $role['auth_list']);
+        foreach ($actions as $k => $v) {
+            $act[] = $this -> actionModel -> where("id='".$v['id']."'") -> find();
+        }
+        $allAct = $this -> actionModel -> select();
+        foreach ($allAct as $k => $v) {
+            $allAct[$k]['select'] = 0;
+            foreach ($actions as $vv){
+                if($v['id'] == $vv[id]) {
+                    $allAct[$k]['select'] = 1;
+                    break;
+                }
+            }
+            
+        }
+        $this -> assign('allAct', $allAct);
+        $this->assign('role',$role);
+        $this->display();
+    }
+    
+    /**
+     * 保存角色编辑
+     */
+    public function edit_post(){
+        $role = M('Role');
+        $data['id'] = intval($_POST['role_id']);
+        unset($_POST['role_id']);
+        $data['auth_list'] = implode(',', $_POST);
+        $result = $role ->  save($data);
+        if($result) {
+            $this->success('保存成功', '/admin/role/findRole');
+            
+        } else {
+            $this->error('保存失败', '/admin/role/findRole');
+        }
+    }
     /**
      *添加角色
      */

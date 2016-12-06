@@ -1110,7 +1110,7 @@ $(document).ready(function() {
 var roleManageSet='';
 $(document).ready(function() {
     $('#roleManage').DataTable( {
-    	searching: true;
+    	searching: true,
         data: roleManageSet,
         columns: [
             { title: "角色名称" },
@@ -1178,3 +1178,87 @@ $(document).ready(function(){
     	
 	} );
 } );
+
+$(document).ready(function(){
+    var table = $('#roleManage').DataTable();
+    //删除
+    $('#roleManage').on('click', '.del-row', function () {
+    	table.row(this.closest("tr")).remove().draw( false );
+	} );
+	//修改
+	$('#roleManage').on('click', '.reviewRow', function () {
+		var data=table.row(this.closest("tr")).data();
+		var obj = document.getElementById("role-form");
+		if (obj){
+		obj.remove();
+		}
+		var contents='<div class="role-form" id="role-form">'+
+						'<form class="form-inline">'+
+						  '<div class="form-group">'+
+						    '<label for="exampleInputEmail3">角色名称</label>'+
+						    '<input type="text" class="form-control" value="'+data[0]+'">'+
+						  '</div>'+
+						  '<div class="form-group">'+
+						    '<label for="exampleInputInviteCode3">状态</label>'+
+						    '<input type="text" class="form-control" value="'+data[1]+'">'+
+						  '</div>'+
+						 ' <button type="submit" class="btn btn-primary">保存</button>'+
+						'</form>'+
+					'</div>';
+		$(".layout_table").append(contents);  
+		$('input').focus();
+		
+	} );
+	//设置权限
+	$('#roleManage').on('click', '.limitsSet', function () {
+		var data=table.row(this.closest("tr")).data();
+		var obj = document.getElementById("role-form");
+		if (obj){
+		obj.remove();
+		}
+		var contents='<div class="role-form" id="role-form">'+
+						'<form class="form-inline">'+
+						  '<ul class="tree tree-lines">'+
+							  '<li class="open"><a href="#">经理人员</a>'+
+							    '<ul><li><div class="checkbox">'+
+							    	'<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li>'+
+							      '<li><div class="checkbox">'+
+									    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li>'+
+							      '<li><a>热带水果</a>'+
+							        '<ul><li class="open"><div class="checkbox">'+
+										    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+										  '</div></li>'+
+							          '<li><div class="checkbox">'+
+										    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+										  '</div></li></ul></li>'+
+							      '<li><div class="checkbox">'+
+									    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li></ul></li></ul>'+
+						  '<ul class="tree tree-lines">'+
+							  '<li class="open"><a href="#">财务人员</a>'+
+							    '<ul><li><div class="checkbox">'+
+							    	'<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li>'+
+							      '<li><div class="checkbox">'+
+									    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li>'+
+							      '<li><a>热带水果</a>'+
+							        '<ul><li class="open"><div class="checkbox">'+
+										    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+										  '</div></li>'+
+							          '<li><div class="checkbox">'+
+										    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+										  '</div></li></ul></li>'+
+							      '<li><div class="checkbox">'+
+									    '<label><input type="checkbox"> 我已阅读并接受用户协议</label>'+
+									  '</div></li></ul></li></ul>'+
+						 ' <button type="submit" class="btn btn-primary">保存</button>'+
+						'</form>'+
+					'</div>';
+		$(".layout_table").append(contents);  
+		
+	} );
+} );
+

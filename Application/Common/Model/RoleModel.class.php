@@ -46,4 +46,6 @@ class RoleModel extends Model
         $data['remark'] = $remark;
         return $this->where($where)->save($data);
     }
+    
+    
 }
