@@ -21,6 +21,19 @@ class InspectModel extends Model
 
 
     /**
+     * @param $inspectSn
+     * @param $inspectUid
+     * @param $status
+     * @return bool
+     * @Author: ludezh
+     */
+    public function updateInspectInfo($inspectSn, $inspectUid,$status){
+        $where['inspect_sn'] = $inspectSn;
+        $data['inspect_uid'] = $inspectUid;
+        $data['status'] = $status;
+        return $this->where($where)->save($data);
+    }
+    /**
      * 根据主管uid和状态获取对应的理赔记录列表
      * @param $uid
      * @param $status
@@ -130,13 +143,29 @@ class InspectModel extends Model
     }
 
     /**
+     * @param $status
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getInspectListByCustom($status, $uid){
+        if(empty($status)){
+            $where['status'] = $status;
+        }
+        $where['custom_uid'] = $uid;
+        return $this->where($where)->select();
+    }
+
+    /**
      * 根据状态获取对应勘察人员的理赔登记记录
      * @param $status
      * @param $uid
      * @return mixed
      */
     public function getInspectList($status,$uid){
-        $where['status'] = $status;
+        if(empty($status)){
+            $where['status'] = $status;
+        }
         $where['inspect_uid'] = $uid;
         return $this->where($where)->select();
     }
@@ -145,12 +174,14 @@ class InspectModel extends Model
      * 勘察登记表绑定调度人员Uid
      * @param $uid
      * @param $inspectSn
+     * @param $status
      * @return bool
      */
-    public function bindInspectUid($uid,$inspectSn){
+    public function bindInspectUid($uid,$inspectSn,$status = 8){
         $where['inspect_sn'] = $inspectSn;
         $data['inspect_uid'] = $uid;
-        return $this->where($inspectSn)->save($data);
+        $data['status'] = $status;
+        return $this->where($where)->save($data);
     }
 
     /**

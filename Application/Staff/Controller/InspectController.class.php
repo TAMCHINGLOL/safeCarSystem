@@ -21,6 +21,7 @@ class InspectController extends CommonController
 
     public function __construct()
     {
+        parent::__construct();
         $this->inspectModel = D('Settle/Inspect');
         $this->subUserModel = D('User/SubUser');
         $this->userModel = D('User/User');
@@ -86,7 +87,7 @@ class InspectController extends CommonController
      */
     public function oneInspect()
     {
-        $inspectSn = I('post.inspectSn');
+        $inspectSn = I('get.inspectSn');
         $inspectInfo = $this->inspectModel->getRowByInspectSn($inspectSn);
         $inspectArray = array();
         $userInfo = array();
@@ -94,20 +95,47 @@ class InspectController extends CommonController
         $bodyList = array();
         $footerList = array();
         $otherList = array();
-        foreach($inspectInfo as $k => $v){
-            $userInfo = $this->userModel->getRowByUid($v['uid']);
-            $carInfo = $this->carMessage->getRowByCarSn($v['car_sn']);
-            $inspectArray['inspect_sn'] = $v['inspect_sn'];
-            $inspectArray['happen_time'] = $v['happen_time'];
-            $inspectArray['address'] = $v['address'];
-            $headerList = explode(',',$v['header_img_list']);
-            $bodyList = explode(',',$v['body_img_list']);
-            $footerList = explode(',',$v['footer_img_list']);
-            $otherList = explode(',',$v['other_img_list']);
-            $inspectArray['base_img'] = $v['base_img'];
-            $inspectArray['start_time'] = $v['start_time'];
-            $inspectArray['end_time'] = $v['end_time'];
+        $subUserInfo = array();
+//        print_r($inspectInfo['uid']);exit();
+//        foreach($inspectInfo as $k => $v){
+            $userInfo = $this->userModel->getRowByUid($inspectInfo['uid']);
+            $carInfo = $this->carMessage->getRowByCarSn($inspectInfo['car_sn']);
+            $subUserInfo = $this->subUserModel->findRowByUid($inspectInfo['inspect_uid']);
+//            foreach($subUserInfo as $k1 => $v1){
+                switch($subUserInfo['is_online']){
+                    case 1:
+                        $str = '下班';
+                        break;
+                    case 2:
+                        $str = '闲置';
+                        break;
+                    case 3:
+                        $str = '出勤';
+                        break;
+                    case 4:
+                        $str = '请假';
+                        break;
+                    default:
+                        $str = '';
+                        break;
+//                }
         }
+        $subUserInfo['status'] = $str;
+        $inspectArray['inspect_sn'] = $inspectInfo['inspect_sn'];
+        $inspectArray['happen_time'] = $inspectInfo['happen_time'];
+        $inspectArray['address'] = $inspectInfo['address'];
+        $inspectArray['cremark'] = $inspectInfo['custom_remark'];
+        $inspectArray['iremark'] = $inspectInfo['inspect_remark'];
+        $headerList = explode(',',$inspectInfo['header_img_list']);
+        $bodyList = explode(',',$inspectInfo['body_img_list']);
+        $footerList = explode(',',$inspectInfo['footer_img_list']);
+        $otherList = explode(',',$inspectInfo['other_img_list']);
+        $inspectArray['base_img'] = $inspectInfo['base_img'];
+        $inspectArray['start_time'] = $inspectInfo['start_time'];
+        $inspectArray['end_time'] = $inspectInfo['end_time'];
+//        }
+
+        session('carUid',$inspectInfo['uid']);
         $this->assign('headerList',$headerList);
         $this->assign('bodyList',$bodyList);
         $this->assign('footerList',$footerList);
@@ -115,6 +143,8 @@ class InspectController extends CommonController
         $this->assign('userInfo',$userInfo);
         $this->assign('carInfo',$carInfo);
         $this->assign('inspectInfo',$inspectArray);
+        $this->assign('subUserInfo',$subUserInfo);
+        $this->display();
     }
 
     /**
@@ -128,8 +158,42 @@ class InspectController extends CommonController
         if(empty($status)){
             $status = 1;
         }
-        $inspectList = $this->inspectModel->getInspectList($status,$uid);
-        $this->assign('inspectList',$inspectList);
+        $inspectList = $this->inspectModel->getInspectListByCustom($status,$uid);
+        $data = array();
+        foreach($inspectList as $k => $v){
+            if($v['status'] != 5 || $v['status'] != 6){
+                switch($v['status']) {
+                    case 1:
+                        $str = '等待调度确认';
+                        break;
+                    case 2:
+                        $str = '调度勘察中';
+                        break;
+                    case 3:
+                        $str = '待审核';
+                        break;
+                    case 4:
+                        $str = '待确认';
+                        break;
+                    case 7:
+                        $str = '待处理';
+                        break;
+                    case 8:
+                        $str = '未调度勘察';
+                        break;
+                    default:
+                        $str = '未知状态';
+                        break;
+                }
+                $data[$k]['inspect_sn'] = $v['inspect_sn'];
+                $data[$k]['happen_time'] = $v['happen_time'];
+                $data[$k]['address'] = $v['address'];
+                $data[$k]['inspect_uid'] = $v['inspect_uid'];
+                $data[$k]['custom_remark'] = $v['custom_remark'];
+                $data[$k]['status'] = $str;
+            }
+        }
+        $this->assign('inspectList',$data);
         $this->display();
     }
 
@@ -137,13 +201,20 @@ class InspectController extends CommonController
     /**
      *客服点击立即调度(短信通知调度人员/报案车主)
      */
-    public function sendInsect(){
+    public function sendInspect(){
         $phone = I('post.phone');       //勘察人员手机号
+//        echo $phone;exit();
         $uid = I('post.uid');           //勘察人员的uid
+        $flag = I('post.flag');
+        $inspectSn = I('post.inspectSn');
         $userInfo = $this->subUserModel->getRowByUidPhone($uid,$phone);
         if($userInfo['phone']){
-            $inspectSn = session('newInspectSn');
-            $res = $this->inspectModel->bindInspectUid($uid,$inspectSn);
+            if(!empty($flag) && !empty($inspectSn)){
+                $res = $this->inspectModel->updateInspectInfo($inspectSn, $uid,1);
+            }else{
+                $inspectSn = session('newInspectSn');
+                $res = $this->inspectModel->bindInspectUid($uid,$inspectSn,1);
+            }
             if(!$res){
                 $this->error('绑定勘察人员失效,建议电话联系');
                 exit;
@@ -151,6 +222,7 @@ class InspectController extends CommonController
             $str = '员工编号:'.$userInfo['uid'].',你好!系统通知:你有新的出勤订单,订单编号：'.$inspectSn.',请立即登录系统进行核对出勤';
             $data = array($str,10);
             $tempId = "1";
+
             $rs = sendTemplateSMS($phone,$data,$tempId);
             if ($rs) {
                 $carUid = session('carUid');
@@ -158,11 +230,7 @@ class InspectController extends CommonController
                 $str1 = '尊敬的'.$carUserInfo['real_name'].'客户,系统正在拼命通知员工编号:'.$userInfo['uid'].'为您处理，请耐心等待';
                 $data1 = array($str1,10);
                 $tempId1 = "1";
-                $result = sendTemplateSMS($carUserInfo['phone'],$data1,$tempId1);
-                if($result){
-                    session('newInspectSn',null);
-                    session('carUid',null);
-                }
+                sendTemplateSMS($carUserInfo['phone'],$data1,$tempId1);
                 $this->success('短 信 正 在 通 知...');
                 exit();
             } else {
@@ -193,6 +261,7 @@ class InspectController extends CommonController
             $inspectSn = makeEveryNumber('IS',$rs);
             session('newInspectSn',$inspectSn);
             session('carUid',$carUid);
+            session('happenAddress',$address);
             $this->inspectModel->addInspectSnById($rs,$inspectSn);
             $this->success('新增调度信息成功');
             exit;

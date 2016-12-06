@@ -10,10 +10,19 @@
 namespace Car\Model;
 use Think\Model;
 
-class CarMessageModel extends Model
+class MessageModel extends Model
 {
     protected $tableName = 'message';
 
+    /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getRowByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->find();
+    }
     /**
      * 根据车辆的编号获取该记录
      * @param $carSn
@@ -47,7 +56,7 @@ class CarMessageModel extends Model
         if(!empty($filter)){
             return $this->where($filter)->limit($start,$limit)->select();
         }else{
-            return $this->limit($start,$limit);
+            return $this->limit($start,$limit)->select();
         }
     }
 }

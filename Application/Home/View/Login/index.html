@@ -4,40 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>网易鱼用户登录</title>
+    <title>车险理赔系统员工登录</title>
     <link rel="stylesheet" href="__ROOT__/Application/Home/View/public/css/Login/zui.min.css">
     <link rel="stylesheet" href="__ROOT__/Application/Home/View/public/css/Login/common.css">
     <link rel="stylesheet" href="__ROOT__/Application/Home/View/public/css/Login/login.css">
     <!--<link rel="stylesheet" href="__ROOT__/Application/Home/View/PublicABC/css/Login/datetimepicker.css">-->
 </head>
 <style type="text/css">
-    .body-back {
-        background: url(__ROOT__/Application/Home/View/public/img/rebc.gif) repeat;
-    }
-    .qq {
-        background-image: url(__ROOT__/Application/Home/View/public/img/QQ1.png);
-    }
-
-    .weixin {
-        background-image: url(__ROOT__/Application/Home/View/public/img/weixin1.png);
-    }
-
-    .weibo {
-        background-image: url(__ROOT__/Application/Home/View/public/img/weibo1.png);
-    }
-
-    .qq:hover {
-        background-image: url(__ROOT__/Application/Home/View/public/img/QQ.png);
-    }
-
-    .weixin:hover {
-        background-image: url(__ROOT__/Application/Home/View/public/img/weixin.png);
-    }
-
-    .weibo:hover {
-        background-image: url(__ROOT__/Application/Home/View/public/img/weibo.png);
-    }
-
     .numberBtn {
         font-size: 10px;
         font-size: 10px;
@@ -76,28 +49,11 @@
     <!--</div>-->
 </header>
 <div class="login">
-    <div class="share-box">
-        <!--<div class="passport-goto">没有账号? <a data-toggle="modal" data-position="center" data-target="#open-register">新用户注册</a>-->
-        <div class="passport-goto">没有账号? <a href="{:U('Home/Login/register')}">新用户注册</a>
-        </div>
-        <div class="passport-third"><p style="color: #999">第三方账号登录</p></div>
-        <div class="link-third">
-            <a class="qq" jktag="0001|0.1|91058" onclick="otherLoginTip()">
-                <i class="passport-icon icon-tencent"></i>
-            </a>
-            <a class="weixin" jktag="0001|0.1|91058" onclick="otherLoginTip()">
-                <i class="passport-icon icon-tencent"></i>
-            </a>
-            <a class="weibo" jktag="0001|0.1|91058" onclick="otherLoginTip()">
-                <i class="passport-icon icon-tencent"></i>
-            </a>
-        </div>
-    </div>
-    <div class="layout-box">
+    <div class="layout-box" style="border-right: 0px;margin-left: 26%">
         <ul class="nav nav-tabs">
-            <li class="login-tittle width50 active"><a href="###" data-target="#tab2Content1" data-toggle="tab">笔者登录</a>
+            <li class="login-tittle active" style="width: 100%"><a href="###" data-target="#tab2Content1" data-toggle="tab">车险理赔系统员工登录</a>
             </li>
-            <li class="login-tittle width50"><a href="###" data-target="#tab2Content2" data-toggle="tab">管理员登录</a></li>
+            <!--<li class="login-tittle width50"><a href="###" data-target="#tab2Content2" data-toggle="tab">管理员登录</a></li>-->
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active in" id="tab2Content1">
@@ -105,7 +61,7 @@
                     <div class="form-group form-group-mar">
                         <div class="input-group width">
                             <input type="text" class="form-control form-type" name="user" id="user"
-                                   placeholder="请输入手机 / 用户名">
+                                   placeholder="请输入员工编号">
                         </div>
                     </div>
                     <div class="form-group form-group-mar">
@@ -114,21 +70,21 @@
                                    placeholder="请输入6~21位密码">
                         </div>
                     </div>
-                    <div class="form-group form-group-mar">
-                        <div class="input-group" style="display: inline-block">
-                            <div style="float: left;">
-                                <input type="text" name="verify" class="form-control form-type" id="verify"
-                                       placeholder="验证码">
-                            </div>
-                        </div>
-                        <div style="float: right;width: 137px;display: inline-block;">
-                            <img id="img2" name="img" width="90%" height="40" style="float: right" alt="验证码"
-                                 src="{:U('Home/Login/verify',array())}" title="点击刷新" onclick="clickVerify('#img2')">
-                        </div>
-                    </div>
+                    <!--<div class="form-group form-group-mar">-->
+                        <!--<div class="input-group" style="display: inline-block">-->
+                            <!--<div style="float: left;">-->
+                                <!--<input type="text" name="verify" class="form-control form-type" id="verify"-->
+                                       <!--placeholder="验证码">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="float: right;width: 137px;display: inline-block;">-->
+                            <!--<img id="img2" name="img" width="90%" height="40" style="float: right" alt="验证码"-->
+                                 <!--src="{:U('Home/Login/verify',array())}" title="点击刷新" onclick="clickVerify('#img2')">-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="form-group">
                         <p class="fr a-link" data-toggle="modal" data-position="center" data-target="#open-forgive">
-                            忘记密码</p>
+                            </p>
                         <div class="checkbox" style="width: 150px;">
                             <label>
                                 <input type="checkbox" checked> 记住密码
@@ -138,47 +94,47 @@
                     <button class="btn btn-login btn-lg btn-block form-group-mar" id='login' type="button">登录</button>
                 </form>
             </div>
-            <div class="tab-pane fade" id="tab2Content2">
-                <form>
-                    <div class="form-group form-group-mar">
-                        <div class="input-group width">
-                            <input type="text" class="form-control form-type" name="phone" id="new-user"
-                                   placeholder="请输入手机号">
-                        </div>
-                    </div>
-                    <div class="form-group form-group-mar">
-                        <div class="input-group" style="display: inline-block">
-                            <div style="float: left;">
-                                <input type="text" name="verify" class="form-control form-type" id="r-verify1"
-                                       placeholder="验证码">
-                            </div>
-                        </div>
-                        <div style="float: right;width: 137px;display: inline-block;">
-                            <img id="img3" name="img" width="90%" height="40" style="float: right" alt="验证码"
-                                 src="{:U('Home/Login/verify',array())}" title="点击刷新" onclick="clickVerify('#img3')">
-                        </div>
-                    </div>
-                    <div class="form-group form-group-mar">
-                        <div class="input-group form-mcode width">
-                            <input type="text" class="form-control form-type " name="code" id="gcode" placeholder="动态码">
-                            <div class="btn-getcode">
-                                <button type="button" id="getSmsBtn" class="passport-btn js-getcode numberBtn"
-                                        jktag="0001|0.1|91024">获取动态码
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <!--<p class="fr a-link">忘记密码</p>-->
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" checked> 记住密码
-                            </label>
-                        </div>
-                    </div>
-                    <button class="btn btn-login btn-lg btn-block form-group-mar" id='sign' type="button">登录</button>
-                </form>
-            </div>
+            <!--<div class="tab-pane fade" id="tab2Content2">-->
+                <!--<form>-->
+                    <!--<div class="form-group form-group-mar">-->
+                        <!--<div class="input-group width">-->
+                            <!--<input type="text" class="form-control form-type" name="phone" id="new-user"-->
+                                   <!--placeholder="请输入手机号">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-mar">-->
+                        <!--<div class="input-group" style="display: inline-block">-->
+                            <!--<div style="float: left;">-->
+                                <!--<input type="text" name="verify" class="form-control form-type" id="r-verify1"-->
+                                       <!--placeholder="验证码">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="float: right;width: 137px;display: inline-block;">-->
+                            <!--<img id="img3" name="img" width="90%" height="40" style="float: right" alt="验证码"-->
+                                 <!--src="{:U('Home/Login/verify',array())}" title="点击刷新" onclick="clickVerify('#img3')">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group-mar">-->
+                        <!--<div class="input-group form-mcode width">-->
+                            <!--<input type="text" class="form-control form-type " name="code" id="gcode" placeholder="动态码">-->
+                            <!--<div class="btn-getcode">-->
+                                <!--<button type="button" id="getSmsBtn" class="passport-btn js-getcode numberBtn"-->
+                                        <!--jktag="0001|0.1|91024">获取动态码-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--&lt;!&ndash;<p class="fr a-link">忘记密码</p>&ndash;&gt;-->
+                        <!--<div class="checkbox">-->
+                            <!--<label>-->
+                                <!--<input type="checkbox" checked> 记住密码-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<button class="btn btn-login btn-lg btn-block form-group-mar" id='sign' type="button">登录</button>-->
+                <!--</form>-->
+            <!--</div>-->
         </div>
     </div>
 </div>
@@ -273,103 +229,32 @@
 <script type='text/javascript' src='__ROOT__/Application/Home/View/public/js/md5/md5.js'></script>
 <script type="text/javascript">
     var login_url = "{:U('Home/Login/login','',false)}";
-    var getSms_url = "{:U('Home/Login/getSms','',false)}";
-    var verifySms_url = "{:U('Home/Login/verifySms','',false)}";
-    var verifyCode_url = "{:U('Home/Login/verifyCode','',false)}";
-    var register_url = "{:U('Home/Login/registerNew','',false)}";
     var home_url = "{:U('Home/Index/index','',false)}";
     function otherLoginTip(){
         layer.msg('小 编 正 在 努 力 , 敬 请 期 待 ...');
         return false;
     }
     $(document).ready(function () {
-        //笔者注册
-        $("#register").on("click", function () {
-            var user = $('#r-phone').val();
-            var password = $('#r-password').val();
-            var code = $('#code').val();
-            if (code == '' || code == null) {
-                alertTips("#code", "请输入动态码");
-                return false;
-            }
-            if (user == '' || user == null) {
-                alertTips("#r-phone", "请输入手机号");
-                return false;
-            }
-            var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
-            if (!reg.test(user)) {
-                alertTips("#r-phone", "手机号码有误");
-                return false;
-            }
-            if (password == '' || password == null) {
-                alertTips("#r-password", "请输入密码");
-                return false;
-            }
-            if (password.length < 6 || password.length > 21) {
-                alertTips("#r-password", "密码长度限制6~21位");
-                return false;
-            }
-            password = hex_md5(password);
-            layer.load(3, {time: 2000});
-            $.ajax({
-                url: register_url,
-                type: 'post',
-                dataType: 'json',
-                data: {smsCode: hex_md5(code), phone: user, password: password},
-                success: function (result) {
-                    if (result.status == 1) {
-                        layer.msg(result.info, {time: 3000});
-                        setTimeout(function () {
-                            window.location.href = login_url;
-                        }, 3000);
-                    } else if (result.status == 0) {
-                        layer.alert(result.info, {icon: 6});
-                    }
-                }, error: function () {
-                    layer.msg(' 小 编 抢 修 网 络 Ing...', {time: 3000});
-                }
-            });
-        });
 
-        //笔者登录
+        //员工登录
         $("#login").on("click", function () {
             var user = $('#user').val();
             var password = $('#password').val();
-            var code = $('#verify').val();
-            if (code == '' || code == null) {
-                alertTips("#verify", "请输入验证码");
+            if (user == "" || user == null) {
+                alertTips('#user', "请输入账号");
                 return false;
-            }
-
-            if (user.length == 11 && !isNaN(user)) {
-                var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
-                if (reg.test(user)) {
-                    var phone = user;
-                } else {
-//                    layer.alert("手机号码有误");
-                    alertTips('#user', "手机号码有误");
-                    return false;
-                }
-            } else {
-                if (user == "" || user == null) {
-//                    layer.alert("请输入账号");
-                    alertTips('#user', "请输入账号");
-                    return false;
-                }
-                var username = user;
             }
             if (password == '' || password == null) {
                 alertTips("#password", '请输入密码');
                 return false;
             }
-            var userTag = 'author';
             password = hex_md5(password);
             layer.load(3, {time: 2000});
             $.ajax({
                 url: login_url,
                 type: 'post',
                 dataType: 'json',
-                data: {code: code, username: username, phone: phone, password: password, userTag: userTag},
+                data: {username: user, phone: '', password: password},
                 success: function (result) {
                     if (result.status == 1) {
                         layer.msg(' 正 在 跳 转...');
@@ -383,120 +268,6 @@
                     layer.msg(' 小 编 抢 修 网 络 Ing...', {time: 3000});
                 }
             });
-        });
-
-        //管理员登录
-        $("#sign").on("click", function () {
-            var phone = $('#new-user').val();
-            var verify = $("#r-verify1").val();
-//            alert(verify);return false;
-            var code = $('#gcode').val();
-            var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
-            if (phone == '' || phone == null) {
-                alertTips("#new-user", '请输入手机号');
-                return false;
-            }
-            if (!reg.test(phone)) {
-                alertTips("#new-user", '手机号码有误');
-                return false;
-            }
-            if (verify == '' || verify == null) {
-                alertTips("#new-password", '请输入验证码');
-                return false;
-            }
-//            if (code == '' || code == null) {
-//                alertTips("#gcode", '请输入动态码');
-//                return false;
-//            }
-
-//            if (phone != '' && verify != '' && code != '') {
-            if (phone != '' && verify != '') {
-
-                layer.load(3, {time: 2000});
-                $.ajax({
-                    url: verifySms_url,
-                    type: 'post',
-                    dataType: 'json',
-                    data: {code: verify, smsCode: hex_md5(code), phone: phone},
-                    success: function (result) {
-                        if (result.status == 1) {
-                            layer.msg(' 正 在 跳 转...');
-                            setTimeout(function () {
-                                window.location.href = home_url;
-                            }, 2000)
-                        } else if (result.status == 0) {
-                            layer.alert(result.info, {icon: 6});
-                            return false;
-                        }
-                    }, error: function () {
-                        layer.alert(' 小 编 抢 修 网 络 Ing...', {time: 3000});
-                        return false;
-                    }
-                });
-            }
-        });
-
-        //笔者注册验证验证码
-        $("#r-verify").on('blur', function () {
-            var code = $('#r-verify').val();
-            if (code == null || code == '') {
-                return false;
-            } else {
-                verifyCode(code, this, "#img");
-            }
-        });
-
-        //笔者登录验证验证码
-        $("#verify").on('blur', function () {
-            var code = $('#verify').val();
-            if (code == null || code == '') {
-                return false;
-            } else {
-                verifyCode(code, this, "#img2");
-            }
-        });
-
-        //管理员登录验证验证码
-        $("#r-verify1").on('blur', function () {
-            var code = $('#r-verify1').val();
-//            alert(code);
-            if (code == null || code == '') {
-                return false;
-            } else {
-                verifyCode(code, this, "#img3");
-            }
-        });
-
-        //发送短信动态码(笔者注册)
-        $("#getSmsId").on('click', function () {
-            var phone = $('#r-phone').val();
-            var password = $("#r-password").val();
-            var verify = $("#r-verify").val();
-            var code = $("#code").val();
-            var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
-            if (phone == '' || phone == null) {
-                alertTips('#r-phone', '请输入手机号');
-                return false;
-            }
-            if (!reg.test(phone)) {
-                alertTips('#r-phone', '手机号码有误');
-                return false;
-            }
-            if (password == '' || password == null) {
-                alertTips('#r-password', '请输入密码');
-                return false;
-            }
-            if (password.length < 6 || password.length > 21) {
-                alertTips('#r-password', '密码长度限制6~21位');
-                return false;
-            }
-            if (verify == '' || verify == null) {
-                alertTips('#r-verify', '请输入验证码');
-                return false;
-            }
-            if (phone != '' && verify != '') {
-                sendSms(phone, 'author');
-            }
         });
 
         //发送短信动态码(管理员登录)

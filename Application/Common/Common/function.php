@@ -9,7 +9,11 @@
 //include_once('./Plugin/SMSPHP_v2.6r/SendTemplateSMS.php');
 include_once("./Plugin/SMSPHP_v2.6r/CCPRestSmsSDK.php");
 require_once("./Plugin/PHPExcel/PHPExcel.php");
+<<<<<<< HEAD
+//require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5");
+=======
 /* require_once("./Plugin/PHPExcel/PHPExcel/Writer/Excel5"); */
+>>>>>>> 9befabba062c17884d3977e7958b351c9f38d51b
 require_once("./Plugin/PHPExcel/PHPExcel/IOFactory.php");
 
 /*require_once(APP_PATH . '/Common/Common/extend.php');*/
@@ -292,13 +296,13 @@ function sendTemplateSMS($to,$data,$tempId)
 //        echo "error code :" . $result->statusCode . "<br>";
 //        echo "error msg :" . $result->statusMsg . "<br>";
         //TODO 添加错误处理逻辑
-        return false;
+        return 'failSms';
     }else{
 //        $smsmessage = $result->TemplateSMS;
 //        echo "dateCreated:".$smsmessage->dateCreated."<br/>";
 //        echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
         //TODO 添加成功处理逻辑
-        return true;
+        return 'successSms';
     }
 }
 
