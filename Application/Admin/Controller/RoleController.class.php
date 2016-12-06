@@ -97,26 +97,36 @@ class RoleController extends CommonController
      *删除角色
      */
     public function delRole(){
-        $roleId = I('post.roleId');
+        $roleId = I('get.id');
         $rs = $this->roleModel->delRow($roleId);
         if($rs){
             $this->success('删 除 成 功');
             exit();
         }else{
-            $this->error('删除失败');
+            //$this->error('删除失败');
             exit();
         }
     }
-
+    
+    /**
+     * 更新角色页面
+     */
+    public function updateRole()
+    {
+        $id = $_GET['id'];
+        $data = $this -> roleModel -> where("id='".$id."'") -> find();
+        $this -> assign('data', $data);
+        $this -> display();
+    }
     /**
      *更新角色
      */
-    public function updateRole(){
-        $roleId = I('post.roleId');
-        $name = I('post.name');
-        $auth = I('post.auth');
-        $remark = I('post.remark');
-        $rs = $this->roleModel->updateRow($roleId,$name,$auth,$remark);
+    public function updateRole_post(){
+        $data['id'] = intval(I('post.role_id'));
+        $data['role_name'] = I('post.role_name');
+        $data['remark'] = I('post.remark');
+        $rs = $this->roleModel->save($data);
+        echo $this -> roleModel ->getLastSql();
         if($rs){
             $this->success('更 新 成 功');
             exit();

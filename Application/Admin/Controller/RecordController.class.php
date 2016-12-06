@@ -4,7 +4,7 @@
  * @Company:
  * @Author: zml
  * @Since: 2016/11/21 18:18
- * @Description: 描述
+ * @Description: ����
  */
 
 namespace Admin\Controller;
@@ -31,29 +31,29 @@ class RecordController extends CommonController
     }
 
     /**
-     *通知尚未确认的理赔报价单的负责人(财务)
+     *֪ͨ��δȷ�ϵ����ⱨ�۵��ĸ�����(����)
      */
     public function noticeStaffDeal(){
         $financeUid = I('post.financeUid');
         $recordSn = I('post.recordSn');
         $uid = session('uid');
-        $subUserInfo = $this->subUserModel->getRowByUid($financeUid);   //获取财务人员个人信息
+        $subUserInfo = $this->subUserModel->getRowByUid($financeUid);   //��ȡ������Ա������Ϣ
         $userInfo = $this->adminModel->getNameByUid($uid);
-        $content = '敬爱的'.$financeUid.'员工!,系统通知你有一份理赔报价单：'.$recordSn.'需确认,请插眼传送登录系统,完成操作,报告人：'.$userInfo.'经理';
+        $content = '������'.$financeUid.'Ա��!,ϵͳ֪ͨ����һ�����ⱨ�۵���'.$recordSn.'��ȷ��,����۴��͵�¼ϵͳ,��ɲ���,�����ˣ�'.$userInfo.'����';
         $data = array($content,10);
         $tempId = '1';
         $rs = sendTemplateSMS($subUserInfo['phone'],$data,$tempId);
         if($rs){
-            $this->success('系统正在火速通知中...');
+            $this->success('ϵͳ���ڻ���֪ͨ��...');
             exit;
         }else{
-            $this->error('通知跑偏了,建议电话联系工作人员');
+            $this->error('֪ͨ��ƫ��,����绰��ϵ������Ա');
             exit;
         }
     }
 
     /**
-     *同意理赔通过/主管二级审核[审核通过(生成对应的基本理赔支付单含签名)(用于待审核)
+     *ͬ������ͨ��/���ܶ������[���ͨ��(��ɶ�Ӧ�Ļ�����֧������ǩ��)(���ڴ����)
      */
     public function agreePass(){
         $status = I('post.status');
@@ -66,7 +66,7 @@ class RecordController extends CommonController
                 $dealUid = session('dealUid');
                 $financeUid = I('post.financeUid');
                 $payCode = I('post.payCode');
-                $payType = empty($payCode) ? '银联支付' : I('post.payCode');
+                $payType = empty($payCode) ? '����֧��' : I('post.payCode');
                 $price = I('post.price');
                 $createTime = date('Y-m-d H:i:s');
                 $remark = I('post.remark');
@@ -74,24 +74,24 @@ class RecordController extends CommonController
                 $paySn = makeEveryNumber('PS',$id);
                 $result = $this->payModel->addPaySnById($id,$paySn);
                 if($result){
-                    $this->success('成功处理同意理赔');
+                    $this->success('�ɹ�����ͬ������');
                     exit;
                 }else{
-                    $this->error('同意失效');
+                    $this->error('ͬ��ʧЧ');
                     exit;
                 }
             }else{
-                $this->error('审核失败');
+                $this->error('���ʧ��');
                 exit;
             }
         }else{
-            $this->error('非法操作');
+            $this->error('�Ƿ�����');
             exit;
         }
     }
 
     /**
-     *拒绝理赔通过(用于待审核)
+     *�ܾ�����ͨ��(���ڴ����)
      */
     public function cancelPass(){
         $status = I('post.status');
@@ -100,26 +100,26 @@ class RecordController extends CommonController
         $inspectSn = I('post.inspectSn');
         $dealerUid = session('uid');
         if($status == 2){
-            //修改理赔报价单的状态并备注和主管人
+            //�޸����ⱨ�۵���״̬����ע��������
             $rs = $this->recordModel->refusePassByRecordSn($recordSn,$dealerUid,$status,$remark);
             if($rs){
-                $this->success('成功拒绝,系统正在发聩');
+                $this->success('�ɹ��ܾ�,ϵͳ���ڷ���');
                 exit;
             }else{
-                $this->error('拒绝失败');
+                $this->error('�ܾ�ʧ��');
                 exit;
             }
         }else{
-            //如果状态不是2，先删除生成的理赔报价单,再修改理赔登记表的状态：
-            //4审核不通过(客服需确认)，5审核不通过(勘察人员需确认)，7审核不通过，客服联系车主填写完整资料
+            //���״̬����2����ɾ����ɵ����ⱨ�۵�,���޸�����ǼǱ��״̬��
+            //4��˲�ͨ��(�ͷ���ȷ��)��5��˲�ͨ��(������Ա��ȷ��)��7��˲�ͨ��ͷ���ϵ������д��������
             $result = $this->recordModel->deleteOldRecordByInspectSnRecordSn($inspectSn,$recordSn);
             if($result){
                 $rs = $this->inspectModel->changeStatusByDealer($inspectSn,$dealerUid,$status,$remark);
                 if($rs){
-                    $this->success('操作成功,系统正在发聩');
+                    $this->success('�����ɹ�,ϵͳ���ڷ���');
                     exit;
                 }else{
-                    $this->error('操作失败');
+                    $this->error('����ʧ��');
                     exit;
                 }
             }
@@ -127,14 +127,14 @@ class RecordController extends CommonController
     }
 
     /**
-     *根据状态获取理赔报价单列表(审核不通过/审核通过)
+     *���״̬��ȡ���ⱨ�۵��б�(��˲�ͨ��/���ͨ��)
      */
     public function getRecordList(){
         $uid = session('uid');
         $status = I('post.status');
         $recordList = $this->recordModel->getRowsByDealerUid($uid,$status);
         if(empty($recordList)){
-            $content = '暂无理赔报价记录';
+            $content = '�������ⱨ�ۼ�¼';
         }
         $this->assign('recordList',$recordList);
         $this->assign('content',$content);
@@ -142,24 +142,31 @@ class RecordController extends CommonController
     }
 
     /**
-     *获取待审核理赔报价单所有记录
+     *��ȡ��������ⱨ�۵����м�¼
      */
     public function getWaitingList(){
-        $recordList = $this->recordModel->getRowsWaiting();
+        $type = I("get.type");
+        if($type==1){
+            $where['is_pass'] = 1;
+        }
+        else{
+            $where['is_pass'] = array('in', '2,3');
+        }
+        $recordList = $this->recordModel->where($where)->select();
         if(empty($recordList)){
-            $content = '暂无理赔报价记录';
+            $content = '�������ⱨ�ۼ�¼';
         }
         else{
             foreach($recordList as $k=>$v){
                 switch($v['is_pass']){
                     case 1:
-                        $recordList[$k]['type'] = "未审核";
+                        $recordList[$k]['type'] = "δ���";
                         break;
                     case 2:
-                        $recordList[$k]['type'] = "审核不通过";
+                        $recordList[$k]['type'] = "��˲�ͨ��";
                         break;
                     case 3:
-                        $recordList[$k]['type'] = "审核通过";
+                        $recordList[$k]['type'] = "���ͨ��";
                         break;
                 }
             }
@@ -169,36 +176,44 @@ class RecordController extends CommonController
         $this->display("claimingManage");
     }
     /**
-     *	审批理赔单
+     *	�������ⵥ
      */    
     public function lookVerifyClaims()
     {
+        //判断是提交还是页面
         if($_POST){
             $result = array('error'=>1,"content"=>"");
             $info['id'] = I('post.id');
             $info['is_pass'] = I("post.value");
+            $info['amount'] = I("post.amount");
+            $info['remark'] = I("post.remark");
             $res = $this->recordModel->save($info);
             if($res){
                 $result['error'] = 0;
                 $result['content'] = "修改成功";
             }
             print_r(json_encode($result));exit;
-            
-            
+        
         }
         else{
             $id = I("get.id");
+            $info = $this->recordModel->find($id);
+            $this->assign("info",$info);
             $this->assign("id",$id);
         }
         $this->display();
     }
     /**
-     * 勘察报告
+     * ���챨��
      */
     public function lookSurveyReporter()
     {
         $id = I("get.id");
-        
+        $info = $this->recordModel->table("safe_car_settle_record r")->join(" safe_car_settle_inspect s ON r.record_sn=s.inspect_sn ")
+                ->join(" safe_car_user u ON r.uid=u.uid ")
+                ->join(" safe_car_message m ON r.car_sn=m.car_sn ")
+                ->field("r.*,s.*,u.*,m.*")->where(array("r.id"=>$id))->find();
+        $this->assign("info",$info);
         $this->display();
     }
 }
