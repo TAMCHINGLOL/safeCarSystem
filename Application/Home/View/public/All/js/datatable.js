@@ -498,14 +498,14 @@ var Flook_surveySet=[
 ]
 $(document).ready(function() {
     $('#Flook_survey').DataTable( {
-        data: Flook_surveySet,
-        columns: [
-            { title: "来自工号" },
-            { title: "手机"},
-            { title: "提交时间" },
-            { title: "查看" },
-            { title: "操作" }
-        ],
+        //data: Flook_surveySet,
+        //columns: [
+        //    { title: "来自工号" },
+        //    { title: "手机"},
+        //    { title: "提交时间" },
+        //    { title: "查看" },
+        //    { title: "操作" }
+        //],
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
@@ -514,26 +514,26 @@ $(document).ready(function() {
             "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
-		    "paginate": {  
-		        "first":      "«",  
-		        "last":       "»",  
-		        "next":       ">",  
-		        "previous":   "<"  
-		    }    
+            "paginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            }
         },
         "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="FSchedulingLook(this)">查看勘察报告</a>';
-                },
-                "targets":3
-            },
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="writeClaim(this)">填写理赔单</a>';
-                },
-                "targets":4
-            }
+            //{
+            //    "render": function ( data, type, row ) {
+            //        return '<a class="cursor" onclick="FSchedulingLook(this)">查看勘察报告</a>';
+            //    },
+            //    "targets":3
+            //},
+            //{
+            //    "render": function ( data, type, row ) {
+            //        return '<a class="cursor" onclick="writeClaim(this)">填写理赔单</a>';
+            //    },
+            //    "targets":4
+            //}
 /*           {
                 "render": function ( data, type, row ) {
                     return '<a class="cursor del-row">删除</a>';
@@ -606,15 +606,15 @@ var Flook_claimsSet=[
 ]
 $(document).ready(function() {
     $('#Flook_claim').DataTable( {
-        data: Flook_claimsSet,
-        columns: [
-            { title: "理赔单号" },
-            { title: "来自工号" },
-            { title: "手机"},
-            { title: "查看" },
-            { title: "操作" },
-            { title: "状态" }
-        ],
+        //data: Flook_claimsSet,
+        //columns: [
+        //    { title: "理赔单号" },
+        //    { title: "来自工号" },
+        //    { title: "手机"},
+        //    { title: "查看" },
+        //    { title: "操作" },
+        //    { title: "状态" }
+        //],
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
@@ -674,16 +674,7 @@ $(document).ready(function() {
 //财务人员操作表格
 //支付理赔单
 $(document).ready(function() {
-    $('#Flook_pey').DataTable( {
-        data: Flook_claimsSet,
-        columns: [
-            { title: "理赔单号" },
-            { title: "来自工号" },
-            { title: "手机"},
-            { title: "查看" },
-            { title: "操作" },
-            { title: "状态" }
-        ],
+    $('#Flook_pey1').DataTable( {
         "pagingType":   "full_numbers",
         "language": {
             "lengthMenu": "每页 _MENU_ 条记录",
@@ -692,38 +683,32 @@ $(document).ready(function() {
             "infoEmpty": "暂无查询记录",
             "infoFiltered": "(从 _MAX_ 条记录过滤)",
             "sSearch":"搜索",
-		    "paginate": {  
-		        "first":      "«",  
-		        "last":       "»",  
-		        "next":       ">",  
-		        "previous":   "<"  
-		    }    
+            "paginate": {
+                "sFirst": "首页",
+                "sPrevious": "上页",
+                "sNext": "下页",
+                "sLast": "末页"
+            }
         },
         "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor" onclick="SchedulingDetileRigster(this)">查看勘察报告</a>';
-                },
-                "targets":3
-            },
-            {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor"  href="surveyReporter.html">查看理赔单</a>';
-                },
-                "targets":4
-            },
-            {
-                "render": function ( data, type, row ) {
-                    return '审核通过';
-                },
-                "targets":5
-            }
-/*           {
-                "render": function ( data, type, row ) {
-                    return '<a class="cursor del-row">删除</a>';
-                },
-                "targets":6
-            }*/
+            //{
+            //    "render": function ( data, type, row ) {
+            //        return '<a class="cursor" onclick="FSchedulingLook(this)">查看勘察报告</a>';
+            //    },
+            //    "targets":3
+            //},
+            //{
+            //    "render": function ( data, type, row ) {
+            //        return '<a class="cursor" onclick="writeClaim(this)">填写理赔单</a>';
+            //    },
+            //    "targets":4
+            //}
+            /*           {
+             "render": function ( data, type, row ) {
+             return '<a class="cursor del-row">删除</a>';
+             },
+             "targets":6
+             }*/
         ],
         "filter":true,
         "info":true,

@@ -19,6 +19,16 @@ class PayModel extends Model
     protected $tableName = 'settle_pay';
 
     /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getAllListByfinanceUid($uid){
+        $where['finance_uid'] = $uid;
+        return $this->where($where)->select();
+    }
+
+    /**
      * 主管根据状态获取对应列表
      * @param $uid
      * @param $status

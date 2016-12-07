@@ -71,7 +71,11 @@ class IndexController extends CommonController {
             $this->assign('inspectList',$inspectList);
             $this->display('inspectIndex');
         } else if($roleId == 3){    //财务
-            $this->display();
+            $inspectModel = D('Settle/Inspect');
+            $uid = session('uid');
+            $inspectList = $inspectModel->getAllInspect(3);
+            $this->assign('inspectList',$inspectList);
+            $this->display('recordIndex');
         }else{
             $this->error('非法操作');
             exit();

@@ -19,6 +19,7 @@ class CarController extends CommonController
 
     public function __construct()
     {
+        parent::__construct();
         $this->carMessageModel = D('Car/Message');
         $this->policyBaseModel = D('Settle/PolicyBase');
     }

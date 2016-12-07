@@ -2,9 +2,9 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">未处理勘察报告</a></li>
-					<li class="active"><a href="noChecking.html" >待处理理赔</a></li>
-					<li><a href="paying.html" >理赔单支付列表</a></li>
+					<li><a href="{:U('Home/Index/index','',false)}">待审核勘察报告列表</a></li>
+					<li class="active"><a href="{:U('Staff/Record/noChecking','',false)}" >待确认理赔报价单</a></li>
+					<li><a href="{:U('Staff/Record/paying','',false)}" >待处理理赔支付单</a></li>
 				</ul>
 			</div>
 			<div class="nav-right">
@@ -13,41 +13,61 @@
 			      	<form action="{:U('/staff/record/edit_post', array('id' => $data['id']))}" method='post' id='f'>
 			      	<table class="table-bordered" id="claimsTerm">
 			      		<tr><td colspan="2"><strong>理赔情况</strong> </td></tr>
-			      		<tr>
-			      			<td  style="width: 900px;">
-			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>1</span>：</p>
-			      				<!-- <textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>  -->
-			      				<p style="text-align: right;">理赔金额：<input value="{$data.money1}" class="pull-right" style="width: 80px;"/></p>
-			      			</td>
-			      		</tr>
-			      		<tr>
-			      			<td  style="width: 900px;">
-			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>2</span>：</p>
-			      				<!-- <textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>  -->
-			      				<p style="text-align: right;">理赔金额：<input value="{$data.money2}" class="pull-right" style="width: 80px;"/></p>
-			      			</td>
-			      		</tr>
+						<foreach name="data" item="v0">
+							<tr>
+								<td  style="width: 900px;">
+									<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>{$key+1}</span>：</p>
+									 <textarea name="text{$key+1}" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">
+										 {$v0}
+									 </textarea>
+									<p style="text-align: left;">理赔金额：
+										<button type="button" onclick="updatePrice('#btn{$key+1}','#input{$key+1}')" id="btn{$key+1}" class="btn btn-xs btn-primary">修改</button>
+										<input name='price{$key+1}' placeholder="单位元" id="input{$key+1}" style="display: none" autofocus class="pull-left" style="width: 80px;border: solid"/>
+									</p>
+								</td>
+							</tr>
+						</foreach>
+
+			      		<!--<tr>-->
+			      			<!--<td  style="width: 900px;">-->
+			      				<!--<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>2</span>：</p>-->
+			      				<!--&lt;!&ndash; <textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>  &ndash;&gt;-->
+			      				<!--<p style="text-align: right;">理赔金额：<input value="{$data.money2}" class="pull-right" style="width: 80px;"/></p>-->
+			      			<!--</td>-->
+			      		<!--</tr>-->
+						<if condition="$recordInfo.dealer_uid neq ''">
 			      		<tr>
 			      			<td  style="width: 900px;">
 			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">经理建议：</p>
-			      				<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;" name='remark'>{$data.remark}</textarea> 
-			      				<p style="text-align: right;">理赔总金额：<input value="{$data.amount}" class="pull-right" style="width: 80px;" name='amount'/></p>
+			      				<div style="padding: 0 10px;overflow:hidden; min-height: 150px;text-align: center">{$recordInfo.deal_remark}</div>
 			      			</td>
 			      		</tr>
+						</if>
+						<tr>
+							<td>
+								<p style="text-align: right;">理赔总金额：<input value="{$recordInfo.amount}" class="pull-right" style="width: 80px;" name='amount' disabled/></p>
+							</td>
+						</tr>
 			      	</table>
 			      	<div class="register_btn">
-			      		<input name='record_sn' value='{$data.record_sn}' type='hidden'>
-			      		<input name='uid' value='{$data.uid}' type='hidden'>
-			      		<input name='dealer_uid' value='{$data.dealer_uid}' type='hidden'>
-			      		<input name='finance_uid' value='{$data.finance_uid}' type='hidden'>
-			      		<input name='id' value='{$data.id}' type='hidden'>
-			      		<a class="save"  onclick="document.getElementById('f').submit();return false">修改</a>
+			      		<input name='record_sn' value='{$recordInfo.record_sn}' type='hidden'>
+			      		<input name='uid' value='{$recordInfo.uid}' type='hidden'>
+			      		<input name='dealer_uid' value='{$recordInfo.dealer_uid}' type='hidden'>
+			      		<input name='finance_uid' value='{$recordInfo.finance_uid}' type='hidden'>
+			      		<input name='id' value='{$recordInfo.id}' type='hidden'>
+			      		<!--<a class="save"  onclick="document.getElementById('f').submit();return false">修改</a>-->
+						<button type="submit" class="btn btn-md btn-primary">确 认</button>
 			      	</div>
 			      	</form>
 			      </div>
 			</div>
 		</div>
   <script type="text/javascript">
+	  function updatePrice(id1,id2){
+		$(id2).css('display','block');
+		$(id1).css('display','none');
+		  return false;
+	  }
     function MaxMe(o) {
       o.style.height = o.scrollTop + o.scrollHeight + "px";
     }

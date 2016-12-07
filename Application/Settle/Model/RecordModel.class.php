@@ -15,7 +15,17 @@ class RecordModel extends Model
 {
     protected $tableName = 'settle_record';
 
-
+    /**
+     * @param $id
+     * @param $recordSn
+     * @return bool
+     * @Author: ludezh
+     */
+    public function addRecordSn($id, $recordSn){
+        $where['id'] = $id;
+        $data['record_sn'] = $recordSn;
+        return $this->where($where)->save($data);
+    }
     /**
      * 获取等待审核的理赔报价单列表
      * @return mixed

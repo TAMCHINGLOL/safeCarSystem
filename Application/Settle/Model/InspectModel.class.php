@@ -21,6 +21,28 @@ class InspectModel extends Model
 
     /**
      * @param $inspectSn
+     * @param $status
+     * @param $financeUid
+     * @return bool
+     * @Author: ludezh
+     */
+    public function updateRowStatusAndFinance($inspectSn, $status, $financeUid){
+        $where['inspect_sn'] = $inspectSn;
+        $data['finance_uid'] = $financeUid;
+        $data['status'] = $status;
+        return $this->where($where)->save($data);
+    }
+    /**
+     * @param $status
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function getAllInspect($status){
+        $where['status'] = $status;
+        return $this->where($where)->select();
+    }
+    /**
+     * @param $inspectSn
      * @param $inspectUid
      * @return mixed
      * @Author: ludezh

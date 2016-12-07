@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c52a0e-1dae-48d4-b219-39c16ff5ebfe" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/Login/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/Index/recordIndex.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/surveyReporter.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Admin/Conf/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/InspectController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/InspectController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/LoginController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/PayController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/PayController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/RecordController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/RecordController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/RoleController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/RoleController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Role/editRole.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Role/editRole.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Role/findRole.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Role/findRole.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Conf/config.php" afterPath="$PROJECT_DIR$/Application/Common/Conf/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Controller/BaseController.class.php" afterPath="$PROJECT_DIR$/Application/Common/Controller/BaseController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php" afterPath="$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php" afterPath="$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/User/Model/AdminModel.class.php" afterPath="$PROJECT_DIR$/Application/User/Model/AdminModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" afterPath="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html" afterPath="$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php" afterPath="$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/Controller/CarController.class.php" afterPath="$PROJECT_DIR$/Application/Staff/Controller/CarController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/Controller/RecordController.class.php" afterPath="$PROJECT_DIR$/Application/Staff/Controller/RecordController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Record/home.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Record/noChecking.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/noChecking.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Record/paying.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/paying.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Record/reviewVerifyClaims.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/reviewVerifyClaims.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/layout.html" afterPath="$PROJECT_DIR$/Application/Staff/View/layout.html" />
     </list>
     <ignored path="safeCarSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +38,90 @@
     <favorites_list name="safeCarSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="RecordController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/RecordController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.032787">
+              <caret line="58" column="30" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PayModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.4838705">
+              <caret line="25" column="42" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="noChecking.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/noChecking.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.3559322">
+              <caret line="9" column="40" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inspectIndex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.451613">
+              <caret line="13" column="76" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="76" />
+              <folding>
+                <element signature="n#div#1;n#body#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#body#0;n#!!top" expanded="false" />
+                <element signature="e#10201#11045#0" expanded="false" />
+                <element signature="e#11131#12516#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paying.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/paying.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.8824663">
+              <caret line="68" column="86" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datatable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.066668">
+              <caret line="639" column="13" selection-start-line="617" selection-start-column="8" selection-end-line="639" selection-end-column="13" />
+              <folding>
+                <element signature="e#10269#13195#0" expanded="false" />
+                <element signature="e#14917#17023#0" expanded="false" />
+                <element signature="e#19924#21466#0" expanded="false" />
+                <element signature="e#22262#22936#0" expanded="false" />
+                <element signature="e#23792#25334#0" expanded="false" />
+                <element signature="e#27900#28571#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecordModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.819672">
+              <caret line="26" column="41" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,17 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/PayController.php" />
-        <option value="$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/InspectController.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/CarController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/ActionController.php" />
-        <option value="$PROJECT_DIR$/Application/Common/Model/RoleModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/PolicyController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/StaffController.class.php" />
-        <option value="$PROJECT_DIR$/Application/User/Model/SubUserModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Common/Conf/db.php" />
         <option value="$PROJECT_DIR$/Application/User/Model/UserModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Car/Model/MessageModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Settle/Model/PolicyBaseModel.class.php" />
@@ -79,13 +149,9 @@
         <option value="$PROJECT_DIR$/Application/Staff/Controller/PersonController.class.php" />
         <option value="$PROJECT_DIR$/Application/Staff/View/Person/inspectList.html" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/View/Index/serviceIndex.html" />
-        <option value="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html" />
         <option value="$PROJECT_DIR$/Application/Staff/View/Inspect/endSurvey.html" />
         <option value="$PROJECT_DIR$/Application/Common/Common/function.php" />
-        <option value="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" />
         <option value="$PROJECT_DIR$/Application/Staff/View/Inspect/surveyList.html" />
         <option value="$PROJECT_DIR$/Application/Staff/View/Inspect/surveyReporter.html" />
         <option value="$PROJECT_DIR$/Application/Admin/View/Login/login.html" />
@@ -106,6 +172,21 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html" />
         <option value="$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Staff/Controller/CarController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/Record/home.html" />
+        <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/layout.html" />
+        <option value="$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/Record/surveyReporter.html" />
+        <option value="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/Record/noChecking.html" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/Record/reviewVerifyClaims.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/Index/recordIndex.html" />
+        <option value="$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Staff/Controller/RecordController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" />
+        <option value="$PROJECT_DIR$/Application/Staff/View/Record/paying.html" />
       </list>
     </option>
   </component>
@@ -183,6 +264,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Staff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cache" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -201,7 +336,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Staff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -219,7 +358,59 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Staff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Record" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Staff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inspect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Staff" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -241,33 +432,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Settle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Conf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -285,7 +454,65 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Settle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="safeCarSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -307,59 +534,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Role" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="View" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Login" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -385,51 +560,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="safeCarSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Conf" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,15 +583,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\WWW\term\safeCarSystem" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WWW\term\safeCarSystem\Application\Staff\View\Record" />
+      <recent name="E:\WWW\term\safeCarSystem\Application\Home\View\Index" />
       <recent name="E:\WWW\term\safeCarSystem\Application\Admin\View\Login" />
       <recent name="E:\WWW\term\safeCarSystem\Application" />
       <recent name="E:\WWW\term\safeCarSystem\Application\Home\View\public\All" />
-      <recent name="E:\WWW\term\safeCarSystem\Application\Staff\View\Inspect" />
-      <recent name="E:\WWW\term\safeCarSystem\Application\Home\View\Index" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\WWW\term\safeCarSystem" />
     </key>
   </component>
   <component name="RunManager">
@@ -504,9 +639,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2306003" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28916544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -545,178 +680,9 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Settle/Model/PolicyBaseModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3073341">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Settle/Model/PolicyTypeModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1311474">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Login/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24131627">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Plugin/SMSPHP_v2.6r/CCPRestSmsSDK.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0560929">
-          <caret line="166" column="21" selection-start-line="166" selection-start-column="15" selection-end-line="166" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Think/Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.84460694">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Runtime/Cache/Staff/5d04fbc4c3a6fa5ecbdc4009f30f7d88.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.870968">
-          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Person/inspectList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.04238921">
-          <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/PersonController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39670932">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/User/Model/UserModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4893617">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/claimingManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5173675">
-          <caret line="43" column="52" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4021938">
-          <caret line="860" column="9" selection-start-line="860" selection-start-column="9" selection-end-line="860" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/View/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2468008">
-          <caret line="31" column="21" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0219378">
-          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/serviceIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5250291">
-          <caret line="75" column="52" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/registerInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38416764">
-          <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Car/Model/MessageModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.096774">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/inspectList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3841677">
-          <caret line="69" column="6" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/public/All/diyUpload/js/diyUpload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/endSurvey.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.64516">
-          <caret line="44" column="71" selection-start-line="44" selection-start-column="71" selection-end-line="44" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Plugin/UploadPHP/demo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/upload/image/2016-12-07/20161207001511_95267.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.064516">
-          <caret line="100" column="42" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="376" column="34" selection-start-line="376" selection-start-column="28" selection-end-line="376" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.52459">
-          <caret line="126" column="34" selection-start-line="126" selection-start-column="20" selection-end-line="126" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/surveyList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.651686">
-          <caret line="163" column="49" selection-start-line="163" selection-start-column="48" selection-end-line="163" selection-end-column="49" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Runtime/Cache/Staff/d4a6c53de1bb4d7456c6915456a1ba35.php">
@@ -737,13 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.645162">
           <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="29" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.580645">
-          <caret line="71" column="5" selection-start-line="38" selection-start-column="8" selection-end-line="71" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -811,7 +770,7 @@
         <state vertical-scroll-proportion="0.32175502">
           <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
           <folding>
-            <element signature="e#142#179#0#PHP" expanded="true" />
+            <element signature="e#142#179#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,9 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="52.51613">
           <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-          <folding>
-            <element signature="e#144#181#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -834,20 +791,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32175502">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/RoleController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.387097">
           <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
           <folding>
-            <element signature="e#159#196#0#PHP" expanded="true" />
+            <element signature="e#159#196#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,14 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="12.774194">
           <caret line="18" column="25" selection-start-line="13" selection-start-column="20" selection-end-line="18" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Conf/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12065814">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -881,16 +822,8 @@
         <state vertical-scroll-proportion="0.16453382">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="e#142#179#0#PHP" expanded="true" />
+            <element signature="e#142#179#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73308957">
-          <caret line="90" column="64" selection-start-line="90" selection-start-column="64" selection-end-line="90" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,28 +832,10 @@
         <state vertical-scroll-proportion="0.48263255">
           <caret line="33" column="71" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="71" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#if#0;n#td#3;n#tr#4;n#table#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#foreach#0;n#td#1;n#tr#10;n#table#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#if#0;n#td#3;n#tr#4;n#table#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#foreach#0;n#td#1;n#tr#10;n#table#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="false" />
             <element signature="n#script#9;n#body#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5009141">
-          <caret line="80" column="76" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#if#0;n#td#1;n#tr#7;n#table#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21206582">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -929,8 +844,305 @@
         <state vertical-scroll-proportion="2.2522852">
           <caret line="62" column="29" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="29" />
           <folding>
-            <element signature="e#142#181#0#PHP" expanded="true" />
+            <element signature="e#142#181#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/LoginController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7404022">
+          <caret line="71" column="5" selection-start-line="38" selection-start-column="8" selection-end-line="71" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/lookVerifyClaims.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/lookSurveyReporter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/looknoVerifyClaims.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Controller/CommonController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.040219378">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/CarController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20109689">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Conf/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12065814">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5630713">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/oneInspect.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="18.32258">
+          <caret line="80" column="76" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/InspectController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.93601465">
+          <caret line="97" column="5" selection-start-line="77" selection-start-column="4" selection-end-line="97" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.67742">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6837294">
+          <caret line="75" column="56" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22486289">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/surveyList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="15.709678">
+          <caret line="59" column="76" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#0;n#if#0;n#td#5;n#tr#0;n#if#0;n#foreach#0;n#tbody#0;n#table#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#button#1;n#if#0;n#td#5;n#tr#0;n#if#0;n#foreach#0;n#tbody#0;n#table#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#body#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.645162">
+          <caret line="28" column="80" selection-start-line="28" selection-start-column="80" selection-end-line="28" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/wirteClaims.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19378428">
+          <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="77" selection-end-column="3" />
+          <folding>
+            <element signature="e#2923#3570#0" expanded="false" />
+            <marker date="1481080451381" expanded="true" signature="3061:3524" placeholder="..." />
+            <marker date="1481080451381" expanded="true" signature="3089:3102" placeholder="..." />
+            <marker date="1481080451381" expanded="true" signature="3103:3505" placeholder="..." />
+            <marker date="1481080451381" expanded="true" signature="3130:3199" placeholder="..." />
+            <marker date="1481080451381" expanded="true" signature="3321:3356" placeholder="..." />
+            <marker date="1481080451381" expanded="false" signature="3396:3414" placeholder="..." />
+            <marker date="1481080451381" expanded="false" signature="3467:3479" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/surveyReporter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6173913">
+          <caret line="204" column="138" selection-start-line="204" selection-start-column="138" selection-end-line="204" selection-end-column="138" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#p#1;n#td#0;n#tr#1;n#table#1;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#script#9;n#body#0;n#!!top" expanded="false" />
+            <element signature="e#9748#9973#0" expanded="false" />
+            <element signature="e#9999#10066#0" expanded="false" />
+            <marker date="1481089259285" expanded="true" signature="8981:8994" placeholder="..." />
+            <marker date="1481089259285" expanded="true" signature="9015:9084" placeholder="..." />
+            <marker date="1481089259285" expanded="true" signature="9216:9251" placeholder="..." />
+            <marker date="1481089259285" expanded="true" signature="9283:9301" placeholder="..." />
+            <marker date="1481089259285" expanded="true" signature="9365:9377" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Inspect/inspectList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48263255">
+          <caret line="21" column="94" selection-start-line="19" selection-start-column="20" selection-end-line="21" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Cache/Staff/d8d0a9ec1244dbe75c83fb9f7271841a.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.870968">
+          <caret line="36" column="80" selection-start-line="36" selection-start-column="80" selection-end-line="36" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Cache/Staff/1cecd675c547c3af1cc83d1e929f0ef6.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="25.548388">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <marker date="1481095797839" expanded="true" signature="2413:2826" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Settle/Model/RecordModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.819672">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/reviewVerifyClaims.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6652174">
+          <caret line="41" column="113" selection-start-line="41" selection-start-column="113" selection-end-line="41" selection-end-column="113" />
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#td#0;n#tr#0;n#foreach#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#td#0;n#tr#0;n#foreach#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#1;n#td#0;n#tr#0;n#foreach#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#input#0;n#p#1;n#td#0;n#tr#0;n#foreach#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#0;n#tr#0;n#if#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#if#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#0;n#tr#1;n#table#0;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/recordIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15163934">
+          <caret line="103" column="27" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#3;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#4;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#4;n#tr#0;n#foreach#0;n#tbody#0;n#table#0;n#div#1;n#div#2;n#body#0;n#!!top" expanded="true" />
+            <element signature="e#6551#7041#0" expanded="false" />
+            <element signature="e#7096#8158#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/Controller/RecordController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.032787">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Pay/Model/PayModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.4838705">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.066668">
+          <caret line="639" column="13" selection-start-line="617" selection-start-column="8" selection-end-line="639" selection-end-column="13" />
+          <folding>
+            <element signature="e#10269#13195#0" expanded="false" />
+            <element signature="e#14917#17023#0" expanded="false" />
+            <element signature="e#19924#21466#0" expanded="false" />
+            <element signature="e#22262#22936#0" expanded="false" />
+            <element signature="e#23792#25334#0" expanded="false" />
+            <element signature="e#27900#28571#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/noChecking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3559322">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/Index/inspectIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.451613">
+          <caret line="13" column="76" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="76" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#body#0;n#!!top" expanded="false" />
+            <element signature="e#10201#11045#0" expanded="false" />
+            <element signature="e#11131#12516#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Staff/View/Record/paying.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.8824663">
+          <caret line="68" column="86" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>

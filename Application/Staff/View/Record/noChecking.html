@@ -1,9 +1,9 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">未处理勘察报告</a></li>
-					<li class="active"><a href="#" >待处理理赔列表</a></li>
-					<li><a href="{:U('/staff/record/reviewVerifyClaims'}" >待支付理赔列表</a></li>
+					<li><a href="{:U('Home/Index/index','',false)}">待审核勘察报告列表</a></li>
+					<li class="active"><a href="{:U('Staff/Record/noChecking','',false)}" >待确认理赔报价单</a></li>
+					<li><a href="{:U('Staff/Record/paying','',false)}" >待处理理赔支付单</a></li>
 				</ul>
 			</div>
 			<div class="nav-right">
@@ -11,7 +11,9 @@
 			      	<thead>
 			      	<tr>
 							<td>理赔单号</td>
-							<td>保险单号</td>
+							<td>勘察单号</td>
+							<td>车辆单号</td>
+							<td>创建时间</td>
 							<td>操作</td>
 			      	</tr>
 			      	</thead>
@@ -20,8 +22,16 @@
 			      			
 							<tr class='text-c'>
 								<td>{$u.record_sn}</td>
-								<td>{$u.policy_sn}</td>
-								<td><if condition='$u.is_pass eq 1'><a href="{:U('/staff/record/reviewVerifyClaims', array('id'=>$u['id']))}">修改理赔</a><else/><a href="{:U('/staff/record/reviewVerifyClaims', array('id'=>$u['id']))}">查看详情</a></if></td>
+								<td>{$u.inspect_sn}</td>
+								<td>{$u.car_sn}</td>
+								<td>{$u.create_time}</td>
+								<td>
+									<if condition='$u.is_pass eq 1'>
+										<a href="{:U('/staff/record/reviewVerifyClaims', array('id'=>$u['id']))}">修改理赔</a>
+										<else/>
+										<a href="{:U('/staff/record/reviewVerifyClaims', array('id'=>$u['id']))}">待确认</a>
+									</if>
+								</td>
 							</tr>						
 						</foreach>
 			      	</tbody>

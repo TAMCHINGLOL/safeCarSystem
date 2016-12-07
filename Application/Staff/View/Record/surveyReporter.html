@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/zui.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="__ROOT__/Application/Home/View/public/All/css/common.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Application/Home/View/public/All/diyUpload/css/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Application/Home/View/public/All/diyUpload/css/diyUpload.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<!--<div class="header">-->
+			<!--<p class="logo"><img src="__ROOT__/Application/Home/View/public/All/img/back.png" />车险理赔系统</p>-->
+			<!--<a class="pull-right user">{:session('real_name')}<img src="__ROOT__/Application/Home/View/public/All/img/back.png" /></a>-->
+		<!--</div>-->
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li class="active"><a href="{:U('Home/Index/index','',false)}">待审核勘察报告列表</a></li>
+					<li><a href="{:U('Staff/Record/noChecking','',false)}" >待确认理赔报价单</a></li>
+					<li><a href="{:U('Staff/Record/paying','',false)}" >待处理理赔支付单</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      <a class="save"  href="JavaScript:history.go(-1);"><<返回</a>
+			      <div class="insurance_register">
+			      	<table class="table-bordered" >
+			      		<tr><td colspan="8"style="text-align: center;"><strong>机动车辆勘察报告</strong> </td></tr>
+			      		<tr>
+			      			<td>车辆编号</td>
+			      			<td style="width: 250px;" id="carSn">{$carInfo.car_sn}</td>
+			      			<td>厂牌车型</td>
+			      			<td style="width: 250px;" colspan="3">{$carInfo.brand}</td>
+			      			<td>车牌号码</td>
+			      			<td style="width: 250px;">{$carInfo.plate_num}</td>
+			      		</tr>
+						<tr>
+							<td>驾驶证号码</td>
+							<td  colspan="2" >{$carInfo.frame_num}</td>
+							<td>驾驶证有效期</td>
+							<td colspan="4">{$carInfo.reg_time}</td>
+						</tr>
+			      		<tr>
+			      			<td>出险地点</td>
+			      			<td colspan="2" id="address">
+								{$inspectInfo.address}
+							</td>
+			      			<td>出险时间</td>
+			      			<td colspan="4" id="htime">
+								{$inspectInfo.happen_time}
+			      			</td>
+							<tr>
+						<td>出勤时间</td>
+						<td colspan="2">
+							{$inspectInfo.start_time}
+						</td>
+							<td>结束时间</td>
+							<td colspan="4">
+								<if condition="$flag eq 1">
+									<label style="color: red;font-size: 12px;">系统自动生成</label>
+									<else />
+									{$inspectInfo.end_time}
+								</if>
+							</td>
+						</tr>
+			      		</tr>
+						<tr>
+							<td>客服备注</td>
+							<td colspan="7" >{$inspectInfo.custom_remark}</td>
+						</tr>
+			      		<tr>
+			      			<td>出险原因以及经过</td>
+			      			<td colspan="7" >{$inspectInfo.body_img_list}</td>
+			      		</tr>
+			      		<tr>
+			      			<td>损失范围</td>
+			      			<td colspan="7" >{$inspectInfo.footer_img_list}</td>
+			      		</tr>
+			      		<tr>
+			      			<td>勘察意见</td>
+			      			<td colspan="7" >{$inspectInfo.inspect_remark}</td>
+			      		</tr>
+			      		<tr>
+			      			<td>保险人在事故中责任：</td>
+			      			<td colspan="7" >{$inspectInfo.other_img_list}</td>
+			      		</tr>
+			      		<tr>
+			      			<td>现场图片</td>
+			      			<td colspan="7" >
+								<foreach name="picArr" item="v1">
+									<img src="__ROOT__{$v1.pic}" style="width: 170px;height: 150px;border-radius: 10px;margin-right: 10px;margin-bottom: 10px"/>
+								</foreach>
+								<!--<div id="demo">-->
+									<!--<div id="as" ></div>-->
+								<!--</div>-->
+			      			</td>
+			      		</tr>
+			      	</table>
+					  <table class="table-bordered" id="claimsTerm">
+						  <tr><td colspan="2"><strong>理赔情况</strong> </td></tr>
+						  <tr>
+							  <td  style="width: 900px;">
+								  <p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>1</span>：</p>
+								  <textarea id="textareaId_1" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>
+								  <p style="text-align: right;">理赔金额：<input id="inputId_1" value="" class="pull-right" style="width: 80px;" placeholder="单位：元"/></p>
+							  </td>
+						  </tr>
+					  </table>
+					  <div class="register_btn">
+						  <a class="save" onclick="add_term()">添加理赔项目</a>
+					  </div>
+			      	<div class="register_btn">
+<button class="save" onclick="addRecord('{$inspectInfo['inspect_sn']}','{$carInfo['uid']}','{$carInfo['car_sn']}','{$inspectInfo['type_sn']}')">立 即 生 成 报 价</button>
+			      	</div>
+			      </div>
+			</div>
+		</div>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/jquery.js' charset='utf-8'></script>
+	<script language="javascript" src="__ROOT__/Application/Home/View/public/All/js/jquery.jqprint-0.3.js"></script>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/zui.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.js"></script>
+	<script type='text/javascript' src="__ROOT__/Application/Home/View/public/All/js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__ROOT__/Application/Home/View/public/All/js/jquery.dataTables.js"></script>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/datatable.js' charset='utf-8'></script>
+	<script type="text/javascript" src="__ROOT__/Application/Home/View/public/All/diyUpload/js/webuploader.html5only.min.js"></script>
+	<script type="text/javascript" src="__ROOT__/Application/Home/View/public/All/diyUpload/js/diyUpload.js"></script>
+	<script type="text/javascript">
+		//图片上传插件
+		var picUpload_url = "{:U('Staff/Inspect/picUpload','',false)}";
+		/*
+		 * 服务器地址,成功返回,失败返回参数格式依照jquery.ajax习惯;
+		 * 其他参数同WebUploader
+		 */
+
+		$('#test').diyUpload({
+			url: picUpload_url,
+			success:function( data ) {
+				console.info( data );
+			},
+			error:function( err ) {
+				console.info( err );
+			}
+		});
+
+		$('#as').diyUpload({
+			url:picUpload_url,
+			success:function( data ) {
+				console.info( data );
+			},
+			error:function( err ) {
+				console.info( err );
+			},
+			buttonText : '选择文件',
+			chunked:true,
+			// 分片大小
+			chunkSize:512 * 1024,
+			//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+			fileNumLimit:50,
+			fileSizeLimit:500000 * 1024,
+			fileSingleSizeLimit:50000 * 1024,
+			accept: {}
+		});
+	</script>
+  	<script type="text/javascript">
+	  	var addRecordRow_url = "{:U('Staff/Record/addRecordRow','',false)}";
+	  	var surveyList_url = "{:U('Home/Index/index','',false)}";
+  		function addRecord(inspectSn,carUid,carSn,typeSn){
+//	  var carSn = $('#carSn').text();
+			  var address = $.trim($('#address').text());
+			  var htime = $.trim($('#htime').text());
+			  var inputId_1 = $('#inputId_1').val();
+			  var inputId_2 = $('#inputId_2').val();
+			  var inputId_3 = $('#inputId_3').val();
+			  var inputId_4 = $('#inputId_4').val();
+			  var inputId_5 = $('#inputId_5').val();
+			  var textareaId_1 = $.trim($('#textareaId_1').val());
+			  var textareaId_2 = $.trim($('#textareaId_2').val());
+			  var textareaId_3 = $.trim($('#textareaId_3').val());
+			  var textareaId_4 = $.trim($('#textareaId_4').val());
+			  var textareaId_5 = $.trim($('#textareaId_5').val());
+			  var remark = textareaId_1+','+textareaId_2+','+textareaId_3+','+textareaId_4+','+textareaId_5+',';
+			  remark = $.trim(remark);
+				var to1 = parseInt(inputId_1);
+				if(!isNaN(parseInt(inputId_2))){
+					to1 += parseInt(inputId_2);
+				}
+				if(!isNaN(parseInt(inputId_3))){
+					to1 += parseInt(inputId_3);
+				}
+				if(!isNaN(parseInt(inputId_4))){
+					to1 += parseInt(inputId_4);
+				}
+				if(!isNaN(parseInt(inputId_5))){
+					to1 += parseInt(inputId_5);
+				}
+//				alert(to1);return false;
+	  if(textareaId_1 != '' && inputId_1 != ''){
+		  $.ajax({
+			  url: addRecordRow_url,
+				  type: 'post',
+				  dataType: 'json',
+				  data: {address:address,htime:htime,carUid:carUid,carSn: carSn,inspectSn: inspectSn,typeSn:typeSn,remark:remark,total:to1},
+				  success: function(result){
+					  if(result.status == 1){
+							window.location.href = surveyList_url;
+					  }else{
+						  alert(result.info);
+						  return false;
+					  }
+				  }
+		  })
+	  }else{
+		  alert('请填写所有理赔信息');
+		  return false;
+	  }
+//  	location.href="registerList.html";
+  }
+	  	//添加项目
+	  	function add_term(){
+			var li_add=$("#claimsTerm tr").last();
+			var num=parseInt(li_add.find("span").text());
+			if(num == 5){
+				alert('不可再继续添加理赔项目啦');
+				return false;
+			}
+			var num_add=num+1;
+			var textareaId="textareaId_";
+			textareaId="textareaId_"+num_add;
+			var inputId="inputId_";
+			inputId="inputId_"+num_add;
+			var add_content='<tr>'+
+					'<td  style="width: 900px;">'+
+					'<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>'+num_add+'</span>：</p>'+
+					'<textarea id='+textareaId+' onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="overflow:hidden; min-height: 150px;"></textarea>'+
+					'<p style="text-align: right;">理赔金额：<input value="" id='+inputId+' class="pull-right" style="width: 80px;" placeholder="单位：元"/></p>'+
+					'</td>'+
+					'</tr>';
+			$(add_content).insertAfter(li_add);
+	  }
+
+	  //点击上传图片并且显示图片
+	  function pictrue(){
+		var li_add=$("#survey_ul li").last();
+		var add_content='<input type="file">';
+		$(add_content).insertAfter(li_add);
+	  }
+	  //点击删除图片
+	  function delImg(d){
+		$(d).parent().remove();
+	  }
+  
+  		$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    	function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>
+	</body>
+</html>

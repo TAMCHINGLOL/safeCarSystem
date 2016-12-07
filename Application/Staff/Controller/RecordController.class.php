@@ -37,6 +37,80 @@ class RecordController extends CommonController
         $this->bankPayModel = D('Pay/BankPay');
     }
 
+    public function paying(){
+        $uid = session('uid');
+        $data = $this->payModel->getAllListByfinanceUid($uid);
+        foreach($data as $k => $v){
+            switch($v['is_pay']){
+                case 1:
+                    $str = '等待支付';
+                    break;
+                case 2:
+                    $str = '银行处理中';
+                    break;
+                case 3:
+                    $str = '支付已完成';
+                    break;
+                default:
+                    $str = '未知状态';
+            }
+            $data[$k]['status'] = $str;
+        }
+        $this->assign('payInfo',$data);
+        $this->display();
+    }
+    /**
+     * @Author: ludezh
+     */
+    public function addRecordRow(){
+        $address = I('post.address');
+        $htime = I('post.htime');
+        $carUid = I('post.carUid');
+        $carSn = I('post.carSn');
+        $inspectSn = I('post.inspectSn');
+        $typeSn = I('post.typeSn');
+        $remark = I('post.remark');
+        $total = I('post.total');
+        $financeUid = session('uid');
+        $add_time = date('Y-m-d H:i:s');
+        $id = $this->recordModel->addNewRow($carUid, $financeUid, $inspectSn, $carSn, '', $typeSn, $add_time, $address, $htime, $total, $remark);
+        if($id){
+            $this->inspectModel->updateRowStatusAndFinance($inspectSn,9,$financeUid);
+            $recordSn = makeEveryNumber('RS',$id);
+            $this->recordModel->addRecordSn($id,$recordSn);
+            $this->success('新增理赔成功');
+            exit();
+        }else{
+            $this->error('添加新理赔报价失败');
+            exit();
+        }
+    }
+
+    /**
+     * @Author: ludezh
+     */
+    public function surveyReporter(){
+        $carSn = I('get.carSn');
+        $inspectUid = I('get.inspectUid');
+        $inspectSn = I('get.inspectSn');
+        $flag = I('get.flag');
+        $inspectModel = D('Settle/Inspect');
+        $inspectInfo = $inspectModel->getInspectInfoByInspectSn($inspectSn,$inspectUid);
+        $picArr = explode(',',$inspectInfo['header_img_list']);
+        $picUrlArr = array();
+        foreach($picArr as $k => $v){
+            $picUrlArr[$k]['pic'] = substr($v, strrpos($v, '../')+2);
+        }
+//        print_r($picUrlArr);exit();
+        $carModel = D('Car/Message');
+        $carInfo = $carModel->getRowByCarSn($inspectInfo['car_sn']);
+        $this->assign('flag',$flag);
+        $this->assign('picArr',$picUrlArr);
+        $this->assign('inspectInfo',$inspectInfo);
+        $this->assign('carInfo',$carInfo);
+        $this->display();
+    }
+
     /**
      *根据财务人员和状态获取对应的理赔记录列表
      * 待审核/审核不通过/审核通过
@@ -174,7 +248,9 @@ class RecordController extends CommonController
      */
     public function noChecking()
     {
-    	$un = $this -> recordModel -> where("is_pass='1' OR is_pass='2'") -> select();
+        $where['is_pass'] = array('neq',3);
+        $where['finance_uid'] = session('uid');
+    	$un = $this -> recordModel -> where($where) -> select();
     	//print_r($un);
     	$this -> assign('un', $un);
     	$this->display('noChecking');
@@ -187,17 +263,18 @@ class RecordController extends CommonController
     {
     	$id = $_GET['id'];
     	$data = $this -> recordModel -> where("id='".$id."'") -> find();
-    	if($data['amount'] == '' || $data['amount'] == null) {
-    		 $data['money1'] = rand(1000, 10000);
-    		 $data['money2'] = rand(1000, 10000);
-    	} else {
-    		$data['money1'] = intval($data['amount']) - 1000;
-    		$data['money2'] = intval($data['amount']) - $data['money1'];
-    	}
-    	
-    	$data['amount'] = $data['money1'] + $data['money2'];
-    	print_r($data);
-    	$this -> assign('data', $data);
+//    	if($data['amount'] == '' || $data['amount'] == null) {
+//    		 $data['money1'] = rand(1000, 10000);
+//    		 $data['money2'] = rand(1000, 10000);
+//    	} else {
+//    		$data['money1'] = intval($data['amount']) - 1000;
+//    		$data['money2'] = intval($data['amount']) - $data['money1'];
+//    	}
+        $remark = explode(',',$data['remark']);
+        $recordInfo = array_filter($remark);
+//    	print_r($data);
+    	$this -> assign('data', $recordInfo);
+    	$this -> assign('recordInfo', $data);
     	$this -> display('reviewVerifyClaims');
     }
     
@@ -206,24 +283,41 @@ class RecordController extends CommonController
      */
     public function edit_post()
     {
-    	$_POST['is_pass'] = 1;
-    	$res = $this -> recordModel -> save($_POST);
+//        print_r($_POST);exit();
+//    	$_POST['is_pass'] = 1;
+    	$res = true;
     	if($res) {
-    		$data['uid'] = $_POST['uid'];
-    		$data['pay_sn'] = getRandStr(25);
-    		$data['dealer_uid'] = $_POST['dealer_uid'];
-    		$data['finance_uid'] = $_POST['finance_uid'];
-    		$data['record_sn'] = $_POST['record_sn'];
-    		$data['price'] = $_POST['amount'];
-    		$data['create_time'] = date('Y-m-d H:i:s');
-    		$data['is_pay'] = 1;
-    		$res2 = $this -> payModel -> add($data);
+    		$where['uid'] = $_POST['uid'];
+    		$where['finance_uid'] = $_POST['finance_uid'];
+    		$where['record_sn'] = $_POST['record_sn'];
+    		$data['amount'] = intval($_POST['price1']+$_POST['price2']+$_POST['price3']+$_POST['price4']+$_POST['price5']);
+    		$data['remark'] = trim($_POST['text1']).",".trim($_POST['text2']).",".trim($_POST['text3']).",".trim($_POST['text4']).",".trim($_POST['text5']);
+    		$data['is_pass'] = 1;
+//            print_r($data);exit();
+    		$res2 = $this -> recordModel -> where($where)->save($data);
     		if($res2) {
-    			$this -> success('保存成功', U('/staff/record/noChecking/'));
+    			$this -> success('操作成功', U('/staff/record/noChecking/'));
     		}
-    		
+
     	} else {
-    		$this -> success('保存失败');
+    		$this -> success('操作失败');
     	}
+//        if($res) {
+//            $data['uid'] = $_POST['uid'];
+//            $data['pay_sn'] = getRandStr(25);
+//            $data['dealer_uid'] = $_POST['dealer_uid'];
+//            $data['finance_uid'] = $_POST['finance_uid'];
+//            $data['record_sn'] = $_POST['record_sn'];
+//            $data['price'] = $_POST['amount'];
+//            $data['create_time'] = date('Y-m-d H:i:s');
+//            $data['is_pay'] = 1;
+//            $res2 = $this -> payModel -> add($data);
+//            if($res2) {
+//                $this -> success('保存成功', U('/staff/record/noChecking/'));
+//            }
+//
+//        } else {
+//            $this -> success('保存失败');
+//        }
     }
 }

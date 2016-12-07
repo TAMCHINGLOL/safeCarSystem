@@ -27,7 +27,7 @@
 	<body style="background: #e9ecf3;">
 		<div class="header">
 			<p class="logo"><img src="{$Think.ADMIN_PUB_PATH}img/back.png" />车险理赔系统</p>
-			<a class="pull-right user">{$user.real_name} <img src="{$Think.ADMIN_PUB_PATH}img/back.png" /></a>
+			<a class="pull-right user">{:session('real_name')} <img src="{$Think.ADMIN_PUB_PATH}img/back.png" /></a>
 		</div>
 		 {__CONTENT__}
 	</body>
