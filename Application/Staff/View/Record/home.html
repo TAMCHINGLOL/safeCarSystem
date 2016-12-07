@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="../css/zui.css">
+		<link rel="stylesheet" href="../css/jquery.dataTables.css">
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="../css/common.css">
+	</head>
+	<body style="background: #e9ecf3;">
+		<div class="header">
+			<p class="logo"><img src="../img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">曾曼丽 <img src="../img/back.png" /></a>
+		</div>
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li class="active"><a href="home.html">未处理勘察报告</a></li>
+					<li><a href="noChecking.html" >理赔单审核列表</a></li>
+					<li><a href="paying.html" >理赔单支付列表</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      <table id="Flook_survey" class="table table-striped table-bordered"></table>
+			</div>
+		</div>
+	
+		
+		
+		
+		<script type='text/javascript' src='../js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="../js/jquery.dataTables.js"></script> 
+		<script type='text/javascript' src='../js/datatable.js' charset='utf-8'></script>
+  <script type="text/javascript">
+  //点击上传图片并且显示图片
+  function pictrue(){
+  	var li_add=$("#survey_ul li").last();
+  	var add_content='<li href="../img/back.png" data-toggle="lightbox" data-group="image-group-1">'+
+  					'<img src="../img/back.png" class="img-rounded" />'+
+  					'</li>';
+  	$(add_content).insertAfter(li_add);
+  }
+  //点击删除图片
+  function delImg(d){
+  	$(d).parent().remove();
+  }
+  
+  	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart: 1,
+	    todayBtn:  1,
+	    autoclose: 1,
+	    todayHighlight: 1,
+	    startView: 2,
+	    forceParse: 0,
+	    showMeridian: 1,
+	    format: "yyyy-mm-dd hh:ii",
+		initialDate : new Date()
+	});
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>
+	</body>
+</html>

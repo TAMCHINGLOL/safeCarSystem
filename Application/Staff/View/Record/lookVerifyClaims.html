@@ -4,29 +4,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>个人中心</title>
-		<link rel="stylesheet" href="__PUBLIC__/css/zui.css">
-		<link rel="stylesheet" href="__PUBLIC__/css/jquery.dataTables.css">
-		<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-datetimepicker.css">
-		<link rel="stylesheet" href="__PUBLIC__/css/common.css">
+		<link rel="stylesheet" href="../css/zui.css">
+		<link rel="stylesheet" href="../css/jquery.dataTables.css">
+		<link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="../css/common.css">
 	</head>
 	<body style="background: #e9ecf3;">
 		<div class="header">
-			<p class="logo"><img src="__PUBLIC__/img/back.png" />车险理赔系统</p>
-			<a class="pull-right user">曾曼丽 <img src="__PUBLIC__/img/back.png" /></a>
+			<p class="logo"><img src="../img/back.png" />车险理赔系统</p>
+			<a class="pull-right user">曾曼丽 <img src="../img/back.png" /></a>
 		</div>
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">角色管理</a></li>
-					<li class="dropdown-submenu"><a data-toggle="dropdown">保单管理</a>
-						<ul class="dropdown-menu">
-							<li><a href="policyManage.html">保单信息</a></li>
-							<li><a href="carInfo.html">车辆信息</a></li>
-							<li><a href="customerInfo.html">客户信息</a></li>
-							<li><a href="paymentInfo.html">保费缴纳信息</a></li>
-						</ul>
-					</li>
-					<li class="active"><a  href="claimingManage.html">理赔管理</a></li>
+					<li><a href="home.html">未处理勘察报告</a></li>
+					<li><a href="noChecking.html" >理赔单审核列表</a></li>
+					<li class="active"><a href="paying.html" >理赔单支付列表</a></li>
 				</ul>
 			</div>
 			<div class="nav-right">
@@ -36,14 +29,14 @@
 			      		<tr><td colspan="2"><strong>理赔情况</strong> </td></tr>
 			      		<tr>
 			      			<td  style="width: 900px;">
-			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">基本信息<span></span>：</p>
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>1</span>：</p>
 			      				<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea> 
 			      				<p style="text-align: right;">理赔金额：<input value="2000" class="pull-right" style="width: 80px;"/></p>
 			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td  style="width: 900px;">
-			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔报价<span></span>：</p>
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>2</span>：</p>
 			      				<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea> 
 			      				<p style="text-align: right;">理赔金额：<input value="2000" class="pull-right" style="width: 80px;"/></p>
 			      			</td>
@@ -57,9 +50,7 @@
 			      		</tr>
 			      	</table>
 			      	<div class="register_btn">
-                                        <input type="hidden" value="{$id}" name="id">
-			      		<a class="save d_btn" data-value="3">审核通过</a>
-			      		<a class="save d_btn" data-value="2">审核不通过</a>
+			      		<a class="save" onclick="pay(this)" id="pay">马上支付</a>
 			      	</div>
 			      </div>
 			</div>
@@ -85,31 +76,13 @@
 		
 		
 		
-		<script type='text/javascript' src='__PUBLIC__/js/jquery.js' charset='utf-8'></script>
-		<script type='text/javascript' src='__PUBLIC__/js/zui.min.js' charset='utf-8'></script>
-		<script type='text/javascript' src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
-		<script type='text/javascript' src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
-  		<script src="__PUBLIC__/js/jquery.dataTables.js"></script> 
+		<script type='text/javascript' src='../js/jquery.js' charset='utf-8'></script>
+		<script type='text/javascript' src='../js/zui.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.js"></script>
+		<script type='text/javascript' src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+  		<script src="../js/jquery.dataTables.js"></script> 
 		<script type='text/javascript' src='../js/datatable.js' charset='utf-8'></script>
   <script type="text/javascript">
-      $(".d_btn").click(function(){
-         var value = $(this).attr("data-value"); 
-         var id = $('input[name=id]').val();
-         $.ajax({
-            url : "/admin/record/lookVerifyClaims",
-            data : { id:id,value:value },
-            dataType : "json",
-            type:"post",
-            success : function(res){
-                if(res.content==1){
-                    
-                }
-                else{
-                    window.location.reload();
-                }
-            }
-         });
-      });
 function pay(p){
 	$("#tip_modal").modal('show');
 }

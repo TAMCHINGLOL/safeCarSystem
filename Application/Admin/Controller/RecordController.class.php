@@ -185,11 +185,34 @@ class RecordController extends BaseController
         if($_POST){
             $result = array('error'=>1,"content"=>"");
             $info['id'] = I('post.id');
-            $info['is_pass'] = I("post.value");
+            $info['is_pass'] = I("post.value","","intval");
             $info['amount'] = I("post.amount");
-            $info['remark'] = I("post.remark");
-            $res = $this->recordModel->save($info);
-            if($res){
+            $remark = I("post.remark");
+            if($info['is_pass']==2){
+                $info['remark'] = $remark;
+                $res = $this->recordModel->save($info);
+                $res1 = 1;
+            }
+            else{
+                $res = $this->recordModel->save($info);
+                $data['uid'] = I("post.uid");
+                //25位随机字符
+                $code =array_merge(range('a','z'),range('A','Z'),range(1,9));
+                $str = "";
+                for($i=0;$i<25;$i++){
+                    $str .= $code[rand(0, count($code)-1)];
+                }
+                $data['pay_sn'] = $str;
+                $data['dealer_uid'] = $_SESSION["uid"];
+                $data['finance_id'] = I("post.finance_id");
+                $data['record_sn'] = I("post.record_sn");
+                $data['price'] = rand(1000,10000);
+                $data['create_time'] = date("Y-m-d H:i:s",time());
+                $data['is_pay'] = 1;
+                $data['remark'] = $remark;
+                $res1 = M('settle_pay')->add($data);
+            }
+            if($res&&$res1){
                 $result['error'] = 0;
                 $result['content'] = "修改成功";
             }

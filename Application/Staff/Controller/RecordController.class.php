@@ -25,6 +25,8 @@ class RecordController extends CommonController
 
     public function __construct()
     {
+    	parent::__construct();
+    	layout(true);
         $this->userModel = D('User/User');
         $this->subUserModel = D('User/SubUser');
         $this->carMessageModel = D('Car/Message');
@@ -165,5 +167,63 @@ class RecordController extends CommonController
             return '';
         }
         return $this->policyTypeModel->getRowByTypeSn($typeSn);
+    }
+    
+    /*
+     * 待处理理赔报价
+     */
+    public function noChecking()
+    {
+    	$un = $this -> recordModel -> where("is_pass='1' OR is_pass='2'") -> select();
+    	//print_r($un);
+    	$this -> assign('un', $un);
+    	$this->display('noChecking');
+    }
+    
+    /**
+     * 修改理赔单
+     */
+    public function reviewVerifyClaims()
+    {
+    	$id = $_GET['id'];
+    	$data = $this -> recordModel -> where("id='".$id."'") -> find();
+    	if($data['amount'] == '' || $data['amount'] == null) {
+    		 $data['money1'] = rand(1000, 10000);
+    		 $data['money2'] = rand(1000, 10000);
+    	} else {
+    		$data['money1'] = intval($data['amount']) - 1000;
+    		$data['money2'] = intval($data['amount']) - $data['money1'];
+    	}
+    	
+    	$data['amount'] = $data['money1'] + $data['money2'];
+    	print_r($data);
+    	$this -> assign('data', $data);
+    	$this -> display('reviewVerifyClaims');
+    }
+    
+    /**
+     * 保存理赔单修改
+     */
+    public function edit_post()
+    {
+    	$_POST['is_pass'] = 1;
+    	$res = $this -> recordModel -> save($_POST);
+    	if($res) {
+    		$data['uid'] = $_POST['uid'];
+    		$data['pay_sn'] = getRandStr(25);
+    		$data['dealer_uid'] = $_POST['dealer_uid'];
+    		$data['finance_uid'] = $_POST['finance_uid'];
+    		$data['record_sn'] = $_POST['record_sn'];
+    		$data['price'] = $_POST['amount'];
+    		$data['create_time'] = date('Y-m-d H:i:s');
+    		$data['is_pay'] = 1;
+    		$res2 = $this -> payModel -> add($data);
+    		if($res2) {
+    			$this -> success('保存成功', U('/staff/record/noChecking/'));
+    		}
+    		
+    	} else {
+    		$this -> success('保存失败');
+    	}
     }
 }

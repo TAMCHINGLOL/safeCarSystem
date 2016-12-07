@@ -1,0 +1,55 @@
+
+		<div class="page-container">
+			<div class="nav-left">
+				<ul>
+					<li><a href="home.html">未处理勘察报告</a></li>
+					<li class="active"><a href="noChecking.html" >待处理理赔</a></li>
+					<li><a href="paying.html" >理赔单支付列表</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+			      	<a class="save"  href="JavaScript:history.go(-1);"><<返回</a>
+			      <div class="insurance_register">
+			      	<form action="{:U('/staff/record/edit_post', array('id' => $data['id']))}" method='post' id='f'>
+			      	<table class="table-bordered" id="claimsTerm">
+			      		<tr><td colspan="2"><strong>理赔情况</strong> </td></tr>
+			      		<tr>
+			      			<td  style="width: 900px;">
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>1</span>：</p>
+			      				<!-- <textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>  -->
+			      				<p style="text-align: right;">理赔金额：<input value="{$data.money1}" class="pull-right" style="width: 80px;"/></p>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td  style="width: 900px;">
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔项目<span>2</span>：</p>
+			      				<!-- <textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea>  -->
+			      				<p style="text-align: right;">理赔金额：<input value="{$data.money2}" class="pull-right" style="width: 80px;"/></p>
+			      			</td>
+			      		</tr>
+			      		<tr>
+			      			<td  style="width: 900px;">
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">经理建议：</p>
+			      				<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;" name='remark'>{$data.remark}</textarea> 
+			      				<p style="text-align: right;">理赔总金额：<input value="{$data.amount}" class="pull-right" style="width: 80px;" name='amount'/></p>
+			      			</td>
+			      		</tr>
+			      	</table>
+			      	<div class="register_btn">
+			      		<input name='record_sn' value='{$data.record_sn}' type='hidden'>
+			      		<input name='uid' value='{$data.uid}' type='hidden'>
+			      		<input name='dealer_uid' value='{$data.dealer_uid}' type='hidden'>
+			      		<input name='finance_uid' value='{$data.finance_uid}' type='hidden'>
+			      		<input name='id' value='{$data.id}' type='hidden'>
+			      		<a class="save"  onclick="document.getElementById('f').submit();return false">修改</a>
+			      	</div>
+			      	</form>
+			      </div>
+			</div>
+		</div>
+  <script type="text/javascript">
+    function MaxMe(o) {
+      o.style.height = o.scrollTop + o.scrollHeight + "px";
+    }
+  </script>
+
