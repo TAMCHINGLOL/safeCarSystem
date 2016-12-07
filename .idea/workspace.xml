@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7c52a0e-1dae-48d4-b219-39c16ff5ebfe" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Admin/View/Record/surveyReporter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/LoginController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/LoginController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/Controller/RecordController.class.php" afterPath="$PROJECT_DIR$/Application/Admin/Controller/RecordController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Index/index.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Index/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Record/claimingManage.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Record/claimingManage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Record/lookSurveyReporter.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Record/lookSurveyReporter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Record/lookVerifyClaims.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Record/lookVerifyClaims.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Role/findRole.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Role/findRole.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Admin/View/Role/updateRole.html" afterPath="$PROJECT_DIR$/Application/Admin/View/Role/updateRole.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" afterPath="$PROJECT_DIR$/Application/Home/View/public/All/js/datatable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" afterPath="$PROJECT_DIR$/Application/Settle/Model/InspectModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Staff/View/Record/paying.html" afterPath="$PROJECT_DIR$/Application/Staff/View/Record/paying.html" />
-    </list>
+    <list default="true" id="a7c52a0e-1dae-48d4-b219-39c16ff5ebfe" name="默认的" comment="" />
     <ignored path="safeCarSystem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
