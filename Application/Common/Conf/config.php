@@ -1,6 +1,6 @@
 <?php
 return array(
-	'SHOW_PAGE_TRACE'=>true,
+//	'SHOW_PAGE_TRACE'=>true,
     /* 模块相关配置 */
     'DEFAULT_MODULE' => 'Home',
     'DEFAULT_CONTROLLER' => 'Login',

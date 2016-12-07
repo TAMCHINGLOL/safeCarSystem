@@ -3,7 +3,12 @@
 			<div class="nav-left">
 				<ul>
 					<li class="active"><a href="{:U('admin/Role/findRole')}">角色管理</a></li>
-					<li class="action"><a  href="claimingManage.html">理赔管理</a></li>
+					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
+						<ul class="dropdown-menu">
+							<li><a href="/admin/record/getWaitingList?type=1">待审核</a></li>
+							<li><a href="/admin/record/getWaitingList?type=2">已审核</a></li>
+						</ul>
+					</li>
 				</ul>
 				
 			</div>
@@ -20,7 +25,9 @@
 							<tr class='text-c'>
 								<td>{$rl.role_name}</td>
 								<td>{$rl.remark}</td>
-								<td><a href="{:U('/admin/Role/editRole', array('id'=>$rl['id']))}">编辑权限</a>|<a href="{:U('/admin/Role/updateRole', array('id'=>$rl['id']))}">修改</a>|<a href="{:U('/admin/Role/delRole', array('id'=>$rl['id']))}" onclick="if(confirm('确定删除?')==false)return false;">删除 </a></td>
+								<td>
+									<!--<a href="{:U('/admin/Role/editRole', array('id'=>$rl['id']))}">编辑权限</a>|-->
+									<a href="{:U('/admin/Role/updateRole', array('id'=>$rl['id']))}">修改</a>|<a href="{:U('/admin/Role/delRole', array('id'=>$rl['id']))}" onclick="if(confirm('确定删除?')==false)return false;">删除 </a></td>
 							</tr>						
 						</foreach>
 					</tbody>

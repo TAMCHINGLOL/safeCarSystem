@@ -10,9 +10,10 @@
 namespace Admin\Controller;
 
 
+use Common\Controller\BaseController;
 use Common\Controller\CommonController;
 
-class RecordController extends CommonController
+class RecordController extends BaseController
 {
     protected $recordModel;
     protected $payModel;
