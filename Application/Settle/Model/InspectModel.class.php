@@ -48,8 +48,10 @@ class InspectModel extends Model
      * @Author: ludezh
      */
     public function getInspectInfoByInspectSn($inspectSn, $inspectUid){
+        if(!empty($inspectUid)){
+            $where['inspect_uid'] = $inspectUid;
+        }
         $where['inspect_sn'] = $inspectSn;
-        $where['inspect_uid'] = $inspectUid;
         return $this->where($where)->find();
     }
     /**

@@ -32,6 +32,32 @@ class RecordController extends BaseController
     }
 
     /**
+     * @Author: ludezh
+     */
+    public function surveyReporter(){
+        $carSn = I('get.carSn');
+        $inspectUid = I('get.inspectUid');
+        $inspectSn = I('get.inspectSn');
+        $flag = I('get.flag');
+        $inspectModel = D('Settle/Inspect');
+        $inspectInfo = $inspectModel->getInspectInfoByInspectSn($inspectSn);
+//        print_r($inspectInfo);exit();
+        $picArr = explode(',',$inspectInfo['header_img_list']);
+        $picUrlArr = array();
+        foreach($picArr as $k => $v){
+            $picUrlArr[$k]['pic'] = substr($v, strrpos($v, '../')+2);
+        }
+//        print_r($picUrlArr);exit();
+        $carModel = D('Car/Message');
+        $carInfo = $carModel->getRowByCarSn($inspectInfo['car_sn']);
+        $this->assign('flag',$flag);
+        $this->assign('picArr',$picUrlArr);
+        $this->assign('inspectInfo',$inspectInfo);
+        $this->assign('carInfo',$carInfo);
+        $this->display();
+    }
+
+    /**
      *֪ͨ��δȷ�ϵ����ⱨ�۵��ĸ�����(����)
      */
     public function noticeStaffDeal(){
@@ -151,28 +177,32 @@ class RecordController extends BaseController
             $where['is_pass'] = 1;
         }
         else{
-            $where['is_pass'] = array('in', '2,3');
+            $where['is_pass'] = array('neq', '1');
         }
         $recordList = $this->recordModel->where($where)->select();
+
         if(empty($recordList)){
-            $content = '�������ⱨ�ۼ�¼';
+            $content = '暂无查询结果';
         }
         else{
             foreach($recordList as $k=>$v){
                 switch($v['is_pass']){
                     case 1:
-                        $recordList[$k]['type'] = "δ���";
+                        $recordList[$k]['type'] = "待审核";
                         break;
                     case 2:
-                        $recordList[$k]['type'] = "��˲�ͨ��";
+                        $recordList[$k]['type'] = "审核不通过";
                         break;
                     case 3:
-                        $recordList[$k]['type'] = "���ͨ��";
+                        $recordList[$k]['type'] = "审核通过";
+                        break;
+                    default:
                         break;
                 }
             }
         }
-        $this->assign('recordList',  json_encode($recordList));
+//        $this->assign('recordList',  json_encode($recordList));
+        $this->assign('recordList1',  $recordList);
         $this->assign('content',$content);
         $this->display("claimingManage");
     }

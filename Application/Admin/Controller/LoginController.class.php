@@ -30,7 +30,10 @@ class LoginController extends Controller
   	{
   		$this -> display();
   	}
-
+    public function logOut(){
+        session(null);
+        $this->display('index');
+    }
     public function login(){
         $phone = I('post.phone');
         $username = I('post.username');

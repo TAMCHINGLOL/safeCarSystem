@@ -17,7 +17,7 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">角色管理</a></li>
+					<li><a href="{:U('admin/Role/findRole')}">角色管理</a></li>
 					<!-- <li class="dropdown-submenu"><a data-toggle="dropdown">保单管理</a>
 						<ul class="dropdown-menu">
 							<li><a href="policyManage.html">保单信息</a></li>
@@ -28,14 +28,53 @@
 					</li> -->
 					<li class="dropdown-submenu"><a data-toggle="dropdown">理赔管理</a>
 						<ul class="dropdown-menu">
-							<li><a href="{:U('/admin/record/getWaitingList',array('type' => '1')}">待审核</a></li>
-							<li><a href="{:U('/admin/record/getWaitingList',array('type'=> '2')}">已审核</a></li>
+							<li><a href="{:U('/admin/record/getWaitingList',array('type' => '1'),false)}">待审核</a></li>
+							<li><a href="{:U('/admin/record/getWaitingList',array('type'=> '2'),false)}">已审核</a></li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 			<div class="nav-right">
-			      <table id="Flook_claim" class="table table-striped table-bordered"></table>
+			      <table id="Flook_claim" class="table table-striped table-bordered">
+					  <thead>
+					  <tr>
+						  <td>理赔单号</td>
+						  <td>勘察单号</td>
+						  <td>车辆单号</td>
+						  <td>创建时间</td>
+						  <td>状 态</td>
+						  <td>操 作</td>
+					  </tr>
+					  </thead>
+					  <tbody>
+					  <foreach name='recordList1' item='u'>
+						  <tr class='text-c'>
+							  <td>{$u.record_sn}</td>
+							  <td>{$u.inspect_sn}</td>
+							  <td>{$u.car_sn}</td>
+							  <td>{$u.create_time}</td>
+							  <td>
+								  <if condition="$u.is_pass eq 1">
+									  <label class="btn btn-sm btn-info" disabled>待 审 核</label>
+									  <elseif condition="$u.is_pass eq 2" />
+									  <label class="btn btn-sm btn-danger" disabled>审核不通过</label>
+									  <else/>
+									  <label class="btn btn-sm btn-primary" disabled>审核通过</label>
+								  </if>
+							  </td>
+							  <td>
+								  <if condition="$u.is_pass eq 1">
+									  <a href="{:U('Admin/Record/lookVerifyClaims',array('id' => 1),false)}"><button class="btn btn-sm btn-primary"> 立 即 审 核</button></a>
+									  <elseif condition="$u.is_pass eq 2" />
+									  <a href="{:U('Admin/Record/surveyReporter',array('id' => $u['id'],'inspectSn' => $u['inspect_sn']),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
+									  <else/>
+									  <a href="{:U('Admin/Record/surveyReporter',array('id' => $u['id'],'inspectSn' => $u['inspect_sn']),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
+								  </if>
+							  </td>
+						  </tr>
+					  </foreach>
+					  </tbody>
+				  </table>
 			</div>
 		</div>
 		
@@ -46,10 +85,12 @@
   		<script src="{$Think.ADMIN_PUB_PATH}/js/jquery.dataTables.js"></script> 
 		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}/js/datatable.js' charset='utf-8'></script>
                 <script type="text/javascript">
-                  var Flook_claimsSet = {$recordList};
-                  console.log(Flook_claimsSet);
+					var logOut = "{:U('Admin/Login/logOut','',false)}";
+//                  var Flook_claimsSet = {$recordList};
+
+//                  console.log(Flook_claimsSet);
                     $(".logout_btn").click(function(){
-                        window.location.href = "/home/login/logout";
+                        window.location.href = logOut;
                     });
   </script>
 	</body>
