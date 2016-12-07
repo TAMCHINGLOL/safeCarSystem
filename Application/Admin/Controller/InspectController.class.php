@@ -10,9 +10,10 @@
 namespace Admin\Controller;
 
 
+use Common\Controller\BaseController;
 use Common\Controller\CommonController;
 
-class InspectController extends CommonController
+class InspectController extends BaseController
 {
     protected $inspectModel;
     protected $subUserModel;

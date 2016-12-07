@@ -25,8 +25,8 @@ class CommonController extends Controller
             $this->redirect('Home/Login/index');
             exit();
         }
-        $user = M('admin') -> where("uid='".$_SESSION['uid']."'") -> find();
-        $this -> assign('user', $user);
+//        $user = M('admin') -> where("uid='".$_SESSION['uid']."'") -> find();
+//        $this -> assign('user', $user);
     }
     
     public function __construct()

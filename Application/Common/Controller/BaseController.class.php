@@ -15,17 +15,17 @@ use Think\Controller;
 class BaseController extends Controller
 {
     public function _initialize(){
-        if($_SESSION['sadminuid'] == null){
-            $_SESSION['sadminuid'] = 'UC0000000001';
-        }
+//        if($_SESSION['sadminuid'] == null){
+//            $_SESSION['sadminuid'] = 'UC0000000001';
+//        }
         header("Content-type: text/html; charset=utf-8");  //把所有的头文件都设置字符编码为utf-8;
-        if($_SESSION['sadminuid'] == null || !isset($_SESSION['sadminuid'])){
+        if($_SESSION['adminUid'] == null || !isset($_SESSION['adminUid'])){
             session(null);
 //             $this->error('登录已过期,正在跳转...','index.php/Home/Login/index.html',2);
-            $this->redirect('admin/Login/login');
+            $this->redirect('admin/Login/index');
             exit();
         }
-        $user = M('admin') -> where("uid='".$_SESSION['sadminuid']."'") -> find();
+        $user = M('admin') -> where("uid='".$_SESSION['adminUid']."'") -> find();
         $this -> assign('user', $user);
     }
 

@@ -9,9 +9,10 @@
 
 namespace Admin\Controller;
 
+use Common\Controller\BaseController;
 use Common\Controller\CommonController;
 
-class IndexController extends CommonController
+class IndexController extends BaseController
 {
     protected $subUserModel;
     protected $roleModel;

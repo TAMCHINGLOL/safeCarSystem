@@ -17,6 +17,15 @@ class AdminModel extends Model
     protected $tableName = 'admin';
 
     /**
+     * 根据条件(手机号/员工编号)登录
+     * @param $where
+     * @return mixed
+     */
+    public function login($where){
+        return $this->where($where)->find();
+    }
+
+    /**
      * 根据uid获取自增id
      * @param $uid
      * @return mixed

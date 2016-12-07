@@ -10,9 +10,10 @@
 namespace Admin\Controller;
 
 
+use Common\Controller\BaseController;
 use Common\Controller\CommonController;
 
-class RoleController extends CommonController
+class RoleController extends BaseController
 {
     protected $roleModel;
     protected $actionModel;
@@ -73,7 +74,7 @@ class RoleController extends CommonController
             $this->success('保存成功', '/admin/role/findRole');
             
         } else {
-            $this->error('保存失败', '/admin/role/findRole');
+            $this->error('保存失败');
         }
     }
     /**
@@ -126,7 +127,7 @@ class RoleController extends CommonController
         $data['role_name'] = I('post.role_name');
         $data['remark'] = I('post.remark');
         $rs = $this->roleModel->save($data);
-        echo $this -> roleModel ->getLastSql();
+//        echo $this -> roleModel ->getLastSql();
         if($rs){
             $this->success('更 新 成 功');
             exit();

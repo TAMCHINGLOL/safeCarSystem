@@ -88,7 +88,7 @@ class InspectController extends CommonController
         }
 //        print_r($picUrlArr);exit();
         $carModel = D('Car/Message');
-        $carInfo = $carModel->getRowByCarSn($carSn);
+        $carInfo = $carModel->getRowByCarSn($inspectInfo['car_sn']);
         $this->assign('flag',$flag);
         $this->assign('picArr',$picUrlArr);
         $this->assign('inspectInfo',$inspectInfo);
@@ -335,7 +335,7 @@ class InspectController extends CommonController
                 $res = $this->inspectModel->bindInspectUid($uid,$inspectSn,1);
             }
             if(!$res){
-                $this->error('绑定勘察人员失效,建议电话联系');
+                $this->error('绑定勘察人员成功,建议使用电话联系');
                 exit;
             }
             $str = '员工编号:'.$userInfo['uid'].',你好!系统通知:你有新的出勤订单,订单编号：'.$inspectSn.',请立即登录系统进行核对出勤';
