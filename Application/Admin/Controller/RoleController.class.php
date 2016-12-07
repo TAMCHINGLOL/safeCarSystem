@@ -70,10 +70,10 @@ class RoleController extends CommonController
         $data['auth_list'] = implode(',', $_POST);
         $result = $role ->  save($data);
         if($result) {
-            $this->success('保存成功', '/admin/role/findRole');
+            $this->success('保存成功', U('/admin/role/findRole'));
             
         } else {
-            $this->error('保存失败', '/admin/role/findRole');
+            $this->error('保存失败', U('/admin/role/findRole'));
         }
     }
     /**
@@ -103,7 +103,7 @@ class RoleController extends CommonController
             $this->success('删 除 成 功');
             exit();
         }else{
-            //$this->error('删除失败');
+            $this->error('删除失败');
             exit();
         }
     }
