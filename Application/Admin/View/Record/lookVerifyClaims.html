@@ -17,7 +17,7 @@
 		<div class="page-container">
 			<div class="nav-left">
 				<ul>
-					<li><a href="home.html">角色管理</a></li>
+					<li><a href="{:U('admin/Role/findRole')}">角色管理</a></li>
 					<!-- <li class="dropdown-submenu"><a data-toggle="dropdown">保单管理</a>
 						<ul class="dropdown-menu">
 							<li><a href="policyManage.html">保单信息</a></li>
@@ -42,40 +42,175 @@
 			      		<tr>
 			      			<td  style="width: 900px;">
 			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">基本信息<span></span>：</p>
-			      				<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea> 
+			      				<!--<textarea  onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;"></textarea> -->
 <!--			      				<p style="text-align: right;">理赔金额：<input value="2000" class="pull-right" style="width: 80px;"/></p>-->
+								<table class="table-bordered" >
+									<tr><td colspan="8"style="text-align: center;"><strong>机动车辆勘察报告</strong> </td></tr>
+									<tr>
+										<td>车辆编号</td>
+										<td style="width: 250px;" id="carSn">{$carInfo.car_sn}</td>
+										<td>厂牌车型</td>
+										<td style="width: 250px;" colspan="3">{$carInfo.brand}</td>
+										<td>车牌号码</td>
+										<td style="width: 250px;">{$carInfo.plate_num}</td>
+									</tr>
+									<tr>
+										<td>驾驶证号码</td>
+										<td  colspan="2" >{$carInfo.frame_num}</td>
+										<td>驾驶证有效期</td>
+										<td colspan="4">{$carInfo.reg_time}</td>
+									</tr>
+									<tr>
+										<td>出险地点</td>
+										<td colspan="2">
+											{$inspectInfo.address}
+										</td>
+										<td>出险时间</td>
+										<td colspan="4">
+											{$inspectInfo.happen_time}
+										</td>
+									<tr>
+										<td>出勤时间</td>
+										<td colspan="2">
+											{$inspectInfo.start_time}
+										</td>
+										<td>结束时间</td>
+										<td colspan="4">
+											<if condition="$flag eq 1">
+												<label style="color: red;font-size: 12px;">系统自动生成</label>
+												<else />
+												{$inspectInfo.end_time}
+											</if>
+										</td>
+									</tr>
+									</tr>
+									<tr>
+										<td>客服备注</td>
+										<td colspan="7" >{$inspectInfo.custom_remark}</td>
+									</tr>
+									<tr>
+										<td>出险原因以及经过</td>
+										<td colspan="7" >{$inspectInfo.body_img_list}</td>
+									</tr>
+									<tr>
+										<td>损失范围</td>
+										<td colspan="7" >{$inspectInfo.footer_img_list}</td>
+									</tr>
+									<tr>
+										<td>勘察意见</td>
+										<td colspan="7" >{$inspectInfo.inspect_remark}</td>
+									</tr>
+									<tr>
+										<td>保险人在事故中责任：</td>
+										<td colspan="7" >{$inspectInfo.other_img_list}</td>
+									</tr>
+									<tr>
+										<td>现场图片</td>
+										<td colspan="7" >
+											<foreach name="picArr" item="v1">
+												<if condition="$v1.pic neq ''">
+													<img src="__ROOT__{$v1.pic}" style="width: 170px;height: 150px;border-radius: 10px;margin-right: 10px;margin-bottom: 10px"/>
+												</if>
+											</foreach>
+											<!--<div id="demo">-->
+											<!--<div id="as" ></div>-->
+											<!--</div>-->
+										</td>
+									</tr>
+								</table>
 			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td  style="width: 900px;">
 			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">理赔报价<span></span>：</p>
-			      				<textarea  class="d_amount" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">{$info.amount}</textarea> 
+			      				<!--<textarea  class="d_amount" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">{$info.amount}</textarea> -->
 <!--			      				<p style="text-align: right;">理赔金额：<input value="2000" class="pull-right" style="width: 80px;"/></p>-->
+								<table class="table-bordered" id="">
+									<!--<tr><td colspan="6"><strong>理赔情况</strong> </td></tr>-->
+									<tr>
+										<td style="width: 140px;height: 45px">理赔情况</td>
+										<td style="width: 80%">
+											<p>{$info.remark}</p>
+										</td>
+									</tr>
+									<if condition="$recordInfo.dealer_uid neq ''">
+										<tr>
+											<td  style="width: 900px;">
+												<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">经理建议：</p>
+												<div style="padding: 0 10px;overflow:hidden; min-height: 150px;text-align: left">{$recordInfo.deal_remark}</div>
+											</td>
+										</tr>
+									</if>
+									<tr>
+										<td>
+											理赔总金额：
+										</td>
+										<td><p style="text-align: right;" class="pull-left" id="d_amount">{$info.amount} 元</p></td>
+									</tr>
+								</table>
 			      			</td>
 			      		</tr>
 			      		<tr>
 			      			<td  style="width: 900px;">
-			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">经理建议：</p>
-			      				<textarea  class="d_remark" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">{$info.remark}</textarea> 
-<!--			      				<p style="text-align: right;">理赔总金额：<input value="{$info.amount}" class="pull-right" style="width: 80px;"/></p>-->
+			      				<p style="border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;margin: 0 10px;">我的建议：</p>
+								<if condition="$flag eq ''">
+									<textarea id="suggest" class="d_remark" onpropertychange="MaxMe(this)" oninput="MaxMe(this)" style="padding: 0 10px;overflow:hidden; min-height: 150px;">{$info.deal_remark}</textarea>
+									<else/>
+									{$info.deal_remark}
+								</if>
+								<!--			      				<p style="text-align: right;">理赔总金额：<input value="{$info.amount}" class="pull-right" style="width: 80px;"/></p>-->
 			      			</td>
 			      		</tr>
 			      	</table>
 			      	<div class="register_btn">
-                                        <input type="hidden" value="{$id}" name="id">
-                                        <input type="hidden" value="{$info.uid}" name="uid">
-                                        <input type="hidden" value="{$info.finance_uid}" name="finance_uid">
-                                        <input type="hidden" value="{$info.record_sn}" name="record_sn">
-                                        <if condition="$info['is_pass'] eq 1">
-			      		<a class="save d_btn" data-value="3">审核通过</a>
-			      		<a class="save d_btn" data-value="2">审核不通过</a>
-                                        <elseif condition='$info["is_pass"] eq 2'/>
-                                        审核不通过
-                                        <else/>
-                                        审核通过
-                                        </if>
+						<if condition="$flag eq ''">
+							<input type="hidden" value="{$id}" name="id">
+							<input type="hidden" value="{$info.uid}" name="uid">
+							<input type="hidden" value="{$info.finance_uid}" name="finance_uid">
+							<input type="hidden" value="{$info.record_sn}" name="record_sn">
+							<input type="hidden" value="{$info.is_pass}" name="is_pass">
+							<input type="hidden" value="{$info.inspect_sn}" name="inspect_sn">
+							<button type="button" class="d_btn btn btn-sm btn-danger" onclick="isAgree()">审核不通过</button>
+							<button type="button" class="d_btn btn btn-sm btn-primary" onclick="isAgree1(3)" >审核通过</button>
+						</if>
 			      	</div>
 			      </div>
+			</div>
+		</div>
+		<!-- 对话框HTML -->
+		<div class="modal fade" id="suggest_none">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+						<h4 class="modal-title">提示</h4>
+					</div>
+					<div class="tip-content">
+						<p>理赔单的建议不能为空</p>
+						<a class="know" data-dismiss="modal">知道了</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 对话框HTML -->
+		<div class="modal fade" id="suggest_modal">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+						<h4 class="modal-title">反馈信息</h4>
+					</div>
+					<div class="tip-content">
+						<select id="errorId">
+							<option value="0" selected>请选择反馈信息</option>
+							<option value="2">理赔金额待确认</option>
+							<option value="5">勘察记录信息待确认</option>
+							<option value="4">勘察基本信息待确认</option>
+							<option value="7">理赔金额过大须客服联系车主</option>
+						</select>
+						<a class="know" data-dismiss="modal" id="subBtn" onclick="isAgree2()">确定</a>
+					</div>
+				</div>
 			</div>
 		</div>
 <!-- 对话框HTML -->
@@ -95,10 +230,7 @@
 	  </div>
     </div>
   </div>
-</div>	
-		
-		
-		
+</div>
 		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}/js/jquery.js' charset='utf-8'></script>
 		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}/js/zui.min.js' charset='utf-8'></script>
 		<script type='text/javascript' src="{$Think.ADMIN_PUB_PATH}/js/bootstrap-datetimepicker.js"></script>
@@ -106,39 +238,76 @@
   		<script src="{$Think.ADMIN_PUB_PATH}/js/jquery.dataTables.js"></script> 
 		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}/js/datatable.js' charset='utf-8'></script>
   <script type="text/javascript">
-      $(".d_btn").click(function(){
-         var value = $(this).attr("data-value"); 
-         var id = $('input[name=id]').val();
-         console.log($(".d_remark").val());
-         $.ajax({
-            url : "/admin/record/lookVerifyClaims",
-            data : { 
-                id:id,
-                uid:$("input[name=uid]").val(),
-                finance_id: $("input[name=finance_id]").val(),
-                record_sn: $("input[name=record_sn]").val(),
-                value:value,
-                amount:$(".d_amount").val(),
-                remark:$(".d_remark").val(),
-                
-            },
-            dataType : "json",
-            type:"post",
-            success : function(res){
-                if(res.content==1){
-                    
-                }
-                else{
-                    alert(res.content);
-                    window.location.reload();
-                }
-            }
-         });
-      });
-function pay(p){
+	  var lookVerifyClaims_url = "{:U('Admin/record/lookVerifyClaims','',false)}";
+	  var turnTo_url = "{:U('/admin/record/getWaitingList',array('type' => '1'),false)}";
+      function isAgree(status) {
+		  if (status != 3) {
+			  if ($("#suggest").val() == "") {
+				  $("#suggest_none").modal('show');
+				  return false;
+			  } else {
+				  $("#suggest_modal").modal('show');
+			  }
+		  }
+	  }
+	  function isAgree1(status){
+//		  alert($(".d_remark").val());return false;
+		  var id = $('input[name=id]').val();
+		  console.log($(".d_remark").val());
+		  $.ajax({
+			  url : lookVerifyClaims_url,
+			  data : {
+				  id:id,
+				  uid:$("input[name=uid]").val(),
+				  finance_id: $("input[name=finance_uid]").val(),
+				  record_sn: $("input[name=record_sn]").val(),
+				  inspect_sn: $("input[name=inspect_sn]").val(),
+				  value:status,
+				  remark:$(".d_remark").val(),
+			  },
+			  dataType : "json",
+			  type:"post",
+			  success : function(res){
+				  if(res.error==1){
+					window.location.href = turnTo_url;
+				  } else {
+//					  alert(res.content);
+//					  window.location.reload();
+				  }
+			  }
+		  });
+	  };
+	  function isAgree2(){
+		  var status = $('#errorId option:selected').val();
+		  var id = $('input[name=id]').val();
+		  console.log($(".d_remark").val());
+		  $.ajax({
+			  url : lookVerifyClaims_url,
+			  data : {
+				  id:id,
+				  uid:$("input[name=uid]").val(),
+				  finance_id: $("input[name=finance_id]").val(),
+				  record_sn: $("input[name=record_sn]").val(),
+				  inspect_sn: $("input[name=inspect_sn]").val(),
+				  value:status,
+				  remark:$(".d_remark").val(),
+			  },
+			  dataType : "json",
+			  type:"post",
+			  success : function(res){
+				  if(res.error==1){
+					  window.location.href = turnTo_url;
+				  } else {
+					  alert(res.content);
+					  window.location.reload();
+				  }
+			  }
+		  });
+	  };
+	  function pay(p){
 	$("#tip_modal").modal('show');
 }
-function sure(){
+	  function sure(){
 	$("#tip_modal").modal('hide');
 	document.getElementById("pay").text('已支付');
 }

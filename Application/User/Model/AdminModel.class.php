@@ -17,6 +17,26 @@ class AdminModel extends Model
     protected $tableName = 'admin';
 
     /**
+     * @param $uid
+     * @param $password
+     * @return bool
+     * @Author: ludezh
+     */
+    public function update($uid, $password){
+        $where['uid'] = $uid;
+        $data['password'] = $password;
+        return $this->where($where)->save($data);
+    }
+    /**
+     * @param $uid
+     * @return mixed
+     * @Author: ludezh
+     */
+    public function findRowByUid($uid){
+        $where['uid'] = $uid;
+        return $this->where($where)->find();
+    }
+    /**
      * 根据条件(手机号/员工编号)登录
      * @param $where
      * @return mixed

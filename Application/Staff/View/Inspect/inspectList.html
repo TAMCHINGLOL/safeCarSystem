@@ -43,12 +43,17 @@
 							<td id="staPhone">{$v.address}</td>
 							<td>{$v.inspect_uid}</td>
 							<td>{$v.custom_remark}</td>
-							<td>{$v.status}</td>
+							<td>{$v.statusText}</td>
 							<td class="f-14">
-								<button onclick="ScheduleDetails('{$v['inspect_sn']}')" style="font-size:15px" class="btn btn-xs btn-primary">
-									<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 查 看 详 情
-								</button>
-
+								<if condition="$v.status eq 4 OR $v.status eq 7">
+									<button onclick="ScheduleDetails('{$v['inspect_sn']}',1)" style="font-size:15px" class="btn btn-xs btn-primary">
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 待 确 认
+									</button>
+									<else/>
+									<button onclick="ScheduleDetails('{$v['inspect_sn']}',2)" style="font-size:15px" class="btn btn-xs btn-primary">
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 查 看 详 情
+									</button>
+								</if>
 								<input type="hidden" id="carUid" value="{$carUid}" />
 							</td>
 						</tr>
@@ -68,9 +73,9 @@
 		<script type='text/javascript' src='__ROOT__/Application/Home/View/public/All/js/datatable.js' charset='utf-8'></script>
   <script type="text/javascript">
 	  var oneInspect_url = "{:U('Staff/Inspect/oneInspect','',false)}";
-	  function ScheduleDetails(id){
+	  function ScheduleDetails(id,flag){
 		if(id){
-			window.location.href = oneInspect_url +'/inspectSn/'+id;
+			window.location.href = oneInspect_url +'/inspectSn/'+id+'/flag/'+flag;
 		}
 	  }
   	$('.form_date').datetimepicker({

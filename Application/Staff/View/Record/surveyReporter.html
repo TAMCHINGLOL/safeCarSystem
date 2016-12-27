@@ -91,7 +91,9 @@
 			      			<td>现场图片</td>
 			      			<td colspan="7" >
 								<foreach name="picArr" item="v1">
-									<img src="__ROOT__{$v1.pic}" style="width: 170px;height: 150px;border-radius: 10px;margin-right: 10px;margin-bottom: 10px"/>
+									<if condition="$v1.pic neq ''">
+										<img src="__ROOT__{$v1.pic}" style="width: 170px;height: 150px;border-radius: 10px;margin-right: 10px;margin-bottom: 10px"/>
+									</if>
 								</foreach>
 								<!--<div id="demo">-->
 									<!--<div id="as" ></div>-->

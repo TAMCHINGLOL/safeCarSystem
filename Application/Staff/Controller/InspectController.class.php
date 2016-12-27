@@ -47,6 +47,7 @@ class InspectController extends CommonController
         if($flag == 1 || $flag == 2){ //修改
             $rs = $inspectModel->completeUpdate($inspectSn, 3, $headList, $remark1, $remark2, $remark4, '', $remark3, $endTime);
             if($rs){
+                session('picStr',null);
                 $this->success('操作成功');
                 exit();
             }else{
@@ -64,11 +65,17 @@ class InspectController extends CommonController
     public function picUpload(){
         $picStr = session('picStr');
         $data = picUpload();
+
         if(empty($picStr)){
-            $picUrlStr = $data['info'];
+            if($data['status'] == 1){
+                $picUrlStr = $data['info'];
+            }
         }else{
-            $picUrlStr = $picStr.','.$data['info'];
+            if($data['status'] == 1){
+                $picUrlStr = $picStr.','.$data['info'];
+            }
         }
+//        print_r($picUrlStr);exit();
         session('picStr',$picUrlStr);
     }
 
@@ -102,6 +109,7 @@ class InspectController extends CommonController
      * @Author: ludezh
      */
     public function surveyList(){
+//        print_r($_SESSION);exit();
         $inspectModel = D('Settle/Inspect');
         $carModel = D('Car/Message');
         $uid = session('uid');
@@ -120,7 +128,7 @@ class InspectController extends CommonController
      * @Author: ludezh
      */
     public function endSurvey(){
-        $status = 6;
+        $status = 10;
         $uid = session('uid');
         $inspectList = $this->inspectModel->getInspectListByInspect($status,$uid);
         $this->assign('inspectList',$inspectList);
@@ -278,19 +286,14 @@ class InspectController extends CommonController
         if(empty($status)){
             $status = 1;
         }
-        $inspectList = $this->inspectModel->getInspectListByCustom($status,$uid);
+        $inspectList = $this->inspectModel->getInspectListByCustom(0,$uid);
+
         $data = array();
         foreach($inspectList as $k => $v){
-            if($v['status'] != 5 || $v['status'] != 6){
+            if($v['status'] == 1 || $v['status'] == 4 || $v['status'] == 7 || $v['status'] == 8){
                 switch($v['status']) {
                     case 1:
                         $str = '等待调度确认';
-                        break;
-                    case 2:
-                        $str = '调度勘察中';
-                        break;
-                    case 3:
-                        $str = '待审核';
                         break;
                     case 4:
                         $str = '待确认';
@@ -310,9 +313,12 @@ class InspectController extends CommonController
                 $data[$k]['address'] = $v['address'];
                 $data[$k]['inspect_uid'] = $v['inspect_uid'];
                 $data[$k]['custom_remark'] = $v['custom_remark'];
-                $data[$k]['status'] = $str;
+                $data[$k]['statusText'] = $str;
+                $data[$k]['status'] = $v['status'];
             }
         }
+        $data = array_values($data);
+//        print_r($data);exit();
         $this->assign('inspectList',$data);
         $this->display();
     }

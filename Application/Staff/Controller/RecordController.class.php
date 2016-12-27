@@ -39,6 +39,7 @@ class RecordController extends CommonController
 
     public function paying(){
         $uid = session('uid');
+//        print_r($uid);
         $data = $this->payModel->getAllListByfinanceUid($uid);
         foreach($data as $k => $v){
             switch($v['is_pay']){
@@ -99,7 +100,10 @@ class RecordController extends CommonController
         $picArr = explode(',',$inspectInfo['header_img_list']);
         $picUrlArr = array();
         foreach($picArr as $k => $v){
-            $picUrlArr[$k]['pic'] = substr($v, strrpos($v, '../')+2);
+            $pic = substr($v, strrpos($v, '../')+2);
+            if(strlen($pic) > 25){
+                $picUrlArr[$k]['pic'] = $pic;
+            }
         }
 //        print_r($picUrlArr);exit();
         $carModel = D('Car/Message');

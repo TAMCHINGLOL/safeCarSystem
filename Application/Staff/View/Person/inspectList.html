@@ -38,7 +38,7 @@
 						<tr class="text-c">
 							<td id="staUid">{$v.uid}</td>
 							<td>{$v.real_name}</td>
-							<td id="staPhone">{$v.phone}</td>
+							<td id="{$v.uid}">{$v.phone}</td>
 							<td>{$v.address}</td>
 							<td class="f-14">
 								<if condition="$carUid eq ''">
@@ -106,12 +106,13 @@
 	function ScheduleInfo(uid){
 //		$('#phone').modal('show');
 //		return; false;
+		var id1 = "#"+uid;
 		var flag = $('#flag').val();
 		var inspectSn = $('#inspectSn').val();
 		var carUid = $('#carUid').val();
-		var staPhone = $('#staPhone').text();
+		var staPhone = $(id1).text();
 		var staUid = $('#staUid').text();
-//		alert(inspectSn);
+//		alert(staPhone);return false;
 		if(carUid == ''){
 			alert('未绑定任何报案,不可操作');
 			return false;
@@ -120,7 +121,7 @@
 				url: sendInspect_url,
 				type: 'post',
 				dataType: 'json',
-				data: {uid: staUid,phone:staPhone,flag:flag,inspectSn:inspectSn},
+				data: {uid: uid,phone:staPhone,flag:flag,inspectSn:inspectSn},
 				success: function(result){
 					if(result.status == 1){
 						$('#phone').modal('show');

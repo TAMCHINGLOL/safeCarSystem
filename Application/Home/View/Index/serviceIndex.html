@@ -52,9 +52,19 @@
 							<td>{$v.plate_num}</td>
 							<td>{$v.is_insure}</td>
 							<td class="f-14">
-								<button onclick="turnToregisterInfo('{$v['uid']}')" style="font-size:15px" class="btn btn-xs btn-primary">
-									<i class="ace-icon fa fa-pencil-square-o bigger-110"></i>生成出险登记表
-								</button>
+								<if condition="$v.is_insure eq '正在投保'">
+									<button onclick="turnToregisterInfo('{$v['uid']}')" style="font-size:15px" class="btn btn-xs btn-primary">
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i>生成出险登记表
+									</button>
+									<elseif condition="$v.is_insure eq '暂未投保'" />
+										<button style="font-size:15px" class="btn btn-xs " disabled>
+											<i class="ace-icon fa fa-pencil-square-o bigger-110"></i>该车主暂未投保
+										</button>
+									<else/>
+										<button style="font-size:15px" class="btn btn-xs btn-danger" disabled>
+											<i class="ace-icon fa fa-pencil-square-o bigger-110"></i>车主投保已过期
+										</button>
+								</if>
 								<!--<button onclick="admin_role_del(this,{$v['roleid']})" style="font-size:15px" class="btn btn-xs btn-danger">-->
 									<!--<i class="ace-icon fa fa-trash-o bigger-110"></i>删除-->
 								<!--</button>-->

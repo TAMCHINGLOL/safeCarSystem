@@ -64,11 +64,11 @@
 							  </td>
 							  <td>
 								  <if condition="$u.is_pass eq 1">
-									  <a href="{:U('Admin/Record/lookVerifyClaims',array('id' => 1),false)}"><button class="btn btn-sm btn-primary"> 立 即 审 核</button></a>
+									  <a href="{:U('Admin/Record/lookVerifyClaims',array('id' => $u['id'],'inspectSn' => $u['inspect_sn']),false)}"><button class="btn btn-sm btn-primary"> 立 即 审 核</button></a>
 									  <elseif condition="$u.is_pass eq 2" />
-									  <a href="{:U('Admin/Record/surveyReporter',array('id' => $u['id'],'inspectSn' => $u['inspect_sn']),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
+									  <a href="{:U('Admin/Record/lookVerifyClaims',array('id' => $u['id'],'inspectSn' => $u['inspect_sn'],'flag' => 1),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
 									  <else/>
-									  <a href="{:U('Admin/Record/surveyReporter',array('id' => $u['id'],'inspectSn' => $u['inspect_sn']),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
+									  <a href="{:U('Admin/Record/lookVerifyClaims',array('id' => $u['id'],'inspectSn' => $u['inspect_sn'],'flag' => 1),false)}"><button class="btn btn-sm btn-primary">查 看 详 情</button></a>
 								  </if>
 							  </td>
 						  </tr>

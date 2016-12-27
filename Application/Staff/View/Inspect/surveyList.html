@@ -60,8 +60,12 @@
 									<button onclick="SchedulingDetileRigster('{$v['inspect_sn']}','{$v['inspect_uid']}','{$v['car_sn']}',1)" style="font-size:15px" class="btn btn-xs btn-primary">
 										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 填写勘察信息
 									</button>
+									<elseif condition="$v.status eq 3"/>
+									<button onclick="SchedulingDetileRigster('{$v['inspect_sn']}','{$v['inspect_uid']}','{$v['car_sn']}',2)" style="font-size:15px" class="btn btn-xs btn-primary" disabled>
+										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 待审核
+									</button>
 									<else/>
-									<button onclick="SchedulingDetileRigster('{$v['inspect_sn']}','{$v['inspect_uid']}',2)" style="font-size:15px" class="btn btn-xs btn-primary">
+									<button onclick="SchedulingDetileRigster('{$v['inspect_sn']}','{$v['inspect_uid']}','{$v['car_sn']}',2)" style="font-size:15px" class="btn btn-xs btn-primary">
 										<i class="ace-icon fa fa-pencil-square-o bigger-110"></i> 待确认
 									</button>
 								</if>

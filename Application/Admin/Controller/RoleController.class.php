@@ -71,7 +71,7 @@ class RoleController extends BaseController
         $data['auth_list'] = implode(',', $_POST);
         $result = $role ->  save($data);
         if($result) {
-            $this->success('保存成功', U('/admin/role/findRole'));
+            $this->success('保存成功', U('/admin/role/findRole',array(),false));
             
         } else {
             $this->error('保存失败', U('/admin/role/findRole'));
@@ -130,7 +130,7 @@ class RoleController extends BaseController
         $rs = $this->roleModel->save($data);
 //        echo $this -> roleModel ->getLastSql();
         if($rs){
-            $this->success('更 新 成 功');
+            $this->success('更 新 成 功',U('/Admin/Role/findRole','',false));
             exit();
         }else{
             $this->error('更新失败');

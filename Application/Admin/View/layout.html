@@ -17,6 +17,7 @@
 		<script type='text/javascript' src="{$Think.ADMIN_PUB_PATH}js/bootstrap-datetimepicker.zh-CN.js"></script>
   		<script src="{$Think.ADMIN_PUB_PATH}js/jquery.dataTables.js"></script> 
 		<script type='text/javascript' src='{$Think.ADMIN_PUB_PATH}js/datatable.js' charset='utf-8'></script>
+	<script type='text/javascript' src='__ROOT__/Application/Home/View/public/js/md5/md5.js'></script>
 		<style>
 			.ul_second{
 				/*display: none;*/
@@ -27,8 +28,131 @@
 	<body style="background: #e9ecf3;">
 		<div class="header">
 			<p class="logo"><img src="{$Think.ADMIN_PUB_PATH}img/back.png" />车险理赔系统</p>
-			<a class="pull-right user">{$user.real_name} <img src="{$Think.ADMIN_PUB_PATH}img/back.png" /></a>
+			<div class="dropdown dropdown-user dropdown-dark ">
+				<a class="pull-right user">{$user.real_name} <img src="{$Think.ADMIN_PUB_PATH}img/back.png" /></a>
+				<ul class="dropdown-menu dropdown-menu-default">
+					<li>
+						<a href="page_user_lock_1.html" data-toggle="modal" data-position="center"
+						   data-target="#open-dailog-email" style="color: #0c0c0c">修改密码 </a>
+					</li>
+					<li>
+						<a href="{:U('Addmin/Login/logOut','',false)}" style="color: #0c0c0c">退出登陆</a>
+					</li>
+				</ul>
+		</div>
+		</div>
+		<!-- 添加修改密码弹窗 -->
+		<div class="modal fade" id="open-dailog-email">
+			<div class="modal-dialog modal-dialog-1">
+				<div class="modal-content" style="height: 250px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+								class="sr-only">关闭</span></button>
+						<h4 class="modal-title">修改密码</h4>
+					</div>
+					<div class="modal-body">
+						<div class="bd">
+							<div class="row">
+								<div class="col-xs-12">
+									<form class="form-horizontal" id="theForm" method="post">
+										<!-- 原密码  -->
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right " for="form-field-1">原密码</label>
+											<div class="col-sm-9">
+												<div class="clearfix">
+													<input placeholder="请输入原密码" class="col-xs-10 col-sm-5 oldpassword" id="oldpassword"  type="password">
+												</div>
+											</div>
+										</div>
+										<!-- 新密码  -->
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">新密码</label>
+											<div class="col-sm-9">
+												<div class="clearfix">
+													<input placeholder="请输入新密码" class="col-xs-10 col-sm-5 newPassword" id="newPassword" type="password">
+												</div>
+											</div>
+										</div>
+										<!-- 确认密码  -->
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1">确认密码</label>
+											<div class="col-sm-9">
+												<div class="clearfix">
+													<input placeholder="请输入确认密码" class="col-xs-10 col-sm-5 comfirmPassword" id="comfirmPassword"  type="password">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-sm-3 control-label" for="form-field-1"></label>
+											<div class="col-sm-2">
+												<div class="clearfix">
+													<button class="btn btn-success" id="submit_button" type="button">确定</button>
+												</div>
+											</div>
+											<!--<div class="col-sm-2">-->
+											<!--<div class="clearfix">-->
+											<!--<button class="btn" onclick="password_cancer()">取消</button>-->
+											<!--</div>-->
+											<!--</div>-->
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		 {__CONTENT__}
 	</body>
+<script>
+	var password_edit_url = "{:U('Admin/Index/updatePassword','',false)}";
+	var login_url = "{:U('Admin/Login/index','',false)}";
+	//修改密码
+	$("#submit_button").on('click',function(){
+		var oldpassword = $('#oldpassword').val();
+		var newPassword = $('#newPassword').val();
+		var comfirmPassword = $('#comfirmPassword').val();
+//		  alert(comfirmPassword);return false;
+		if(oldpassword==""||newPassword==""||comfirmPassword==""){
+			//提示层
+			alert('请填写完整密码信息');
+			return false;
+		}
+		if(newPassword != comfirmPassword){
+			//提示层
+			alert('两 次 密 码 不 一 致');
+			return false;
+		}
+		//当验证完成后异步发送数据到后台处理
+		$.ajax({
+			url: password_edit_url,
+			type: 'post',
+			dataType: 'json',
+			data:{oldPwd:hex_md5(oldpassword),newPwd:hex_md5(newPassword),comfirmPassword:hex_md5(comfirmPassword)},
+			success:function(result){
+				if(result.status == 1){
+					window.location.href = login_url;
+//					  layer.msg('修 改 成 功 , 请 重 新 登 录',{time: 3000},function(){
+//						  //parent.layer.closeAll();
+//						  window.location.href = login_url;
+//						  //return false;
+//					  });
+					//return false;
+				}else if(result.status == 0){
+					alert(result.info);
+					return false;
+				}
+			}
+		})
+	});
+
+	$(".dropdown-dark ").hover(function (){
+		$(this).addClass("open");
+	},function (){
+		$(this).removeClass("open");
+	})
+</script>
 </html>	 

@@ -31,30 +31,37 @@ class RecordController extends BaseController
         $this->adminModel = D('User/Admin');
     }
 
+
     /**
      * @Author: ludezh
      */
-    public function surveyReporter(){
+    public function surveyReporter($flag1 = 0,$inspectSn = 0){
         $carSn = I('get.carSn');
         $inspectUid = I('get.inspectUid');
-        $inspectSn = I('get.inspectSn');
+        if(empty($inspectSn)){
+            $inspectSn = I('get.inspectSn');
+        }
         $flag = I('get.flag');
         $inspectModel = D('Settle/Inspect');
         $inspectInfo = $inspectModel->getInspectInfoByInspectSn($inspectSn);
-//        print_r($inspectInfo);exit();
         $picArr = explode(',',$inspectInfo['header_img_list']);
         $picUrlArr = array();
         foreach($picArr as $k => $v){
             $picUrlArr[$k]['pic'] = substr($v, strrpos($v, '../')+2);
         }
-//        print_r($picUrlArr);exit();
         $carModel = D('Car/Message');
         $carInfo = $carModel->getRowByCarSn($inspectInfo['car_sn']);
-        $this->assign('flag',$flag);
-        $this->assign('picArr',$picUrlArr);
-        $this->assign('inspectInfo',$inspectInfo);
-        $this->assign('carInfo',$carInfo);
-        $this->display();
+        if($flag1){
+            $data = array($picUrlArr,$inspectInfo,$carInfo);
+            return $data;
+        }else{
+            $this->assign('flag',$flag);
+            $this->assign('picArr',$picUrlArr);
+            $this->assign('inspectInfo',$inspectInfo);
+            $this->assign('carInfo',$carInfo);
+            $this->display();
+        }
+
     }
 
     /**
@@ -177,7 +184,7 @@ class RecordController extends BaseController
             $where['is_pass'] = 1;
         }
         else{
-            $where['is_pass'] = array('neq', '1');
+            $where['is_pass'] = array('eq', '3');
         }
         $recordList = $this->recordModel->where($where)->select();
 
@@ -213,17 +220,27 @@ class RecordController extends BaseController
     {
         //判断是提交还是页面
         if($_POST){
-            $result = array('error'=>1,"content"=>"");
+//            print_r($_POST);exit();
+            $result = array('error'=>0,"content"=>"操 作 失 败");
             $info['id'] = I('post.id');
+            $inspect_sn = I('post.inspect_sn');
             $info['is_pass'] = I("post.value","","intval");
-            $info['amount'] = I("post.amount");
             $remark = I("post.remark");
-            if($info['is_pass']==2){
-                $info['remark'] = $remark;
-                $res = $this->recordModel->save($info);
-                $res1 = 1;
+            if($info['is_pass'] != 3){
+                if($info['is_pass'] == 2){
+                    $info['deal_remark'] = $remark;
+                    $res = $this->recordModel->save($info);
+                    $res1 = 1;
+                }else{
+                    $res = $this->inspectModel->updateStatusBySn($inspect_sn,$info['is_pass']);
+                    $res1 = 1;
+                }
             }
             else{
+//                echo $inspect_sn;exit();
+                $re = $this->inspectModel->updateStatusBySn($inspect_sn,10);
+//                print_r($re);exit();
+                $info['deal_remark'] = $remark;
                 $res = $this->recordModel->save($info);
                 $data['uid'] = I("post.uid");
                 //25位随机字符
@@ -234,26 +251,34 @@ class RecordController extends BaseController
                 }
                 $data['pay_sn'] = $str;
                 $data['dealer_uid'] = $_SESSION["uid"];
-                $data['finance_id'] = I("post.finance_id");
+                $data['finance_uid'] = I("post.finance_id");
                 $data['record_sn'] = I("post.record_sn");
                 $data['price'] = rand(1000,10000);
+                $data['pay_type'] = '银联支付';
                 $data['create_time'] = date("Y-m-d H:i:s",time());
                 $data['is_pay'] = 1;
                 $data['remark'] = $remark;
                 $res1 = M('settle_pay')->add($data);
             }
             if($res&&$res1){
-                $result['error'] = 0;
-                $result['content'] = "修改成功";
+                $result['error'] = 1;
+                $result['content'] = "修 改 成 功";
             }
             print_r(json_encode($result));exit;
         
         }
         else{
+            $flag = I("get.flag");
             $id = I("get.id");
+            $inspectSn = I("get.inspectSn");
             $info = $this->recordModel->find($id);
+            $data = $this->surveyReporter($inspectSn);
+            $this->assign('picArr',$data[0]);
+            $this->assign('inspectInfo',$data[1]);
+            $this->assign('carInfo',$data[2]);
             $this->assign("info",$info);
             $this->assign("id",$id);
+            $this->assign("flag",$flag);
         }
         $this->display();
     }

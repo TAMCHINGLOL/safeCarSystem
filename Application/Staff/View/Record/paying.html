@@ -40,13 +40,13 @@
 						  <tr class='text-c'>
 							  <td>{$u.pay_sn}</td>
 							  <td>{$u.record_sn}</td>
-							  <td>{$u.pay_type}</td>
 							  <td>{$u.price}</td>
+							  <td>{$u.pay_type}</td>
 							  <td>{$u.create_time}</td>
 							  <td>{$u.status}</td>
 							  <td>
 								  <if condition='$u.is_pay eq 1'>
-									  <button class="btn btn-sm btn-primary">立即支付</button>
+									  <button class="btn btn-sm btn-primary" onclick="pay()">立 即 支 付</button>
 									  <else/>
 									  <button class="btn btn-sm disabled">已支付</button>
 								  </if>
@@ -57,7 +57,24 @@
 				  </table>
 			</div>
 		</div>
-	
+		<!-- 对话框HTML -->
+		<div class="modal fade" id="tip_modal">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+						<h4 class="modal-title">支付提示</h4>
+					</div>
+					<div class="tip-content">
+						<p>是否支付</p>
+						<div class="pair_btn">
+							<a class="no" data-dismiss="modal">否</a>
+							<a class="yes" onclick="sure()">是</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		
 		

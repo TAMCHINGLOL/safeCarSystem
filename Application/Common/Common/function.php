@@ -404,14 +404,14 @@ function sendTemplateSMS($to,$data,$tempId)
 {
     global $accountSid,$accountToken,$appId,$serverIP,$serverPort,$softVersion;
     //主帐号,对应开官网发者主账号下的 ACCOUNT SID
-    $accountSid= '8a216da857a253ce0157acc867d1092a';
+    $accountSid= '8a216da857a253ce0157acc867d1092a11';
 
     //主帐号令牌,对应官网开发者主账号下的 AUTH TOKEN
-    $accountToken= '679ae7fcf4de439a87fe064c63d06666';
+    $accountToken= '679ae7fcf4de439a87fe064c63d0666611';
 
     //应用Id，在官网应用列表中点击应用，对应应用详情中的APP ID
     //在开发调试的时候，可以使用官网自动为您分配的测试Demo的APP ID
-    $appId='8a216da857a253ce0157acc868760930';
+    $appId='8a216da857a253ce0157acc86876093011';
 
     //请求地址
     //沙盒环境（用于应用开发调试）：sandboxapp.cloopen.com
